@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KACZE KLUCZE | Klucze do gier</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&family=Creepster&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6;}
+        .top-bar{background:#111;padding:10px;text-align:center;font-size:14px;border-bottom:1px solid #333;color:#aaa;}
+        header{text-align:center;padding:90px 20px 70px;background:#000;}
+        .duck-logo{width:180px;margin:0 auto 35px;display:block;}
+        .duck-logo img{width:100%;height:auto;}
+        h1{font-family:'Orbitron',sans-serif;font-size:100px;letter-spacing:8px;color:#fff;text-transform:uppercase;margin:20px 0;}
+        .subtitle{font-size:28px;color:#aaa;letter-spacing:5px;text-transform:uppercase;}
+        .why-us{padding:120px 20px;text-align:center;background:linear-gradient(180deg,#0f0f0f 0%,#000 100%);}
+        .why-us h2{font-family:'Orbitron',sans-serif;font-size:56px;margin-bottom:80px;color:#fff;letter-spacing:4px;}
+        .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;max-width:1400px;margin:0 auto;}
+        .feature{position:relative;padding:50px 30px;background:#111;border:2px solid #333;border-radius:12px;transition:all .4s;overflow:hidden;}
+        .feature:hover{border-color:#ffc439;transform:translateY(-15px);box-shadow:0 20px 40px rgba(255,196,57,0.15);}
+        .feature::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:#ffc439;transform:scaleX(0);transition:.4s;}
+        .feature:hover::before{transform:scaleX(1);}
+        .feature-icon{font-size:64px;margin-bottom:25px;}
+        .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700;}
+        .feature p{font-size:20px;color:#ddd;line-height:1.7;}
+        .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px;}
+        .key-card{background:#0f0f0f;border:2px solid #222;padding:30px;text-align:center;transition:all .4s;}
+        .key-card:hover{border-color:#fff;transform:translateY(-12px);background:#111;}
+        .game-title{font-family:'Creepster',cursive;font-size:28px;color:#fff;margin-bottom:12px;}
+        .price{font-size:48px;font-weight:bold;color:#fff;margin:15px 0;}
+        .buy-btn{margin-top:20px;padding:16px 50px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;}
+        .buy-btn:hover{background:#ccc;}
+        .custom-order{text-align:center;padding:90px 20px;background:#0a0a0a;font-size:24px;color:#ddd;line-height:1.8;}
+        .custom-order strong{color:#fff;font-size:30px;display:block;margin-bottom:20px;}
+        .reviews{padding:100px 20px;background:#000;text-align:center;}
+        .reviews h2{font-family:'Orbitron',sans-serif;font-size:38px;margin-bottom:60px;}
+        .review-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:30px;}
+        .review{padding:30px;background:#0f0f0f;border-left:4px solid #fff;font-size:18px;color:#ddd;}
+        footer{text-align:center;padding:100px 20px 50px;background:#000;}
+        footer img{height:80px;margin-bottom:20px;}
+        footer p{font-size:24px;color:#666;letter-spacing:3px;}
+        .modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;}
+        .modal-content{background:#111;padding:50px 40px;width:90%;max-width:520px;border:3px solid #333;text-align:center;position:relative;}
+        .close{position:absolute;top:15px;right:20px;font-size:40px;cursor:pointer;color:#fff;}
+        .paypal-btn{display:block;margin:30px auto;padding:20px;background:#ffc439;color:#000;font-weight:bold;font-size:26px;border:none;border-radius:8px;cursor:pointer;width:90%;text-decoration:none;}
+        .paypal-btn:hover{background:#ffb800;}
+        .copy-btn{background:#333;color:#fff;padding:12px 30px;border:none;margin-top:15px;cursor:pointer;border-radius:6px;}
+        .info{margin-top:30px;color:#aaa;font-size:18px;line-height:1.7;}
+        @media(max-width:900px){h1{font-size:70px;}.duck-logo{width:160px;}}
+        @media(max-width:600px){h1{font-size:50px;}.duck-logo{width:140px;}.why-us h2{font-size:42px;}}
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">PONAD 180 SPRZEDANYCH KLUCZY • NATYCHMIASTOWA DOSTAWA • 100% BEZPIECZEŃSTWO</div>
+
+    <header>
+        <div class="duck-logo"><img src="logo.png" alt="KACZE KLUCZE"></div>
+        <h1>KACZE KLUCZE</h1>
+        <div class="subtitle">instant • tanio • bez ściemy</div>
+    </header>
+
+    <section class="why-us">
+        <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">Szybkość</div>
+                <h3>KLUCZ W 10–60 MINUT</h3>
+                <p>Nie czekasz godzinami – klucz dostajesz maksymalnie w ciągu godziny. 24/7, nawet o 4 rano.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">Ceny</div>
+                <h3>CENY Z KOSMOSU</h3>
+                <p>Najtańsze klucze w Polsce – sprawdzone. Jak gdzieś znajdziesz taniej – pisz, pobijemy ofertę.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">Gwarancja</div>
+                <h3>100% DZIAŁAJĄCE KLUCZE</h3>
+                <p>Każdy klucz jest ręcznie sprawdzany przed sprzedażą. Działa zawsze.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">Wsparcie</div>
+                <h3>JESTEM ZAWSZE</h3>
+                <p>Pisz na maila albo Discord – odpisuję w kilka minut. Żadnych botów, tylko żywy kaczor.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="keys-grid">
+        <div class="key-card"><div class="game-title">Mafia II: Definitive Edition</div><div class="price">35 zł</div><button class="buy-btn" onclick="openModal('Mafia II: Definitive Edition','35')">KUP TERAZ</button></div>
+        <div class="key-card"><div class="game-title">Batman: Arkham Asylum (GOTY)</div><div class="price">25 zł</div><button class="buy-btn" onclick="openModal('Batman: Arkham Asylum (GOTY)','25')">KUP TERAZ</button></div>
+        <div class="key-card"><div class="game-title">Batman: Arkham City (GOTY)</div><div class="price">30 zł</div><button class="buy-btn" onclick="openModal('Batman: Arkham City (GOTY)','30')">KUP TERAZ</button></div>
+        <div class="key-card"><div class="game-title">Batman: Arkham Collection</div><div class="price">40 zł</div><button class="buy-btn" onclick="openModal('Batman: Arkham Collection','40')">KUP TERAZ</button></div>
+        <div class="key-card"><div class="game-title">Batman: Arkham Knight (Premium)</div><div class="price">30 zł</div><button class="buy-btn" onclick="openModal('Batman: Arkham Knight (Premium)','30')">KUP TERAZ</button></div>
+        <div class="key-card"><div class="game-title">Mafia III: Definitive Edition</div><div class="price">35 zł</div><button class="buy-btn" onclick="openModal('Mafia III: Definitive Edition','35')">KUP TERAZ</button></div>
+        <div class="key-card"><div class="game-title">Mafia: Trilogy</div><div class="price">60 zł</div><button class="buy-btn" onclick="openModal('Mafia: Trilogy','60')">KUP TERAZ</button></div>
+        <div class="key-card"><div class="game-title">Sid Meier's Civilization VI</div><div class="price">30 zł</div><button class="buy-btn" onclick="openModal('Sid Meier\'s Civilization VI','30')">KUP TERAZ</button></div>
+        <div class="key-card"><div class="game-title">Batman: Arkham Origins</div><div class="price">30 zł</div><button class="buy-btn" onclick="openModal('Batman: Arkham Origins','30')">KUP TERAZ</button></div>
+        <div class="key-card"><div class="game-title">Fallout 76</div><div class="price">50 zł</div><button class="buy-btn" onclick="openModal('Fallout 76','50')">KUP TERAZ</button></div>
+    </div>
+
+    <div class="custom-order">
+        <strong>Nie ma gry, której szukasz?</strong><br><br>
+        Chętnie przygotuję dowolny produkt na zamówienie.<br>
+        Pisz śmiało: <strong>kacze.klucze@gmail.com</strong> | Discord: <strong>mc.duck_8237</strong>
+    </div>
+
+    <section class="reviews">
+        <div class="container">
+            <h2>Ostatnie opinie</h2>
+            <div class="review-list">
+                <div class="review">„Kupiłem Trilogy za 60 zł – klucz przyszedł w 8 minut. Polecam!” – Kuba</div>
+                <div class="review">„Najtańszy Batman w necie. Działa idealnie.” – Seba</div>
+                <div class="review">„Szybko, tanio, bez problemów. 10/10” – Patryk</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <img src="logo.png" alt="KACZE KLUCZE">
+        <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
+    </footer>
+
+    <!-- MODAL Z TWOIM PRAWIDŁOWYM PAYPAL.ME -->
+    <div id="buyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h2 id="modalTitle" style="font-size:32px;margin-bottom:15px;"></h2>
+            <div style="font-size:50px;font-weight:bold;color:#ffc439;margin:20px 0;" id="modalPrice"></div>
+
+            <a href="#" id="paypalLink" class="paypal-btn" target="_blank">ZAPŁAĆ PRZEZ PAYPAL</a>
+
+            <div style="margin:25px 0;font-size:22px;">lub przelej ręcznie na:</div>
+            <div class="paypal-mail">kacze.klucze@gmail.com</div>
+            <button class="copy-btn" onclick="copyMail()">SKOPIUJ ADRES</button>
+
+            <div class="info">
+                W tytule przelewu wpisz dokładnie:<br>
+                <strong id="paymentTitle" style="color:#ffc439;"></strong><br><br>
+                Klucz wyślę w 1–60 minut • Jestem online 24/7
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(game, price) {
+            document.getElementById('modalTitle').textContent = game;
+            document.getElementById('modalPrice').textContent = price + " zł";
+            document.getElementById('paymentTitle').textContent = game + " – " + price + " zł";
+            // Twój prawdziwy link PayPal.Me
+            document.getElementById('paypalLink').href = "https://paypal.me/Kaczor8237/" + price;
+            document.getElementById('buyModal').style.display = "flex";
+        }
+        function copyMail() {
+            navigator.clipboard  .writeText("kacze.klucze@gmail.com");
+            alert("Adres skopiowany!");
+        }
+        document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
+        window.onclick = e => { if(e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
+    </script>
+</body>
+</html>
