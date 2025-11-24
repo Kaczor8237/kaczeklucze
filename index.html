@@ -26,78 +26,15 @@
         .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700;}
         .feature p{font-size:20px;color:#ddd;line-height:1.7;}
        
-        .keys-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-            gap:35px;
-            max-width:1400px;
-            margin:60px auto;
-            padding:0 20px;
-        }
-        .key-card{
-            position:relative;
-            overflow:hidden;
-            border-radius:16px;
-            background:#111;
-            border:2px solid #222;
-            transition:all .4s ease;
-            display:flex;
-            flex-direction:column;
-        }
-        .game-cover{
-            width:100%;
-            height:280px;
-            background-size:cover;
-            background-position:center top;
-            background-repeat:no-repeat;
-            background-color:#000;
-            transition:transform .6s ease;
-            flex-shrink:0;
-        }
-        .key-card:hover{
-            border-color:#ffc439 !important;
-            transform:translateY(-12px);
-            box-shadow:0 25px 50px rgba(255,196,57,0.25);
-        }
-        .key-card:hover .game-cover{
-            transform:scale(1.08);
-        }
-        .game-info{
-            padding:16px 12px;
-            text-align:center;
-            flex-grow:1;
-            display:flex;
-            flex-direction:column;
-            justify-content:space-between;
-        }
-        .game-title{
-            font-family:'Creepster',cursive;
-            font-size:26px;
-            margin-bottom:8px;
-            min-height:66px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-        }
-        .price{
-            font-size:46px;
-            font-weight:bold;
-            color:#fff;
-            margin:8px 0;
-        }
-        .buy-btn{
-            margin:16px 20px 20px;
-            padding:16px;
-            background:#fff;
-            color:#000;
-            font-weight:bold;
-            font-size:20px;
-            border:none;
-            cursor:pointer;
-            text-transform:uppercase;
-            letter-spacing:2px;
-            transition:all .3s;
-        }
+        .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px;}
+        .key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s ease;display:flex;flex-direction:column;}
+        .game-cover{width:100%;height:280px;background-size:cover;background-position:center top;background-repeat:no-repeat;background-color:#000;transition:transform .6s ease;flex-shrink:0;}
+        .key-card:hover{border-color:#ffc439 !important;transform:translateY(-12px);box-shadow:0 25px 50px rgba(255,196,57,0.25);}
+        .key-card:hover .game-cover{transform:scale(1.08);}
+        .game-info{padding:16px 12px;text-align:center;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;}
+        .game-title{font-family:'Creepster',cursive;font-size:26px;margin-bottom:8px;min-height:66px;display:flex;align-items:center;justify-content:center;}
+        .price{font-size:46px;font-weight:bold;color:#fff;margin:8px 0;}
+        .buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all .3s;}
         .buy-btn:hover{background:#ccc;}
         .custom-order{text-align:center;padding:90px 20px;background:#0a0a0a;font-size:24px;color:#ddd;line-height:1.8;}
         .custom-order strong{color:#fff;font-size:30px;display:block;margin-bottom:20px;}
@@ -126,36 +63,19 @@
         <h1>KACZE KLUCZE</h1>
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
+
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
-            <div class="feature">
-                <div class="feature-icon">Szybkość</div>
-                <h3>KLUCZ W 10–60 MINUT</h3>
-                <p>Nie czekasz godzinami – klucz dostajesz maksymalnie w ciągu godziny. 24/7, nawet o 4 rano.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">Ceny</div>
-                <h3>CENY Z KOSMOSU</h3>
-                <p>Najtańsze klucze w Polsce – sprawdzone. Jak gdzieś znajdziesz taniej – pisz, pobijemy ofertę.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">Gwarancja</div>
-                <h3>100% DZIAŁAJĄCE KLUCZE</h3>
-                <p>Każdy klucz jest ręcznie sprawdzany przed sprzedażą. Działa zawsze.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">Wsparcie</div>
-                <h3>JESTEM ZAWSZE</h3>
-                <p>Pisz na maila albo Discord – odpisuję w kilka minut. Żadnych botów, tylko żywy kaczor.</p>
-            </div>
+            <div class="feature"><div class="feature-icon">Szybkość</div><h3>KLUCZ W 10–60 MINUT</h3><p>Nie czekasz godzinami – klucz dostajesz maksymalnie w ciągu godziny. 24/7, nawet o 4 rano.</p></div>
+            <div class="feature"><div class="feature-icon">Ceny</div><h3>CENY Z KOSMOSU</h3><p>Najtańsze klucze w Polsce – sprawdzone. Jak gdzieś znajdziesz taniej – pisz, pobijemy ofertę.</p></div>
+            <div class="feature"><div class="feature-icon">Gwarancja</div><h3>100% DZIAŁAJĄCE KLUCZE</h3><p>Każdy klucz jest ręcznie sprawdzany przed sprzedażą. Działa zawsze.</p></div>
+            <div class="feature"><div class="feature-icon">Wsparcie</div><h3>JESTEM ZAWSZE</h3><p>Pisz na maila albo Discord – odpisuję w kilka minut. Żadnych botów, tylko żywy kaczor.</p></div>
         </div>
     </section>
 
     <div class="keys-grid" id="gamesContainer">
-        <div style="grid-column:1/-1;text-align:center;padding:100px;font-size:28px;color:#777;">
-            Ładowanie gier... kwak kwak!
-        </div>
+        <div style="grid-column:1/-1;text-align:center;padding:100px;font-size:28px;color:#777;">Ładowanie gier... kwak kwak!</div>
     </div>
 
     <div class="custom-order">
@@ -197,17 +117,29 @@
 
     <script>
         const gamesDatabase = [
-            { file: "Mafia_II_Definitive_Edition.png", title: "Mafia II: Definitive Edition", price: 35 },
-            { file: "Batman_Arkham_Asylum_GOTY.png", title: "Batman: Arkham Asylum (GOTY)", price: 25 },
-            { file: "Batman_Arkham_City_GOTY.png", title: "Batman: Arkham City (GOTY)", price: 30 },
-            { file: "Batman_Arkham_Collection.png", title: "Batman: Arkham Collection", price: 40 },
-            { file: "Batman_Arkham_Knight_Premium.png", title: "Batman: Arkham Knight (Premium)", price: 30 },
-            { file: "Mafia_III_Definitive_Edition.png", title: "Mafia III: Definitive Edition", price: 35 },
-            { file: "Mafia_Trilogy.png", title: "Mafia: Trilogy", price: 60 },
-            { file: "Sid_Meiers_Civilization_VI.png", title: "Sid Meier's Civilization VI", price: 30 },
-            { file: "Batman_Arkham_Origins.png", title: "Batman: Arkham Origins", price: 30 },
-            { file: "Fallout_76.png", title: "Fallout 76", price: 50 },
-            { file: "Hearts_of_Iron_IV.png", title: "Hearts of Iron IV", price: 59 } // ← NOWA GRA!
+            // STARE GRY
+            { file: "Mafia_II_Definitive_Edition", title: "Mafia II: Definitive Edition", price: 35 },
+            { file: "Batman_Arkham_Asylum_GOTY", title: "Batman: Arkham Asylum (GOTY)", price: 25 },
+            { file: "Batman_Arkham_City_GOTY", title: "Batman: Arkham City (GOTY)", price: 30 },
+            { file: "Batman_Arkham_Collection", title: "Batman: Arkham Collection", price: 40 },
+            { file: "Batman_Arkham_Knight_Premium", title: "Batman: Arkham Knight (Premium)", price: 30 },
+            { file: "Mafia_III_Definitive_Edition", title: "Mafia III: Definitive Edition", price: 35 },
+            { file: "Mafia_Trilogy", title: "Mafia: Trilogy", price: 60 },
+            { file: "Sid_Meiers_Civilization_VI", title: "Sid Meier's Civilization VI", price: 30 },
+            { file: "Batman_Arkham_Origins", title: "Batman: Arkham Origins", price: 30 },
+            { file: "Fallout_76", title: "Fallout 76", price: 50 },
+
+            // NOWE GRY – DODANE DZISIAJ
+            { file: "Ghost_of_Tsushima_Directors_Cut", title: "Ghost of Tsushima | Director’s Cut", price: 124 },
+            { file: "Ready_or_Not", title: "Ready or Not", price: 105 },
+            { file: "Hogwarts_Legacy_Deluxe_Edition", title: "Hogwarts Legacy | Deluxe Edition", price: 47 },
+            { file: "Mortal_Kombat_XL", title: "Mortal Kombat XL", price: 14 },
+            { file: "Hello_Neighbor", title: "Hello Neighbor", price: 41 },
+            { file: "Dying_Light_Essentials_Edition", title: "Dying Light | Essentials Edition", price: 20 },
+            { file: "Marvels_Spider_Man_Remastered", title: "Marvel's Spider-Man Remastered", price: 103 },
+            { file: "Hello_Neighbor_2", title: "Hello Neighbor 2", price: 20 },
+            { file: "Subnautica", title: "Subnautica", price: 70 },
+            { file: "Mortal_Kombat_1", title: "Mortal Kombat 1", price: 78 }
         ];
 
         function openModal(game, price) {
@@ -235,34 +167,26 @@
                 const card = document.createElement('div');
                 card.className = 'key-card';
 
-                // Obsługa .png i .jpg jednocześnie
-                const possibleFiles = [
-                    `covers/${game.file}`,
-                    `covers/${game.file.replace('.png', '.jpg')}`,
-                    `covers/${game.file.replace('.png', '.jpeg')}`
-                ];
-
                 const coverDiv = document.createElement('div');
                 coverDiv.className = 'game-cover';
 
+                // próba .png → .jpg → .jpeg → logo kaczki
+                const exts = ['.png', '.jpg', '.jpeg'];
                 let found = false;
-                possibleFiles.forEach(path => {
-                    if (!found) {
-                        const test = new Image();
-                        test.onload = () => {
-                            coverDiv.style.backgroundImage = `url('${path}')`;
-                            found = true;
-                        };
-                        test.src = path;
-                    }
+                exts.forEach(ext => {
+                    if (found) return;
+                    const path = `covers/${game.file}${ext}`;
+                    const img = new Image();
+                    img.onload = () => {
+                        coverDiv.style.backgroundImage = `url('${path}')`;
+                        found = true;
+                    };
+                    img.src = path;
                 });
 
-                // Fallback na logo jeśli żaden obrazek się nie załaduje
                 setTimeout(() => {
-                    if (!found && !coverDiv.style.backgroundImage) {
-                        coverDiv.style.backgroundImage = "url('logo.png')";
-                    }
-                }, 1000);
+                    if (!found) coverDiv.style.backgroundImage = "url('logo.png')";
+                }, 1500);
 
                 card.innerHTML = `
                     <div class="game-info">
