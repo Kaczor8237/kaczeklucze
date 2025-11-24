@@ -25,8 +25,7 @@
         .feature-icon{font-size:64px;margin-bottom:25px;}
         .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700;}
         .feature p{font-size:20px;color:#ddd;line-height:1.7;}
-        
-        /* NOWE STYLE DLA GIER */
+       
         .keys-grid{
             display:grid;
             grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -100,7 +99,6 @@
             transition:all .3s;
         }
         .buy-btn:hover{background:#ccc;}
-
         .custom-order{text-align:center;padding:90px 20px;background:#0a0a0a;font-size:24px;color:#ddd;line-height:1.8;}
         .custom-order strong{color:#fff;font-size:30px;display:block;margin-bottom:20px;}
         .reviews{padding:100px 20px;background:#000;text-align:center;}
@@ -128,7 +126,6 @@
         <h1>KACZE KLUCZE</h1>
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
-
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
@@ -155,7 +152,6 @@
         </div>
     </section>
 
-    <!-- AUTOMATYCZNA SIATKA GIER -->
     <div class="keys-grid" id="gamesContainer">
         <div style="grid-column:1/-1;text-align:center;padding:100px;font-size:28px;color:#777;">
             Ładowanie gier... kwak kwak!
@@ -173,7 +169,7 @@
         <div class="review-list">
             <div class="review">„Kupiłem Trilogy za 60 zł – klucz przyszedł w 8 minut. Polecam!” – Kuba</div>
             <div class="review">„Najtańszy Batman w necie. Działa idealnie.” – Seba</div>
-            <div class=" Every">„Szybko, tanio, bez problemów. 10/10” – Patryk</div>
+            <div class="review">„Szybko, tanio, bez problemów. 10/10” – Patryk</div>
         </div>
     </section>
 
@@ -182,7 +178,6 @@
         <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
-    <!-- MODAL -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
             <span class="close">×</span>
@@ -201,18 +196,18 @@
     </div>
 
     <script>
-        // BAZA GIER – dodawaj tu nowe pozycje (tylko te 3 linijki!)
         const gamesDatabase = [
-            { file: "Mafia_II_Definitive_Edition.png",       title: "Mafia II: Definitive Edition",       price: 35 },
-            { file: "Batman_Arkham_Asylum_GOTY.png",         title: "Batman: Arkham Asylum (GOTY)",       price: 25 },
-            { file: "Batman_Arkham_City_GOTY.png",           title: "Batman: Arkham City (GOTY)",         price: 30 },
-            { file: "Batman_Arkham_Collection.png",          title: "Batman: Arkham Collection",          price: 40 },
-            { file: "Batman_Arkham_Knight_Premium.png",      title: "Batman: Arkham Knight (Premium)",    price: 30 },
-            { file: "Mafia_III_Definitive_Edition.png",      title: "Mafia III: Definitive Edition",      price: 35 },
-            { file: "Mafia_Trilogy.png",                     title: "Mafia: Trilogy",                     price: 60 },
-            { file: "Sid_Meiers_Civilization_VI.png",        title: "Sid Meier's Civilization VI",        price: 30 },
-            { file: "Batman_Arkham_Origins.png",             title: "Batman: Arkham Origins",             price: 30 },
-            { file: "Fallout_76.png",                        title: "Fallout 76",                         price: 50 }
+            { file: "Mafia_II_Definitive_Edition.png", title: "Mafia II: Definitive Edition", price: 35 },
+            { file: "Batman_Arkham_Asylum_GOTY.png", title: "Batman: Arkham Asylum (GOTY)", price: 25 },
+            { file: "Batman_Arkham_City_GOTY.png", title: "Batman: Arkham City (GOTY)", price: 30 },
+            { file: "Batman_Arkham_Collection.png", title: "Batman: Arkham Collection", price: 40 },
+            { file: "Batman_Arkham_Knight_Premium.png", title: "Batman: Arkham Knight (Premium)", price: 30 },
+            { file: "Mafia_III_Definitive_Edition.png", title: "Mafia III: Definitive Edition", price: 35 },
+            { file: "Mafia_Trilogy.png", title: "Mafia: Trilogy", price: 60 },
+            { file: "Sid_Meiers_Civilization_VI.png", title: "Sid Meier's Civilization VI", price: 30 },
+            { file: "Batman_Arkham_Origins.png", title: "Batman: Arkham Origins", price: 30 },
+            { file: "Fallout_76.png", title: "Fallout 76", price: 50 },
+            { file: "Hearts_of_Iron_IV.png", title: "Hearts of Iron IV", price: 59 } // ← NOWA GRA!
         ];
 
         function openModal(game, price) {
@@ -231,7 +226,6 @@
         document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
         window.onclick = e => { if(e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
 
-        // GENEROWANIE KART GIER
         function loadGames() {
             const container = document.getElementById('gamesContainer');
             container.innerHTML = '';
@@ -240,32 +234,49 @@
                 const cleanTitle = game.title.replace(/'/g, "\\'");
                 const card = document.createElement('div');
                 card.className = 'key-card';
+
+                // Obsługa .png i .jpg jednocześnie
+                const possibleFiles = [
+                    `covers/${game.file}`,
+                    `covers/${game.file.replace('.png', '.jpg')}`,
+                    `covers/${game.file.replace('.png', '.jpeg')}`
+                ];
+
+                const coverDiv = document.createElement('div');
+                coverDiv.className = 'game-cover';
+
+                let found = false;
+                possibleFiles.forEach(path => {
+                    if (!found) {
+                        const test = new Image();
+                        test.onload = () => {
+                            coverDiv.style.backgroundImage = `url('${path}')`;
+                            found = true;
+                        };
+                        test.src = path;
+                    }
+                });
+
+                // Fallback na logo jeśli żaden obrazek się nie załaduje
+                setTimeout(() => {
+                    if (!found && !coverDiv.style.backgroundImage) {
+                        coverDiv.style.backgroundImage = "url('logo.png')";
+                    }
+                }, 1000);
+
                 card.innerHTML = `
-                    <div class="game-cover" style="background-image:url('covers/${game.file}')"></div>
                     <div class="game-info">
                         <div class="game-title">${game.title}</div>
                         <div class="price">${game.price} zł</div>
                         <button class="buy-btn" onclick="openModal('${cleanTitle}','${game.price}')">KUP TERAZ</button>
                     </div>
                 `;
+                card.insertBefore(coverDiv, card.firstChild);
                 container.appendChild(card);
             });
         }
-
-        // Fallback – jak obrazka nie ma → logo kaczki
-        const observer = new MutationObserver(() => {
-            document.querySelectorAll('.game-cover').forEach(cover => {
-                const url = cover.style.backgroundImage.slice(5, -2);
-                const img = new Image();
-                img.onload = () => {};
-                img.onerror = () => cover.style.backgroundImage = "url('logo.png')";
-                img.src = url;
-            });
-        });
-        observer.observe(document.getElementById('gamesContainer'), { childList: true });
 
         window.addEventListener('DOMContentLoaded', loadGames);
     </script>
 </body>
 </html>
-
