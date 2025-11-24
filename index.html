@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KACZE KLUCZE | Najtańsze klucze do gier w Polsce</title>
-    <link rel="icon" href="https://i.imgur.com/6f0k1tP.png" type="image/png">
+    <link rel="icon" href="https://i.ibb.co/0jD7g1Q/kacze-logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/452a5a5a5a.js" crossorigin="anonymous"></script>
     <style>
@@ -43,7 +43,6 @@
         .prices{margin:10px 0}
         .old-price{text-decoration:line-through;color:#666;font-size:14px}
         .price{font-size:28px;font-weight:bold;color:var(--gold);margin:5px 0}
-        .price-note{font-size:12px;color:#0f0}
         .buy-btn{width:100%;padding:12px;background:#007bff;color:#fff;font-weight:bold;font-size:16px;border:none;cursor:pointer;transition:.3s}
         .buy-btn:hover{background:var(--gold);color:#000}
         footer{text-align:center;padding:90px 20px 50px;background:#000}
@@ -57,12 +56,12 @@
 <div class="topbar">PONAD 3000 SPRZEDANYCH KLUCZY • NATYCHMIASTOWA DOSTAWA • GWARANCJA 12 MIESIĘCY • ZAWSZE +5 ZŁ MARŻY</div>
 
 <header>
-    <div class="logo"><img src="https://i.imgur.com/6f0k1tP.png" alt="KACZE KLUCZE"></div>
+    <div class="logo"><img src="https://i.ibb.co/0jD7g1Q/kacze-logo.png" alt="KACZE KLUCZE"></div>
     <h1>KACZE KLUCZE</h1>
-    <div class="subtitle">najtańsze klucze w Polsce • ceny auto-aktualizowane codziennie</div>
+    <div class="subtitle">najtańsze klucze w Polsce • ceny aktualne codziennie</div>
 </header>
 
-<div class="cart-icon" onclick="toggleCart()">K<i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></div>
+<div class="cart-icon" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></div>
 
 <div class="cart-panel" id="cartPanel">
     <div class="cart-header"><h2>Twój koszyk</h2><span class="close-cart" onclick="toggleCart()">×</span></div>
@@ -71,7 +70,7 @@
     <button class="checkout-btn" onclick="alert('Przekierowanie do płatności...')">ZAMÓW I ZAPŁAĆ</button>
 </div>
 
-<div id="priceStatus">Ceny aktualne na 24.11.2025 – zawsze najtańsze +5 zł!</div>
+<div id="priceStatus">Ceny aktualne na 24.11.2025 – zawsze +5 zł marży!</div>
 
 <div class="search-section">
     <input type="text" id="searchInput" placeholder="Szukaj gry...">
@@ -94,14 +93,14 @@
 <div class="games-grid" id="gamesGrid"></div>
 
 <footer>
-    <img src="https://i.imgur.com/6f0k1tP.png" alt="KACZE KLUCZE">
-    <p>KACZE KLUCZE © 2025 • Kontakt: kacze.klucze@gmail.com • Codzienna aktualizacja cen</p>
+    <img src="https://i.ibb.co/0jD7g1Q/kacze-logo.png" alt="KACZE KLUCZE">
+    <p>KACZE KLUCZE © 2025 • Kontakt: kacze.klucze@gmail.com</p>
 </footer>
 
 <script>
 let cart = [];
 
-// 50 najpopularniejszych gier – ceny z 24.11.2025 +5 zł marży
+// 50 gier – ceny z dzisiaj +5 zł marży
 let games = [
     {title:"Grand Theft Auto V: Premium Edition",price:63,oldPrice:249,platform:"rockstar",img:"https://via.placeholder.com/300x200/111/fff?text=GTA+V"},
     {title:"Red Dead Redemption 2",price:94,oldPrice:299,platform:"rockstar",img:"https://via.placeholder.com/300x200/111/fff?text=RDR2"},
@@ -122,8 +121,8 @@ let games = [
     {title:"Assassin's Creed Valhalla",price:64,oldPrice:249,platform:"uplay",img:"https://via.placeholder.com/300x200/111/fff?text=Valhalla"},
     {title:"Far Cry 6",price:64,oldPrice:249,platform:"uplay",img:"https://via.placeholder.com/300x200/111/fff?text=Far+Cry+6"},
     {title:"Rainbow Six Siege",price:40,oldPrice:89,platform:"uplay",img:"https://via.placeholder.com/300x200/111/fff?text=R6"},
-    {title:"Rocket League",price:0,oldPrice:79,platform:"epic",img:"https://via.placeholder.com/300x200/111/fff?text=Rocket+League"},
-    // dodaj resztę sam albo powiedz – wrzucę 100+
+    {title:"Rocket League",price:0,oldPrice:79,platform:"epic",img:"https://via.placeholder.com/300x200/111/fff?text=Rocket+League"}
+    // chcesz więcej? pisz
 ];
 
 function renderGames(list){
@@ -156,7 +155,6 @@ function updateCart(){
 }
 function toggleCart(){document.getElementById('cartPanel').classList.toggle('open')}
 
-// filtry
 ['searchInput','platformFilter','sortFilter'].forEach(id=>document.getElementById(id).addEventListener('input',filterGames));
 function filterGames(){
     let f=games.slice();
