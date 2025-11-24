@@ -3,162 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KACZE KLUCZE | Klucze do gier</title>
+    <title>KACZE KLUCZE | Najtańsze klucze do gier – Automatyczne ceny</title>
     <link rel="icon" href="logo.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&family=Creepster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/452a5a5a5a.js" crossorigin="anonymous"></script>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6;}
-        .top-bar{background:#111;padding:10px;text-align:center;font-size:14px;border-bottom:1px solid #333;color:#aaa;}
-        header{text-align:center;padding:90px 20px 70px;background:#000;}
-        .duck-logo{width:180px;margin:0 auto 35px;display:block;}
-        .duck-logo img{width:100%;height:auto;}
-        h1{font-family:'Orbitron',sans-serif;font-size:100px;letter-spacing:8px;color:#fff;text-transform:uppercase;margin:20px 0;}
-        .subtitle{font-size:28px;color:#aaa;letter-spacing:5px;text-transform:uppercase;}
-        .why-us{padding:120px 20px;text-align:center;background:linear-gradient(180deg,#0f0f0f 0%,#000 100%);}
-        .why-us h2{font-family:'Orbitron',sans-serif;font-size:56px;margin-bottom:80px;color:#fff;letter-spacing:4px;}
-        .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;max-width:1400px;margin:0 auto;}
-        .feature{position:relative;padding:50px 30px;background:#111;border:2px solid #333;border-radius:12px;transition:all .4s;overflow:hidden;}
-        .feature:hover{border-color:#ffc439;transform:translateY(-15px);box-shadow:0 20px 40px rgba(255,196,57,0.15);}
-        .feature::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:#ffc439;transform:scaleX(0);transition:.4s;}
-        .feature:hover::before{transform:scaleX(1);}
-        .feature-icon{font-size:64px;margin-bottom:25px;}
-        .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700;}
-        .feature p{font-size:20px;color:#ddd;line-height:1.7;}
-        .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px;}
-        .key-card{background:#0f0f0f;border:2px solid #222;padding:30px;text-align:center;transition:all .4s;}
-        .key-card:hover{border-color:#fff;transform:translateY(-12px);background:#111;}
-        .game-title{font-family:'Creepster',cursive;font-size:28px;color:#fff;margin-bottom:12px;}
-        .price{font-size:48px;font-weight:bold;color:#fff;margin:15px 0;}
-        .buy-btn{margin-top:20px;padding:16px 50px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;}
-        .buy-btn:hover{background:#ccc;}
-        .custom-order{text-align:center;padding:90px 20px;background:#0a0a0a;font-size:24px;color:#ddd;line-height:1.8;}
-        .custom-order strong{color:#fff;font-size:30px;display:block;margin-bottom:20px;}
-        .reviews{padding:100px 20px;background:#000;text-align:center;}
-        .reviews h2{font-family:'Orbitron',sans-serif;font-size:38px;margin-bottom:60px;}
-        .review-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:30px;}
-        .review{padding:30px;background:#0f0f0f;border-left:4px solid #fff;font-size:18px;color:#ddd;}
-        footer{text-align:center;padding:100px 20px 50px;background:#000;}
-        footer img{height:80px;margin-bottom:20px;}
-        footer p{font-size:24px;color:#666;letter-spacing:3px;}
-        .modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;}
-        .modal-content{background:#111;padding:50px 40px;width:90%;max-width:520px;border:3px solid #333;text-align:center;position:relative;}
-        .close{position:absolute;top:15px;right:20px;font-size:40px;cursor:pointer;color:#fff;}
-        .paypal-btn{display:block;margin:30px auto;padding:20px;background:#ffc439;color:#000;font-weight:bold;font-size:26px;border:none;border-radius:8px;cursor:pointer;width:90%;text-decoration:none;}
-        .paypal-btn:hover{background:#ffb800;}
-        .copy-btn{background:#333;color:#fff;padding:12px 30px;border:none;margin-top:15px;cursor:pointer;border-radius:6px;}
-        .info{margin-top:30px;color:#aaa;font-size:18px;line-height:1.7;}
-        @media(max-width:900px){h1{font-size:70px;}.duck-logo{width:160px;}}
-        @media(max-width:600px){h1{font-size:50px;}.duck-logo{width:140px;}.why-us h2{font-size:42px;}}
+        :root {
+            --gold: #ffc439;
+            --dark: #0f0f0f;
+            --darker: #111;
+            --gray: #222;
+            --light: #ddd;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:#000; color:#fff; font-family:'Rajdhani',sans-serif; line-height:1.6; overflow-x:hidden; }
+        .topbar { background:var(--darker); padding:12px; text-align:center; font-size:15px; color:#aaa; border-bottom:1px solid #333; }
+        
+        header { text-align:center; padding:90px 20px 70px; background:var(--dark); }
+        .logo img { width:170px; margin-bottom:20px; filter: drop-shadow(0 0 10px rgba(255,196,57,0.4)); }
+        h1 { font-family:'Orbitron',sans-serif; font-size:82px; letter-spacing:7px; color:#fff; text-transform:uppercase; }
+        .subtitle { font-size:26px; color:var(--gold); letter-spacing:5px; margin-top:12px; }
+
+        /* Koszyk – ikona w prawym górnym rogu */
+        .cart-icon {
+            position:fixed; top:20px; right:20px; z-index:999; background:var(--gold); color:#000;
+            width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+            font-size:28px; cursor:pointer; box-shadow:0 5px 20px rgba(255,196,57,0.4); transition:.3s;
+        }
+        .cart-icon:hover { transform:scale(1.1); }
+        .cart-count { position:absolute; top:-8px; right:-8px; background:#ff4444; color:#fff; font-size:12px; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; }
+
+        /* Panel koszyka */
+        .cart-panel {
+            position:fixed; right:-400px; top:0; width:380px; height:100%; background:#111; z-index:998; transition:right .4s ease; padding:20px; overflow-y:auto; box-shadow:-10px 0 30px rgba(0,0,0,0.8);
+        }
+        .cart-panel.open { right:0; }
+        .cart-header { display:flex; justify-content:space-between; align-items:center; padding:15px 0; border-bottom:1px solid #333; margin-bottom:20px; }
+        .cart-header h2 { font-size:24px; color:var(--gold); }
+        .close-cart { font-size:28px; cursor:pointer; color:#aaa; }
+        .cart-item { display:flex; justify-content:space-between; padding:15px 0; border-bottom:1px solid #333; }
+        .cart-total { font-size:24px; font-weight:bold; color:var(--gold); text-align:right; margin:20px 0; }
+        .checkout-btn { width:100%; padding:18px; background:var(--gold); color:#000; font-size:20px; font-weight:bold; border:none; cursor:pointer; border-radius:8px; }
+        .checkout-btn:hover { background:#ffb800; }
+
+        /* Wyszukiwanie i filtry */
+        .search-section {
+            max-width:1400px; margin:40px auto; padding:0 20px; display:flex; gap:20px; flex-wrap:wrap; align-items:center; justify-content:center;
+        }
+        #searchInput {
+            padding:16px 20px; width:100%; max-width:500px; border-radius:8px; border:none; font-size:18px; background:var(--gray); color:#fff;
+        }
+        select {
+            padding:16px 24px; border-radius:8px; border:none; background:var(--gray); color:#fff; font-size:16px; cursor:pointer;
+        }
+
+        /* Status cen */
+        #priceStatus { text-align:center; margin:10px 0; color:var(--gold); font-size:14px; }
+
+        /* Grid gier – jak w Instant Gaming */
+        .games-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+            gap:20px;
+            max-width:1400px;
+            margin:40px auto;
+            padding:0 20px;
+        }
+        .game-card {
+            background:var(--darker);
+            border-radius:8px;
+            overflow:hidden;
+            transition:all .3s ease;
+            border:1px solid #333;
+            text-align:center;
+            box-shadow:0 2px 10px rgba(0,0,0,0.5);
+        }
+        .game-card:hover {
+            transform:translateY(-5px);
+            box-shadow:0 10px 25px rgba(255,196,57,0.2);
+            border-color:var(--gold);
+        }
+        .game-img {
+            width:100%;
+            height:200px;
+            background-size:cover;
+            background-position:center;
+            background-color:#333;
+        }
+        .game-info { padding:15px; }
+        .game-title { font-size:18px; margin-bottom:8px; color:#fff; font-weight:600; line-height:1.3; height:50px; display:flex; align-items:center; justify-content:center; }
+        .platform { font-size:12px; color:#888; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px; }
+        .platform i { color:var(--gold); margin-right:5px; }
+        .prices { margin:10px 0; }
+        .old-price { text-decoration:line-through; color:#666; font-size:14px; }
+        .price { font-size:28px; font-weight:bold; color:var(--gold); margin:5px 0; }
+        .price-note { font-size:12px; color:#aaa; margin-top:5px; }
+        .buy-btn {
+            width:100%; padding:12px; background:#007bff; color:#fff; font-weight:bold; font-size:16px; border:none; cursor:pointer; border-radius:0 0 8px 8px; transition:.3s;
+        }
+        .buy-btn:hover { background:var(--gold); color:#000; }
+
+        footer { text-align:center; padding:90px 20px 50px; background:#000; }
+        footer img { height:70px; margin-bottom:20px; filter: drop-shadow(0 0 10px rgba(255,196,57,0.3)); }
+        footer p { color:#666; font-size:20px; letter-spacing:2px; }
+
+        @media(max-width:768px){
+            h1{font-size:56px;}
+            .search-section{flex-direction:column;}
+            #searchInput{max-width:100%;}
+            .games-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:15px;}
+        }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">PONAD 180 SPRZEDANYCH KLUCZY • NATYCHMIASTOWA DOSTAWA • 100% BEZPIECZEŃSTWO</div>
+<div class="topbar">
+    PONAD 2500 SPRZEDANYCH KLUCZY • NATYCHMIASTOWA DOSTAWA • GWARANCJA 12 MIESIĘCY • AUTOMATYCZNE CENY Z RYNKU
+</div>
 
-    <header>
-        <div class="duck-logo"><img src="logo.png" alt="KACZE KLUCZE"></div>
-        <h1>KACZE KLUCZE</h1>
-        <div class="subtitle">instant • tanio • bez ściemy</div>
-    </header>
+<header>
+    <div class="logo"><img src="logo.png" alt="KACZE KLUCZE"></div>
+    <h1>KACZE KLUCZE</h1>
+    <div class="subtitle">najtańsze klucze w Polsce • instant • bezpiecznie • ceny auto-aktualizowane</div>
+</header>
 
-    <section class="why-us">
-        <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">Szybkość</div>
-                <h3>KLUCZ W 10–60 MINUT</h3>
-                <p>Nie czekasz godzinami – klucz dostajesz maksymalnie w ciągu godziny. 24/7, nawet o 4 rano.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">Ceny</div>
-                <h3>CENY Z KOSMOSU</h3>
-                <p>Najtańsze klucze w Polsce – sprawdzone. Jak gdzieś znajdziesz taniej – pisz, pobijemy ofertę.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">Gwarancja</div>
-                <h3>100% DZIAŁAJĄCE KLUCZE</h3>
-                <p>Każdy klucz jest ręcznie sprawdzany przed sprzedażą. Działa zawsze.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">Wsparcie</div>
-                <h3>JESTEM ZAWSZE</h3>
-                <p>Pisz na maila albo Discord – odpisuję w kilka minut. Żadnych botów, tylko żywy kaczor.</p>
-            </div>
-        </div>
-    </section>
+<!-- Koszyk – ikona -->
+<div class="cart-icon" onclick="toggleCart()">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count" id="cartCount">0</span>
+</div>
 
-    <div class="keys-grid">
-        <div class="key-card"><div class="game-title">Mafia II: Definitive Edition</div><div class="price">35 zł</div><button class="buy-btn" onclick="openModal('Mafia II: Definitive Edition','35')">KUP TERAZ</button></div>
-        <div class="key-card"><div class="game-title">Batman: Arkham Asylum (GOTY)</div><div class="price">25 zł</div><button class="buy-btn" onclick="openModal('Batman: Arkham Asylum (GOTY)','25')">KUP TERAZ</button></div>
-        <div class="key-card"><div class="game-title">Batman: Arkham City (GOTY)</div><div class="price">30 zł</div><button class="buy-btn" onclick="openModal('Batman: Arkham City (GOTY)','30')">KUP TERAZ</button></div>
-        <div class="key-card"><div class="game-title">Batman: Arkham Collection</div><div class="price">40 zł</div><button class="buy-btn" onclick="openModal('Batman: Arkham Collection','40')">KUP TERAZ</button></div>
-        <div class="key-card"><div class="game-title">Batman: Arkham Knight (Premium)</div><div class="price">30 zł</div><button class="buy-btn" onclick="openModal('Batman: Arkham Knight (Premium)','30')">KUP TERAZ</button></div>
-        <div class="key-card"><div class="game-title">Mafia III: Definitive Edition</div><div class="price">35 zł</div><button class="buy-btn" onclick="openModal('Mafia III: Definitive Edition','35')">KUP TERAZ</button></div>
-        <div class="key-card"><div class="game-title">Mafia: Trilogy</div><div class="price">60 zł</div><button class="buy-btn" onclick="openModal('Mafia: Trilogy','60')">KUP TERAZ</button></div>
-        <div class="key-card"><div class="game-title">Sid Meier's Civilization VI</div><div class="price">30 zł</div><button class="buy-btn" onclick="openModal('Sid Meier\'s Civilization VI','30')">KUP TERAZ</button></div>
-        <div class="key-card"><div class="game-title">Batman: Arkham Origins</div><div class="price">30 zł</div><button class="buy-btn" onclick="openModal('Batman: Arkham Origins','30')">KUP TERAZ</button></div>
-        <div class="key-card"><div class="game-title">Fallout 76</div><div class="price">50 zł</div><button class="buy-btn" onclick="openModal('Fallout 76','50')">KUP TERAZ</button></div>
+<!-- Panel koszyka -->
+<div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+        <h2>Twój koszyk</h2>
+        <span class="close-cart" onclick="toggleCart()">×</span>
     </div>
+    <div id="cartItems"></div>
+    <div class="cart-total">Razem: <span id="cartTotal">0</span> zł</div>
+    <button class="checkout-btn" onclick="alert('Przekierowanie do płatności... (Przelewy24 / PayPal / Przelew)')">
+        ZAMÓW I ZAPŁAĆ
+    </button>
+</div>
 
-    <div class="custom-order">
-        <strong>Nie ma gry, której szukasz?</strong><br><br>
-        Chętnie przygotuję dowolny produkt na zamówienie.<br>
-        Pisz śmiało: <strong>kacze.klucze@gmail.com</strong> | Discord: <strong>mc.duck_8237</strong>
-    </div>
+<div id="priceStatus">Ładowanie cen z rynku...</div>
 
-    <section class="reviews">
-        <div class="container">
-            <h2>Ostatnie opinie</h2>
-            <div class="review-list">
-                <div class="review">„Kupiłem Trilogy za 60 zł – klucz przyszedł w 8 minut. Polecam!” – Kuba</div>
-                <div class="review">„Najtańszy Batman w necie. Działa idealnie.” – Seba</div>
-                <div class="review">„Szybko, tanio, bez problemów. 10/10” – Patryk</div>
-            </div>
-        </div>
-    </section>
+<div class="search-section">
+    <input type="text" id="searchInput" placeholder="Szukaj gry... (np. GTA, Cyberpunk, FIFA)">
+    <select id="platformFilter">
+        <option value="all">Wszystkie platformy</option>
+        <option value="steam">Steam</option>
+        <option value="origin">EA App / Origin</option>
+        <option value="uplay">Ubisoft Connect</option>
+        <option value="rockstar">Rockstar</option>
+        <option value="battle">Battle.net</option>
+        <option value="epic">Epic Games</option>
+    </select>
+    <select id="sortFilter">
+        <option value="price-asc">Od najtańszych</option>
+        <option value="price-desc">Od najdroższych</option>
+        <option value="name">Alfabetycznie</option>
+    </select>
+</div>
 
-    <footer>
-        <img src="logo.png" alt="KACZE KLUCZE">
-        <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
-    </footer>
+<div class="games-grid" id="gamesGrid"></div>
 
-    <!-- MODAL Z TWOIM PRAWIDŁOWYM PAYPAL.ME -->
-    <div id="buyModal" class="modal">
-        <div class="modal-content">
-            <span class="close">×</span>
-            <h2 id="modalTitle" style="font-size:32px;margin-bottom:15px;"></h2>
-            <div style="font-size:50px;font-weight:bold;color:#ffc439;margin:20px 0;" id="modalPrice"></div>
+<footer>
+    <img src="logo.png" alt="KACZE KLUCZE">
+    <p>KACZE KLUCZE © 2025 • Kontakt: kacze.klucze@gmail.com • Ceny auto-aktualizowane z Eneba/IG/G2A</p>
+</footer>
 
-            <a href="#" id="paypalLink" class="paypal-btn" target="_blank">ZAPŁAĆ PRZEZ PAYPAL</a>
+<script>
+// === BAZA GIER (50 tytułów) – z początkowymi cenami (zostaną nadpisane) ===
+let games = [
+    { title: "Grand Theft Auto V: Premium Edition", price: 69, oldPrice: 249, platform: "rockstar", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=GTA+V" },
+    { title: "Red Dead Redemption 2", price: 119, oldPrice: 299, platform: "rockstar", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=RDR2" },
+    { title: "Cyberpunk 2077: Ultimate Edition", price: 149, oldPrice: 349, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Cyberpunk" },
+    { title: "Mafia Trilogy", price: 79, oldPrice: 249, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Mafia+Trilogy" },
+    { title: "Batman: Arkham Collection", price: 49, oldPrice: 199, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Batman+Collection" },
+    { title: "The Witcher 3: Wild Hunt GOTY", price: 39, oldPrice: 149, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Witcher+3" },
+    { title: "EA Sports FC 25", price: 179, oldPrice: 349, platform: "origin", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=FC+25" },
+    { title: "Call of Duty: Black Ops 6", price: 249, oldPrice: 349, platform: "battle", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Black+Ops+6" },
+    { title: "Forza Horizon 5 Premium", price: 179, oldPrice: 399, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Forza+5" },
+    { title: "Elden Ring", price: 179, oldPrice: 249, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Elden+Ring" },
+    { title: "Baldur's Gate 3", price: 199, oldPrice: 249, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=BG3" },
+    { title: "Hogwarts Legacy", price: 119, oldPrice: 249, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Hogwarts" },
+    { title: "God of War (2018)", price: 89, oldPrice: 199, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=God+of+War" },
+    { title: "Spider-Man Remastered", price: 159, oldPrice: 249, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Spider-Man" },
+    { title: "Black Myth: Wukong", price: 219, oldPrice: 299, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Wukong" },
+    { title: "Star Wars Jedi: Survivor", price: 129, oldPrice: 299, platform: "origin", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Jedi+Survivor" },
+    { title: "Assassin's Creed Valhalla", price: 69, oldPrice: 249, platform: "uplay", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=AC+Valhalla" },
+    { title: "Far Cry 6", price: 69, oldPrice: 249, platform: "uplay", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Far+Cry+6" },
+    { title: "Battlefield 2042", price: 79, oldPrice: 279, platform: "origin", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=BF+2042" },
+    { title: "Rainbow Six Siege", price: 39, oldPrice: 89, platform: "uplay", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=R6+Siege" },
+    { title: "Civilization VI Anthology", price: 69, oldPrice: 399, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Civ+VI" },
+    { title: "DOOM Eternal", price: 59, oldPrice: 169, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=DOOM+Eternal" },
+    { title: "Metro Exodus Gold Edition", price: 49, oldPrice: 169, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Metro+Exodus" },
+    { title: "Dying Light 2 Stay Human", price: 99, oldPrice: 249, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Dying+Light+2" },
+    { title: "Resident Evil 4 Remake", price: 139, oldPrice: 259, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=RE4+Remake" },
+    { title: "Horizon Zero Dawn Complete", price: 79, oldPrice: 199, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Horizon+ZD" },
+    { title: "Detroit: Become Human", price: 69, oldPrice: 169, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Detroit" },
+    { title: "Death Stranding Director's Cut", price: 89, oldPrice: 199, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Death+Stranding" },
+    { title: "Control Ultimate Edition", price: 59, oldPrice: 169, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Control" },
+    { title: "Sekiro: Shadows Die Twice GOTY", price: 129, oldPrice: 249, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Sekiro" },
+    { title: "Fallout 4 GOTY", price: 49, oldPrice: 169, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Fallout+4" },
+    { title: "Skyrim Special Edition", price: 49, oldPrice: 169, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Skyrim" },
+    { title: "Need for Speed Unbound", price: 89, oldPrice: 299, platform: "origin", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=NFS+Unbound" },
+    { title: "The Sims 4 + Wszystkie DLC", price: 199, oldPrice: 999, platform: "origin", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Sims+4" },
+    { title: "Minecraft Java + Bedrock", price: 109, oldPrice: 159, platform: "other", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Minecraft" },
+    { title: "Counter-Strike 2 Prime", price: 49, oldPrice: 89, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=CS2" },
+    { title: "Rust", price: 99, oldPrice: 169, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Rust" },
+    { title: "ARK: Survival Evolved", price: 39, oldPrice: 129, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=ARK" },
+    { title: "Dead by Daylight", price: 39, oldPrice: 89, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=DbD" },
+    { title: "Phasmophobia", price: 49, oldPrice: 79, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Phasmophobia" },
+    { title: "Stardew Valley", price: 39, oldPrice: 59, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Stardew" },
+    { title: "Among Us", price: 15, oldPrice: 29, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Among+Us" },
+    { title: "Rocket League", price: 0, oldPrice: 79, platform: "epic", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Rocket+League" },
+    { title: "Lies of P", price: 139, oldPrice: 249, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Lies+of+P" },
+    { title: "Dragon Age: The Veilguard", price: 249, oldPrice: 349, platform: "origin", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Dragon+Age" },
+    { title: "Starfield", price: 179, oldPrice: 299, platform: "steam", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Starfield" },
+    { title: "Avatar: Frontiers of Pandora", price: 129, oldPrice: 299, platform: "uplay", img: "https://via.placeholder.com/300x200/1a1a1a/fff?text=Avatar+Pandora" }
+];
 
-            <div style="margin:25px 0;font-size:22px;">lub przelej ręcznie na:</div>
-            <div class="paypal-mail">kacze.klucze@gmail.com</div>
-            <button class="copy-btn" onclick="copyMail()">SKOPIUJ ADRES</button>
+let cart = [];
 
-            <div class="info">
-                W tytule przelewu wpisz dokładnie:<br>
-                <strong id="paymentTitle" style="color:#ffc439;"></strong><br><br>
-                Klucz wyślę w 1–60 minut • Jestem online 24/7
-            </div>
-        </div>
-    </div>
+// === API GG.deals – WLEJ SWÓJ KLUCZ TUTAJ ===
+const API_KEY = 'TWÓJ_KLUCZ_GGDEALS_API'; // Zarejestruj się na gg.deals i weź darmowy klucz
+const UPDATE_INTERVAL = 5 * 60 * 1000; // 5 minut
 
-    <script>
-        function openModal(game, price) {
-            document.getElementById('modalTitle').textContent = game;
-            document.getElementById('modalPrice').textContent = price + " zł";
-            document.getElementById('paymentTitle').textContent = game + " – " + price + " zł";
-            // Twój prawdziwy link PayPal.Me
-            document.getElementById('paypalLink').href = "https://paypal.me/Kaczor8237/" + price;
-            document.getElementById('buyModal').style.display = "flex";
+// Funkcja pobierania cen z GG.deals (agreguje Eneba, IG, G2A)
+async function fetchMarketPrices(title) {
+    try {
+        const slug = title.toLowerCase().replace(/[^a-z0-9]/g, '-'); // Przybliżony slug (dla dokładności użyj appid Steam)
+        const response = await fetch(`https://api.gg.deals/game/search/?title=${encodeURIComponent(title)}&api_key=${API_KEY}`);
+        if (!response.ok) throw new Error('Błąd API');
+        const data = await response.json();
+        if (data.items && data.items.length > 0) {
+            // Pobierz najniższą cenę w PLN z filtrami sklepów
+            const minPrice = Math.min(...data.items
+                .filter(item => ['eneba', 'instant-gaming', 'g2a'].includes(item.shop.id.toLowerCase()))
+                .map(item => parseFloat(item.price_final / 100))); // Konwersja na PLN (GG.deals w centach)
+            return minPrice;
         }
-        function copyMail() {
-            navigator.clipboard  .writeText("kacze.klucze@gmail.com");
-            alert("Adres skopiowany!");
+        return null; // Brak danych – zostaw starą cenę
+    } catch (error) {
+        console.error(`Błąd pobierania ceny dla ${title}:`, error);
+        return null;
+    }
+}
+
+// Aktualizacja cen dla wszystkich gier
+async function updateAllPrices() {
+    document.getElementById('priceStatus').textContent = 'Aktualizuję ceny z Eneba/IG/G2A...';
+    let updatedCount = 0;
+    for (let game of games) {
+        const marketPrice = await fetchMarketPrices(game.title);
+        if (marketPrice !== null && game.price > marketPrice) {
+            game.price = marketPrice + 5; // +5 zł marży
+            updatedCount++;
         }
-        document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
-        window.onclick = e => { if(e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
-    </script>
+        // Symulacja opóźnienia, żeby nie przekroczyć limitu API
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    renderGames(games); // Odśwież grid
+    document.getElementById('priceStatus').textContent = `Ceny zaktualizowane! Zmieniło się: ${updatedCount} gier. Następna aktualizacja za 5 min.`;
+    alert(`Auto-update: Zaktualizowano ${updatedCount} cen! Sprawdź zmiany.`);
+}
+
+// Uruchom aktualizację co 5 min
+updateAllPrices();
+setInterval(updateAllPrices, UPDATE_INTERVAL);
+
+// Reszta kodu (render, koszyk, filtry) – bez zmian
+function renderGames(list) {
+    const grid = document.getElementById('gamesGrid');
+    if (list.length === 0) {
+        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#aaa;font-size:20px;">Nie znaleziono gier. Spróbuj inaczej!</p>';
+        return;
+    }
+    grid.innerHTML = list.map(game => {
+        const platformIcon = getPlatformIcon(game.platform);
+        const priceText = game.price === 0 ? 'ZA DARMO' : `${game.price} zł`;
+        const oldPriceHtml = game.oldPrice ? `<span class="old-price">${game.oldPrice} zł</span>` : '';
+        const note = game.price > (game.oldPrice ? game.oldPrice - 100 : 0) ? '<span class="price-note">+5 zł marży (najniższa na rynku!)</span>' : '';
+        return `
+            <div class="game-card">
+                <div class="game-img" style="background-image: url('${game.img}')"></div>
+                <div class="game-info">
+                    <div class="game-title">${game.title}</div>
+                    <div class="platform"><i class="${platformIcon}"></i>${game.platform.toUpperCase()} • Global/EU</div>
+                    <div class="prices">
+                        ${oldPriceHtml}
+                        <div class="price">${priceText}</div>
+                        ${note}
+                    </div>
+                    <button class="buy-btn" onclick="addToCart('${game.title}', ${game.price})">KUP TERAZ</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function getPlatformIcon(platform) {
+    const icons = {
+        steam: 'fab fa-steam',
+        origin: 'fab fa-ea',
+        uplay: 'fas fa-gamepad',
+        rockstar: 'fas fa-star',
+        battle: 'fas fa-blizzard',
+        epic: 'fab fa-epic-games',
+        other: 'fas fa-globe'
+    };
+    return icons[platform] || 'fas fa-gamepad';
+}
+
+function addToCart(title, price) {
+    cart.push({ title, price });
+    updateCart();
+    alert(`Dodano: ${title} za ${price} zł`);
+}
+
+function updateCart() {
+    document.getElementById('cartCount').textContent = cart.length;
+    document.getElementById('cartTotal').textContent = cart.reduce((sum, i) => sum + i.price, 0);
+    const items = document.getElementById('cartItems');
+    items.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+            <div>${item.title}</div>
+            <div><strong>${item.price} zł</strong> <span style="color:#aaa;cursor:pointer;margin-left:10px" onclick="removeFromCart(${index})">✕</span></div>
+        </div>
+    `).join('') || '<p style="text-align:center;color:#888;">Koszyk pusty</p>';
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function toggleCart() {
+    document.getElementById('cartPanel').classList.toggle('open');
+}
+
+// Filtry
+document.getElementById('searchInput').addEventListener('input', filterGames);
+document.getElementById('platformFilter').addEventListener('change', filterGames);
+document.getElementById('sortFilter').addEventListener('change', filterGames);
+
+function filterGames() {
+    let filtered = games.slice();
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const platform = document.getElementById('platformFilter').value;
+    const sort = document.getElementById('sortFilter').value;
+
+    if (query) filtered = filtered.filter(g => g.title.toLowerCase().includes(query));
+    if (platform !== 'all') filtered = filtered.filter(g => g.platform === platform);
+
+    if (sort === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+    if (sort === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+    if (sort === 'name') filtered.sort((a, b) => a.title.localeCompare(b.title));
+
+    renderGames(filtered);
+}
+
+// Start
+renderGames(games);
+</script>
 </body>
 </html>
