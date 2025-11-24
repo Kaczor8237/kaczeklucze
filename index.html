@@ -25,16 +25,9 @@
         .feature-icon{font-size:64px;margin-bottom:25px;}
         .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700;}
         .feature p{font-size:20px;color:#ddd;line-height:1.7;}
-        
+       
         .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px;}
-        @media (max-width: 700px) {
-            .keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px;}
-            .game-cover{height:340px;}
-            .game-title{font-size:28px;}
-            .price{font-size:54px;}
-            .buy-btn{font-size:22px;padding:18px;}
-        }
-
+        @media (max-width: 700px) {.keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px;}}
         .key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s ease;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6);}
         .game-cover{width:100%;height:280px;background-size:cover;background-position:center top;background-repeat:no-repeat;background-color:#000;transition:transform .6s ease;flex-shrink:0;}
         .key-card:hover{border-color:#ffc439 !important;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3);}
@@ -44,22 +37,11 @@
         .price{font-size:46px;font-weight:bold;color:#fff;margin:10px 0;}
         .buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all .3s;border-radius:8px;}
         .buy-btn:hover{background:#ccc;}
-
-        /* PASEK WYSZUKIWANIA */
         .search-container{max-width:1400px;margin:0 auto 40px;padding:0 20px;text-align:center;}
-        #searchInput{
-            width:100%;max-width:600px;padding:18px 24px;font-size:20px;border-radius:50px;
-            border:3px solid #333;background:#111;color:#fff;outline:none;transition:all .3s;
-        }
+        #searchInput{width:100%;max-width:600px;padding:18px 24px;font-size:20px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:all .3s;}
         #searchInput:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.3);}
-
-        /* KOMUNIKAT GDY NIC NIE ZNALEZIONO */
-        .no-results{
-            grid-column:1/-1;text-align:center;padding:100px 20px;font-size:26px;color:#aaa;
-            line-height:1.6;background:#111;border:2px dashed #333;border-radius:16px;margin:20px;
-        }
+        .no-results{grid-column:1/-1;text-align:center;padding:100px 20px;font-size:26px;color:#aaa;line-height:1.6;background:#111;border:2px dashed #333;border-radius:16px;margin:20px;}
         .no-results strong{color:#ffc439;font-size:32px;display:block;margin-bottom:15px;}
-
         .custom-order{text-align:center;padding:90px 20px;background:#0a0a0a;font-size:24px;color:#ddd;line-height:1.8;}
         .custom-order strong{color:#fff;font-size:30px;display:block;margin-bottom:20px;}
         .reviews{padding:100px 20px;background:#000;text-align:center;}
@@ -74,7 +56,6 @@
         .close{position:absolute;top:15px;right:20px;font-size:40px;cursor:pointer;color:#fff;}
         .paypal-btn{display:block;margin:30px auto;padding:20px;background:#ffc439;color:#000;font-weight:bold;font-size:26px;border:none;border-radius:8px;cursor:pointer;width:90%;text-decoration:none;}
         .paypal-btn:hover{background:#ffb800;}
-        .copy-btn{background:#333;color:#fff;padding:12px 30px;border:none;margin-top:15px;cursor:pointer;border-radius:6px;}
         .info{margin-top:30px;color:#aaa;font-size:18px;line-height:1.7;}
         @media(max-width:900px){h1{font-size:70px;}.duck-logo{width:160px;}}
         @media(max-width:600px){h1{font-size:50px;}.duck-logo{width:140px;}.why-us h2{font-size:42px;}}
@@ -87,7 +68,6 @@
         <h1>KACZE KLUCZE</h1>
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
-
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
@@ -97,23 +77,17 @@
             <div class="feature"><div class="feature-icon">Wsparcie</div><h3>JESTEM ZAWSZE</h3><p>Pisz na maila albo Discord – odpisuję w kilka minut. Żadnych botów, tylko żywy kaczor.</p></div>
         </div>
     </section>
-
-    <!-- PASEK WYSZUKIWANIA -->
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, mortal)" autocomplete="off">
     </div>
-
-    <!-- GRY -->
     <div class="keys-grid" id="gamesContainer">
         <div style="grid-column:1/-1;text-align:center;padding:100px;font-size:28px;color:#777;">Ładowanie gier... kwak kwak!</div>
     </div>
-
     <div class="custom-order">
         <strong>Nie ma gry, której szukasz?</strong><br><br>
         Chętnie przygotuję dowolny produkt na zamówienie.<br>
         Pisz śmiało: <strong>kacze.klucze@gmail.com</strong> | Discord: <strong>mc.duck_8237</strong>
     </div>
-
     <section class="reviews">
         <h2>Ostatnie opinie</h2>
         <div class="review-list">
@@ -122,25 +96,38 @@
             <div class="review">„Szybko, tanio, bez problemów. 10/10” – Patryk</div>
         </div>
     </section>
-
     <footer>
         <img src="logo.png" alt="KACZE KLUCZE">
         <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
+    <!-- MODAL Z PEŁNYM PAYPALEM + IPN -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
             <span class="close">x</span>
             <h2 id="modalTitle" style="font-size:32px;margin-bottom:15px;"></h2>
             <div style="font-size:50px;font-weight:bold;color:#ffc439;margin:20px 0;" id="modalPrice"></div>
-            <a href="#" id="paypalLink" class="paypal-btn" target="_blank">ZAPŁAĆ PRZEZ PAYPAL</a>
-            <div style="margin:25px 0;font-size:22px;">lub przelej ręcznie na:</div>
-            <div class="paypal-mail">kacze.klucze@gmail.com</div>
-            <button class="copy-btn" onclick="copyMail()">SKOPIUJ ADRES</button>
+
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="kacze.klucze@gmail.com">
+                <input type="hidden" name="item_name" id="item_name">
+                <input type="hidden" name="amount" id="amount">
+                <input type="hidden" name="currency_code" value="PLN">
+                <input type="hidden" name="notify_url" value="https://kaczor.duckdns.org/ipn">
+                <input type="hidden" name="return" value="https://kaczeklucze-bot.github.io/kaczeklucze/sukces.html">
+                <input type="hidden" name="cancel_return" value="https://kaczeklucze-bot.github.io/kaczeklucze/">
+
+                <div style="margin:25px 0;">
+                    <input type="email" name="email" placeholder="Twój e-mail – tu wyślę klucz" required style="width:100%;padding:16px;font-size:18px;border-radius:8px;border:2px solid #333;background:#000;color:#fff;">
+                </div>
+
+                <button type="submit" class="paypal-btn">ZAPŁAĆ PRZEZ PAYPAL</button>
+            </form>
+
             <div class="info">
-                W tytule przelewu wpisz dokładnie:<br>
-                <strong id="paymentTitle" style="color:#ffc439;"></strong><br><br>
-                Klucz wyślę w 1–60 minut • Jestem online 24/7
+                Po płatności dostanę powiadomienie w 2–5 sekund!<br>
+                Klucz wyślę ręcznie w 1–60 minut • 24/7 online
             </div>
         </div>
     </div>
@@ -168,17 +155,16 @@
             { file: "Subnautica", title: "Subnautica", price: 70 },
             { file: "Mortal_Kombat_1", title: "Mortal Kombat 1", price: 78 }
         ];
-
         let allCards = [];
 
         function openModal(game, price) {
             document.getElementById('modalTitle').textContent = game;
             document.getElementById('modalPrice').textContent = price + " zł";
-            document.getElementById('paymentTitle').textContent = game + " – " + price + " zł";
-            document.getElementById('paypalLink').href = "https://paypal.me/Kaczor8237/" + price;
+            document.getElementById('item_name').value = game;
+            document.getElementById('amount').value = price;
             document.getElementById('buyModal').style.display = "flex";
         }
-        function copyMail() { navigator.clipboard.writeText("kacze.klucze@gmail.com"); alert("Adres skopiowany!"); }
+
         document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
         window.onclick = e => { if(e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
 
@@ -187,10 +173,8 @@
             const card = document.createElement('div');
             card.className = 'key-card';
             card.dataset.title = game.title.toLowerCase();
-
             const coverDiv = document.createElement('div');
             coverDiv.className = 'game-cover';
-
             const exts = ['.png', '.jpg', '.jpeg'];
             let found = false;
             exts.forEach(ext => {
@@ -201,12 +185,11 @@
                 img.src = path;
             });
             setTimeout(() => { if (!found) coverDiv.style.backgroundImage = "url('logo.png')"; }, 1500);
-
             card.innerHTML = `
                 <div class="game-info">
                     <div class="game-title">${game.title}</div>
                     <div class="price">${game.price} zł</div>
-                    <button class="buy-btn" onclick="openModal('${cleanTitle}','${game.price}')">KUP TERAZ</button>
+                    <button class="buy-btn" onclick="openModal('${cleanTitle}',${game.price})">KUP TERAZ</button>
                 </div>
             `;
             card.insertBefore(coverDiv, card.firstChild);
@@ -217,7 +200,6 @@
             const container = document.getElementById('gamesContainer');
             container.innerHTML = '';
             allCards = [];
-
             gamesDatabase.forEach(game => {
                 const card = createCard(game);
                 allCards.push(card);
@@ -225,24 +207,19 @@
             });
         }
 
-        // WYSZUKIWANIE + NOWY KOMUNIKAT
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const term = e.target.value.toLowerCase().trim();
             const container = document.getElementById('gamesContainer');
             container.innerHTML = '';
-
             const filtered = term === '' ? allCards : allCards.filter(card => card.dataset.title.includes(term));
-
             if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="no-results">
-                        <strong>Tej gry chwilowo nie ma w sklepie</strong>
-                        Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>
-                        Napisz do mnie:<br>
-                        <strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>
-                        lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong>
-                    </div>
-                `;
+                container.innerHTML = `<div class="no-results">
+                    <strong>Tej gry chwilowo nie ma w sklepie</strong>
+                    Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>
+                    Napisz do mnie:<br>
+                    <strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>
+                    lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong>
+                </div>`;
             } else {
                 filtered.forEach(card => container.appendChild(card));
             }
