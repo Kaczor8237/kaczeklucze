@@ -32,7 +32,7 @@
         .key-card:hover{border-color:#ffc439 !important;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3);}
         .key-card:hover .game-cover{transform:scale(1.08);}
         .game-info{padding:20px 16px;text-align:center;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;}
- .game-title{font-family:'Creepster',cursive;font-size:26px;margin-bottom:8px;min-height:66px;display:flex;align-items:center;justify-content:center;}
+        .game-title{font-family:'Creepster',cursive;font-size:26px;margin-bottom:8px;min-height:66px;display:flex;align-items:center;justify-content:center;}
         .price{font-size:46px;font-weight:bold;color:#fff;margin:10px 0;}
         .buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all .3s;border-radius:8px;width:calc(100% - 40px);}
         .buy-btn:hover{background:#ccc;}
@@ -129,12 +129,15 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function(){
-            emailjs.init("user_xFvdoKloqnbCemxLr");   // TWÓJ PUBLIC KEY JUŻ WPISANY!
+            emailjs.init({
+                publicKey: "user_xFvdoKloqnbCemxLr"  // ← Twój Public Key (jeśli za krótki, sprawdź w Dashboard!)
+            });
+            console.log("EmailJS zainicjalizowany – sprawdź Public Key w konsoli!");
         })();
     </script>
 
     <script>
-        const gamesDatabase = [ /* twoja cała baza – bez zmian */ 
+        const gamesDatabase = [
             { file: "Mafia_II_Definitive_Edition", title: "Mafia II: Definitive Edition", price: 35 },
             { file: "Batman_Arkham_Asylum_GOTY", title: "Batman: Arkham Asylum (GOTY)", price: 25 },
             { file: "Batman_Arkham_City_GOTY", title: "Batman: Arkham City (GOTY)", price: 30 },
@@ -168,13 +171,23 @@
             document.getElementById('modalPrice').textContent = price + " zł";
             document.getElementById('paymentTitle').textContent = game + " – " + price + " zł";
 
-            // WYSYŁKA MAIL DO CIEBIE
-            emailjs.send("service_x6135w6", "template_qsi9ub9", {
+            // WYSYŁKA MAIL DO CIEBIE Z BŁĘDAMI W KONSOLI
+            const templateParams = {
                 game: game,
                 price: price + " zł",
                 date: new Date().toLocaleString('pl-PL')
-            });
+            };
 
+            emailjs.send("service_x6135w6", "template_qsi9ub9", templateParams)
+                .then((response) => {
+                    console.log("Mail wysłany! ID odpowiedzi:", response.status, response.text);
+                    alert("Powiadomienie wysłane do kaczora! 🦆");  // Testowy alert – możesz usunąć później
+                }, (err) => {
+                    console.error("BŁĄD EmailJS:", err);
+                    alert("Błąd wysyłki maila – sprawdź konsolę (F12)! Szczegóły: " + err.text);  // Pokazuje błąd
+                });
+
+            // PayPal
             document.getElementById('payButton').onclick = function() {
                 const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kacze.klucze@gmail.com&item_name=${encodeURIComponent(game)}&amount=${price}&currency_code=PLN&return=https://kaczeklucze-bot.github.io/kaczeklucze/&cancel_return=https://kaczeklucze-bot.github.io/kaczeklucze/`;
                 window.open(paypalUrl, '_blank');
