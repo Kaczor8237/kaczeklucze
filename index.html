@@ -162,18 +162,18 @@
             document.getElementById('modalPrice').textContent = price + " zł";
             document.getElementById('paymentTitle').textContent = game + " – " + price + " zł";
 
-            // 100% DZIAŁAJĄCY MAIL PRZEZ FORMSUBMIT
-            fetch("https://formsubmit.co/ajax/kacze.klucze@gmail.com", {
-                method: "POST",
-                headers: { "Content-Type": "application/json", "Accept": "application/json" },
-                body: JSON.stringify({
-                    "Zamówienie": game,
-                    "Cena": price + " zł",
-                    "Data i godzina": new Date().toLocaleString('pl-PL'),
-                    "_subject": "NOWE ZAMÓWIENIE! " + game + " za " + price + " zł"
-                })
-            });
+            // OTWIERA GOTOWEGO MAILA W GMAILU – DZIAŁA ZAWSZE I WSZĘDZIE
+            const subject = encodeURIComponent("NOWE ZAMÓWIENIE! " + game + " – " + price + " zł");
+            const body = encodeURIComponent(
+                "Ktoś właśnie kliknął KUP TERAZ!\n\n" +
+                "Gra: " + game + "\n" +
+                "Cena: " + price + " zł\n" +
+                "Data: " + new Date().toLocaleString('pl-PL') + "\n\n" +
+                "Czekam na wpłatę na kacze.klucze@gmail.com"
+            );
+            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=kacze.klucze@gmail.com&su=${subject}&body=${body}`, '_blank');
 
+            // PayPal
             document.getElementById('payButton').onclick = () => {
                 const url = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kacze.klucze@gmail.com&item_name=${encodeURIComponent(game)}&amount=${price}&currency_code=PLN&return=https://kaczeklucze-bot.github.io/kaczeklucze/&cancel_return=https://kaczeklucze-bot.github.io/kaczeklucze/`;
                 window.open(url, '_blank');
@@ -182,7 +182,6 @@
             document.getElementById('buyModal').style.display = "flex";
         }
 
-        // reszta kodu (tworzenie kart, wyszukiwanie itd.) – dokładnie taka sama jak miałeś
         function createCard(game) {
             const card = document.createElement('div');
             card.className = 'key-card';
