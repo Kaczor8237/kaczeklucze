@@ -6,10 +6,6 @@
     <title>KACZE KLUCZE | Klucze do gier</title>
     <link rel="icon" href="logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&family=Creepster&display=swap" rel="stylesheet">
-
-    <!-- <<< TU JEST TA JEDNA LINIA – POWIADOMIENIA NA DISCORDA >>> -->
-    <script src="notify.js"></script>
-
     <style>
         *{margin:0;padding:0;box-sizing:border-box;}
         body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6;}
@@ -29,8 +25,15 @@
         .feature-icon{font-size:64px;margin-bottom:25px;}
         .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700;}
         .feature p{font-size:20px;color:#ddd;line-height:1.7;}
+      
         .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px;}
-        @media (max-width:700px){.keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px;}}
+        @media (max-width: 700px) {
+            .keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px;}
+            .game-cover{height:340px;}
+            .game-title{font-size:28px;}
+            .price{font-size:54px;}
+            .buy-btn{font-size:22px;padding:18px;}
+        }
         .key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s ease;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6);}
         .game-cover{width:100%;height:280px;background-size:cover;background-position:center top;background-repeat:no-repeat;background-color:#000;transition:transform .6s ease;flex-shrink:0;}
         .key-card:hover{border-color:#ffc439 !important;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3);}
@@ -38,7 +41,7 @@
         .game-info{padding:20px 16px;text-align:center;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;}
         .game-title{font-family:'Creepster',cursive;font-size:26px;margin-bottom:8px;min-height:66px;display:flex;align-items:center;justify-content:center;}
         .price{font-size:46px;font-weight:bold;color:#fff;margin:10px 0;}
-        .buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all .3s;border-radius:8px;width:calc(100% - 40px);}
+        .buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all .3s;border-radius:8px;}
         .buy-btn:hover{background:#ccc;}
         .search-container{max-width:1400px;margin:0 auto 40px;padding:0 20px;text-align:center;}
         #searchInput{width:100%;max-width:600px;padding:18px 24px;font-size:20px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:all .3s;}
@@ -61,6 +64,8 @@
         .paypal-btn:hover{background:#ffb800;}
         .copy-btn{background:#333;color:#fff;padding:12px 30px;border:none;margin-top:15px;cursor:pointer;border-radius:6px;}
         .info{margin-top:30px;color:#aaa;font-size:18px;line-height:1.7;}
+        @media(max-width:900px){h1{font-size:70px;}.duck-logo{width:160px;}}
+        @media(max-width:600px){h1{font-size:50px;}.duck-logo{width:140px;}.why-us h2{font-size:42px;}}
     </style>
 </head>
 <body>
@@ -70,7 +75,6 @@
         <h1>KACZE KLUCZE</h1>
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
-
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
@@ -80,21 +84,17 @@
             <div class="feature"><div class="feature-icon">Wsparcie</div><h3>JESTEM ZAWSZE</h3><p>Pisz na maila albo Discord – odpisuję w kilka minut. Żadnych botów, tylko żywy kaczor.</p></div>
         </div>
     </section>
-
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, mortal)" autocomplete="off">
     </div>
-
     <div class="keys-grid" id="gamesContainer">
         <div style="grid-column:1/-1;text-align:center;padding:100px;font-size:28px;color:#777;">Ładowanie gier... kwak kwak!</div>
     </div>
-
     <div class="custom-order">
         <strong>Nie ma gry, której szukasz?</strong><br><br>
         Chętnie przygotuję dowolny produkt na zamówienie.<br>
         Pisz śmiało: <strong>kacze.klucze@gmail.com</strong> | Discord: <strong>mc.duck_8237</strong>
     </div>
-
     <section class="reviews">
         <h2>Ostatnie opinie</h2>
         <div class="review-list">
@@ -103,16 +103,15 @@
             <div class="review">„Szybko, tanio, bez problemów. 10/10” – Patryk</div>
         </div>
     </section>
-
     <footer>
         <img src="logo.png" alt="KACZE KLUCZE">
         <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
-    <!-- MODAL -->
+    <!-- MODAL Z PŁATNOŚCIĄ -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
-            <span class="close">×</span>
+            <span class="close">x</span>
             <h2 id="modalTitle" style="font-size:32px;margin-bottom:15px;"></h2>
             <div style="font-size:50px;font-weight:bold;color:#ffc439;margin:20px 0;" id="modalPrice"></div>
             <form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
@@ -121,6 +120,11 @@
                 <input type="hidden" name="item_name" id="item_name">
                 <input type="hidden" name="amount" id="amount">
                 <input type="hidden" name="currency_code" value="PLN">
+                
+                <!-- <<< TU JEST NOWY ADRES WORKERA <<< -->
+                <input type="hidden" name="notify_url" value="https://kaczyasystent8237.kacze-klucze.workers.dev/ipn">
+                <!-- <<< KONIEC NOWEGO ADRESU <<< -->
+
                 <input type="hidden" name="return" value="https://kaczeklucze-bot.github.io/kaczeklucze/">
                 <input type="hidden" name="cancel_return" value="https://kaczeklucze-bot.github.io/kaczeklucze/">
                 <div style="margin:25px 0;font-size:22px;">lub przelej ręcznie na:</div>
@@ -137,110 +141,17 @@
     </div>
 
     <script>
-        const gamesDatabase = [
-            { file: "Mafia_II_Definitive_Edition", title: "Mafia II: Definitive Edition", price: 35 },
-            { file: "Batman_Arkham_Asylum_GOTY", title: "Batman: Arkham Asylum (GOTY)", price: 25 },
-            { file: "Batman_Arkham_City_GOTY", title: "Batman: Arkham City (GOTY)", price: 30 },
-            { file: "Batman_Arkham_Collection", title: "Batman: Arkham Collection", price: 40 },
-            { file: "Batman_Arkham_Knight_Premium", title: "Batman: Arkham Knight (Premium)", price: 30 },
-            { file: "Mafia_III_Definitive_Edition", title: "Mafia III: Definitive Edition", price: 35 },
-            { file: "Mafia_Trilogy", title: "Mafia: Trilogy", price: 60 },
-            { file: "Sid_Meiers_Civilization_VI", title: "Sid Meier's Civilization VI", price: 30 },
-            { file: "Batman_Arkham_Origins", title: "Batman: Arkham Origins", price: 30 },
-            { file: "Fallout_76", title: "Fallout 76", price: 50 },
-            { file: "Ghost_of_Tsushima_Directors_Cut", title: "Ghost of Tsushima | Director's Cut", price: 124 },
-            { file: "Ready_or_Not", title: "Ready or Not", price: 105 },
-            { file: "Hogwarts_Legacy_Deluxe_Edition", title: "Hogwarts Legacy | Deluxe Edition", price: 47 },
-            { file: "Mortal_Kombat_XL", title: "Mortal Kombat XL", price: 14 },
-            { file: "Hello_Neighbor", title: "Hello Neighbor", price: 41 },
-            { file: "Dying_Light_Essentials_Edition", title: "Dying Light | Essentials Edition", price: 20 },
-            { file: "Marvels_Spider_Man_Remastered", title: "Marvel's Spider-Man Remastered", price: 103 },
-            { file: "Hello_Neighbor_2", title: "Hello Neighbor 2", price: 20 },
-            { file: "Subnautica", title: "Subnautica", price: 70 },
-            { file: "Mortal_Kombat_1", title: "Mortal Kombat 1", price: 78 }
-        ];
-
-        let allCards = [];
-
-        function copyMail() {
-            navigator.clipboard.writeText("kacze.klucze@gmail.com");
-            alert("Adres skopiowany!");
-        }
-
-        document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
-        window.onclick = e => { if(e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
-
-        // <<< TA FUNKCJA JEST PODMIENIANA PRZEZ notify.js – nie ruszaj jej tutaj! >>>
-        function openModal(game, price) {
-            document.getElementById('modalTitle').textContent = game;
-            document.getElementById('modalPrice').textContent = price + " zł";
-            document.getElementById('paymentTitle').textContent = game + " – " + price + " zł";
-            document.getElementById('item_name').value = game;
-            document.getElementById('amount').value = price;
-            document.getElementById('buyModal').style.display = "flex";
-        }
-
-        function createCard(game) {
-            const cleanTitle = game.title.replace(/'/g, "\\'");
-            const card = document.createElement('div');
-            card.className = 'key-card';
-            card.dataset.title = game.title.toLowerCase();
-
-            const coverDiv = document.createElement('div');
-            coverDiv.className = 'game-cover';
-            const exts = ['.png', '.jpg', '.jpeg'];
-            let found = false;
-            exts.forEach(ext => {
-                if (found) return;
-                const path = `covers/${game.file}${ext}`;
-                const img = new Image();
-                img.onload = () => { coverDiv.style.backgroundImage = `url('${path}')`; found = true; };
-                img.src = path;
-            });
-            setTimeout(() => { if (!found) coverDiv.style.backgroundImage = "url('logo.png')"; }, 1500);
-
-            card.innerHTML = `
-                <div class="game-info">
-                    <div class="game-title">${game.title}</div>
-                    <div class="price">${game.price} zł</div>
-                    <button class="buy-btn" onclick="openModal('${cleanTitle}', ${game.price})">KUP TERAZ</button>
-                </div>
-            `;
-            card.insertBefore(coverDiv, card.firstChild);
-            return card;
-        }
-
-        function loadGames() {
-            const container = document.getElementById('gamesContainer');
-            container.innerHTML = '';
-            allCards = [];
-            gamesDatabase.forEach(game => {
-                const card = createCard(game);
-                allCards.push(card);
-                container.appendChild(card);
-            });
-        }
-
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase().trim();
-            const container = document.getElementById('gamesContainer');
-            container.innerHTML = '';
-            const filtered = term === '' ? allCards : allCards.filter(card => card.dataset.title.includes(term));
-            if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="no-results">
-                        <strong>Tej gry chwilowo nie ma w sklepie</strong>
-                        Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>
-                        Napisz do mnie:<br>
-                        <strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>
-                        lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong>
-                    </div>`;
-            } else {
-                filtered.forEach(card => container.appendChild(card));
-            }
-        });
-
-        window.addEventListener('DOMContentLoaded', loadGames);
+        const gamesDatabase = [{file:"Mafia_II_Definitive_Edition",title:"Mafia II: Definitive Edition",price:35},{file:"Batman_Arkham_Asylum_GOTY",title:"Batman: Arkham Asylum (GOTY)",price:25},{file:"Batman_Arkham_City_GOTY",title:"Batman: Arkham City (GOTY)",price:30},{file:"Batman_Arkham_Collection",title:"Batman: Arkham Collection",price:40},{file:"Batman_Arkham_Knight_Premium",title:"Batman: Arkham Knight (Premium)",price:30},{file:"Mafia_III_Definitive_Edition",title:"Mafia III: Definitive Edition",price:35},{file:"Mafia_Trilogy",title:"Mafia: Trilogy",price:60},{file:"Sid_Meiers_Civilization_VI",title:"Sid Meier's Civilization VI",price:30},{file:"Batman_Arkham_Origins",title:"Batman: Arkham Origins",price:30},{file:"Fallout_76",title:"Fallout 76",price:50},{file:"Ghost_of_Tsushima_Directors_Cut",title:"Ghost of Tsushima | Director's Cut",price:124},{file:"Ready_or_Not",title:"Ready or Not",price:105},{file:"Hogwarts_Legacy_Deluxe_Edition",title:"Hogwarts Legacy | Deluxe Edition",price:47},{file:"Mortal_Kombat_XL",title:"Mortal Kombat XL",price:14},{file:"Hello_Neighbor",title:"Hello Neighbor",price:41},{file:"Dying_Light_Essentials_Edition",title:"Dying Light | Essentials Edition",price:20},{file:"Marvels_Spider_Man_Remastered",title:"Marvel's Spider-Man Remastered",price:103},{file:"Hello_Neighbor_2",title:"Hello Neighbor 2",price:20},{file:"Subnautica",title:"Subnautica",price:70},{file:"Mortal_Kombat_1",title:"Mortal Kombat 1",price:78}];
+        let allCards=[];
+        function openModal(game,price){document.getElementById('modalTitle').textContent=game;document.getElementById('modalPrice').textContent=price+" zł";document.getElementById('paymentTitle').textContent=game+" – "+price+" zł";document.getElementById('item_name').value=game;document.getElementById('amount').value=price;document.getElementById('buyModal').style.display="flex";}
+        function copyMail(){navigator.clipboard.writeText("kacze.klucze@gmail.com");alert("Adres skopiowany!");}
+        document.querySelector('.close').onclick=()=>document.getElementById('buyModal').style.display="none";
+        window.onclick=e=>{if(e.target===document.getElementById('buyModal'))document.getElementById('buyModal').style.display="none";};
+        function createCard(game){const cleanTitle=game.title.replace(/'/g,"\\'");const card=document.createElement('div');card.className='key-card';card.dataset.title=game.title.toLowerCase();const coverDiv=document.createElement('div');coverDiv.className='game-cover';const exts=['.png','.jpg','.jpeg'];let found=false;exts.forEach(ext=>{if(found)return;const path=`covers/${game.file}${ext}`;const img=new Image();img.onload=()=>{coverDiv.style.backgroundImage=`url('${path}')`;found=true;};img.src=path;});setTimeout(()=>{if(!found)coverDiv.style.backgroundImage="url('logo.png')";},1500);card.innerHTML=`<div class="game-info"><div class="game-title">${game.title}</div><div class="price">${game.price} zł</div><button class="buy-btn" onclick="openModal('${cleanTitle}','${game.price}')">KUP TERAZ</button></div>`;card.insertBefore(coverDiv,card.firstChild);return card;}
+        function loadGames(){const container=document.getElementById('gamesContainer');container.innerHTML='';allCards=[];gamesDatabase.forEach(game=>{const card=createCard(game);allCards.push(card);container.appendChild(card);});}
+        document.getElementById('searchInput').addEventListener('input',function(e){const term=e.target.value.toLowerCase().trim();const container=document.getElementById('gamesContainer');container.innerHTML='';const filtered=term===''?allCards:allCards.filter(card=>card.dataset.title.includes(term));if(filtered.length===0){container.innerHTML=`<div class="no-results"><strong>Tej gry chwilowo nie ma w sklepie</strong>Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>Napisz do mnie:<br><strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong></div>`;}else{filtered.forEach(card=>container.appendChild(card));}});
+        window.addEventListener('DOMContentLoaded',loadGames);
     </script>
 </body>
 </html>
+
