@@ -6,6 +6,10 @@
     <title>KACZE KLUCZE | Klucze do gier</title>
     <link rel="icon" href="logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&family=Creepster&display=swap" rel="stylesheet">
+
+    <!-- <<< TU JEST TA JEDNA LINIA – POWIADOMIENIA NA DISCORDA >>> -->
+    <script src="notify.js"></script>
+
     <style>
         *{margin:0;padding:0;box-sizing:border-box;}
         body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6;}
@@ -53,7 +57,7 @@
         .modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;}
         .modal-content{background:#111;padding:50px 40px;width:90%;max-width:520px;border:3px solid #333;text-align:center;position:relative;}
         .close{position:absolute;top:15px;right:20px;font-size:40px;cursor:pointer;color:#fff;}
-        .paypal-btn{display:block;margin:30px auto;padding:20px;background:#ffc439;color:#000;font-weight:bold;font-size:26px;border:none;border-radius:8px;cursor:pointer;width:90%;}
+        .paypal-btn{display:block;margin:30px auto;padding:20px;background:#ffc439;color:#000;font-weight:bold;font-size:26px;border:none;border-radius:8px;cursor:pointer;width:90%;text-decoration:none;}
         .paypal-btn:hover{background:#ffb800;}
         .copy-btn{background:#333;color:#fff;padding:12px 30px;border:none;margin-top:15px;cursor:pointer;border-radius:6px;}
         .info{margin-top:30px;color:#aaa;font-size:18px;line-height:1.7;}
@@ -111,15 +115,24 @@
             <span class="close">×</span>
             <h2 id="modalTitle" style="font-size:32px;margin-bottom:15px;"></h2>
             <div style="font-size:50px;font-weight:bold;color:#ffc439;margin:20px 0;" id="modalPrice"></div>
-            <div style="margin:25px 0;font-size:22px;">Zapłać przez PayPal lub przelew:</div>
-            <div class="paypal-mail">kacze.klucze@gmail.com</div>
-            <button type="button" class="paypal-btn" id="payButton">ZAPŁAĆ PRZEZ PAYPAL</button>
-            <button type="button" class="copy-btn" onclick="copyMail()">SKOPIUJ ADRES E-MAIL</button>
-            <div class="info">
-                W tytule przelewu wpisz dokładnie:<br>
-                <strong id="paymentTitle" style="color:#ffc439;"></strong><br><br>
-                <span style="color:#0f0;">Po opłaceniu – klucz w 1–60 min!</span>
-            </div>
+            <form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="kacze.klucze@gmail.com">
+                <input type="hidden" name="item_name" id="item_name">
+                <input type="hidden" name="amount" id="amount">
+                <input type="hidden" name="currency_code" value="PLN">
+                <input type="hidden" name="return" value="https://kaczeklucze-bot.github.io/kaczeklucze/">
+                <input type="hidden" name="cancel_return" value="https://kaczeklucze-bot.github.io/kaczeklucze/">
+                <div style="margin:25px 0;font-size:22px;">lub przelej ręcznie na:</div>
+                <div class="paypal-mail">kacze.klucze@gmail.com</div>
+                <button type="submit" class="paypal-btn">ZAPŁAĆ PRZEZ PAYPAL</button>
+                <button type="button" class="copy-btn" onclick="copyMail()">SKOPIUJ ADRES E-MAIL</button>
+                <div class="info">
+                    W tytule przelewu wpisz dokładnie:<br>
+                    <strong id="paymentTitle" style="color:#ffc439;"></strong><br><br>
+                    Klucz wyślę w 1–60 minut • Jestem online 24/7
+                </div>
+            </form>
         </div>
     </div>
 
@@ -157,32 +170,18 @@
         document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
         window.onclick = e => { if(e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
 
+        // <<< TA FUNKCJA JEST PODMIENIANA PRZEZ notify.js – nie ruszaj jej tutaj! >>>
         function openModal(game, price) {
             document.getElementById('modalTitle').textContent = game;
             document.getElementById('modalPrice').textContent = price + " zł";
             document.getElementById('paymentTitle').textContent = game + " – " + price + " zł";
-
-            // OTWIERA GOTOWEGO MAILA W GMAILU – DZIAŁA ZAWSZE I WSZĘDZIE
-            const subject = encodeURIComponent("NOWE ZAMÓWIENIE! " + game + " – " + price + " zł");
-            const body = encodeURIComponent(
-                "Ktoś właśnie kliknął KUP TERAZ!\n\n" +
-                "Gra: " + game + "\n" +
-                "Cena: " + price + " zł\n" +
-                "Data: " + new Date().toLocaleString('pl-PL') + "\n\n" +
-                "Czekam na wpłatę na kacze.klucze@gmail.com"
-            );
-            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=kacze.klucze@gmail.com&su=${subject}&body=${body}`, '_blank');
-
-            // PayPal
-            document.getElementById('payButton').onclick = () => {
-                const url = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kacze.klucze@gmail.com&item_name=${encodeURIComponent(game)}&amount=${price}&currency_code=PLN&return=https://kaczeklucze-bot.github.io/kaczeklucze/&cancel_return=https://kaczeklucze-bot.github.io/kaczeklucze/`;
-                window.open(url, '_blank');
-            };
-
+            document.getElementById('item_name').value = game;
+            document.getElementById('amount').value = price;
             document.getElementById('buyModal').style.display = "flex";
         }
 
         function createCard(game) {
+            const cleanTitle = game.title.replace(/'/g, "\\'");
             const card = document.createElement('div');
             card.className = 'key-card';
             card.dataset.title = game.title.toLowerCase();
@@ -198,13 +197,13 @@
                 img.onload = () => { coverDiv.style.backgroundImage = `url('${path}')`; found = true; };
                 img.src = path;
             });
-            setTimeout(() => { if (!found) coverDiv.style.backgroundImage = "url('logo.png')"; }, 2000);
+            setTimeout(() => { if (!found) coverDiv.style.backgroundImage = "url('logo.png')"; }, 1500);
 
             card.innerHTML = `
                 <div class="game-info">
                     <div class="game-title">${game.title}</div>
                     <div class="price">${game.price} zł</div>
-                    <button class="buy-btn" onclick="openModal('${game.title.replace(/'/g, "\\'")}', ${game.price})">KUP TERAZ</button>
+                    <button class="buy-btn" onclick="openModal('${cleanTitle}', ${game.price})">KUP TERAZ</button>
                 </div>
             `;
             card.insertBefore(coverDiv, card.firstChild);
@@ -215,21 +214,30 @@
             const container = document.getElementById('gamesContainer');
             container.innerHTML = '';
             allCards = [];
-            gamesDatabase.forEach(g => {
-                const card = createCard(g);
+            gamesDatabase.forEach(game => {
+                const card = createCard(game);
                 allCards.push(card);
                 container.appendChild(card);
             });
         }
 
-        document.getElementById('searchInput').addEventListener('input', e => {
+        document.getElementById('searchInput').addEventListener('input', function(e) {
             const term = e.target.value.toLowerCase().trim();
             const container = document.getElementById('gamesContainer');
             container.innerHTML = '';
-            const filtered = term === '' ? allCards : allCards.filter(c => c.dataset.title.includes(term));
+            const filtered = term === '' ? allCards : allCards.filter(card => card.dataset.title.includes(term));
             if (filtered.length === 0) {
-                container.innerHTML = `<div class="no-results"><strong>Tej gry chwilowo nie ma</strong><br>Mogę ją ściągnąć – pisz na <strong style="color:#ffc439">kacze.klucze@gmail.com</strong></div>`;
-            } else filtered.forEach(c => container.appendChild(c));
+                container.innerHTML = `
+                    <div class="no-results">
+                        <strong>Tej gry chwilowo nie ma w sklepie</strong>
+                        Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>
+                        Napisz do mnie:<br>
+                        <strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>
+                        lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong>
+                    </div>`;
+            } else {
+                filtered.forEach(card => container.appendChild(card));
+            }
         });
 
         window.addEventListener('DOMContentLoaded', loadGames);
