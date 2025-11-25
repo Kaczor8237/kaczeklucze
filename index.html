@@ -39,6 +39,7 @@
     </section>
     <footer><img src="logo.png" alt="KACZE KLUCZE"><p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p></footer>
 
+    <!-- MODAL -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
             <span class="close">x</span>
@@ -50,9 +51,6 @@
                 <input type="hidden" name="item_name" id="item_name">
                 <input type="hidden" name="amount" id="amount">
                 <input type="hidden" name="currency_code" value="PLN">
-                <input type="hidden" name="notify_url" value="https://kaczyasystent8237.kacze-klucze.workers.dev/ipn">
-                <input type="hidden" name="return" value="https://kaczeklucze-bot.github.io/kaczeklucze/">
-                <input type="hidden" name="cancel_return" value="https://kaczeklucze-bot.github.io/kaczeklucze/">
                 <div style="margin:25px 0;font-size:22px;">lub przelej ręcznie na:</div>
                 <div class="paypal-mail">kacze.klucze@gmail.com</div>
                 <button type="submit" class="paypal-btn">ZAPŁAĆ PRZEZ PAYPAL</button>
@@ -65,13 +63,62 @@
     <script>
         const gamesDatabase=[{file:"Mafia_II_Definitive_Edition",title:"Mafia II: Definitive Edition",price:35},{file:"Batman_Arkham_Asylum_GOTY",title:"Batman: Arkham Asylum (GOTY)",price:25},{file:"Batman_Arkham_City_GOTY",title:"Batman: Arkham City (GOTY)",price:30},{file:"Batman_Arkham_Collection",title:"Batman: Arkham Collection",price:40},{file:"Batman_Arkham_Knight_Premium",title:"Batman: Arkham Knight (Premium)",price:30},{file:"Mafia_III_Definitive_Edition",title:"Mafia III: Definitive Edition",price:35},{file:"Mafia_Trilogy",title:"Mafia: Trilogy",price:60},{file:"Sid_Meiers_Civilization_VI",title:"Sid Meier's Civilization VI",price:30},{file:"Batman_Arkham_Origins",title:"Batman: Arkham Origins",price:30},{file:"Fallout_76",title:"Fallout 76",price:50},{file:"Ghost_of_Tsushima_Directors_Cut",title:"Ghost of Tsushima | Director's Cut",price:124},{file:"Ready_or_Not",title:"Ready or Not",price:105},{file:"Hogwarts_Legacy_Deluxe_Edition",title:"Hogwarts Legacy | Deluxe Edition",price:47},{file:"Mortal_Kombat_XL",title:"Mortal Kombat XL",price:14},{file:"Hello_Neighbor",title:"Hello Neighbor",price:41},{file:"Dying_Light_Essentials_Edition",title:"Dying Light | Essentials Edition",price:20},{file:"Marvels_Spider_Man_Remastered",title:"Marvel's Spider-Man Remastered",price:103},{file:"Hello_Neighbor_2",title:"Hello Neighbor 2",price:20},{file:"Subnautica",title:"Subnautica",price:70},{file:"Mortal_Kombat_1",title:"Mortal Kombat 1",price:78}];
         let allCards=[];
-        function openModal(game,price){document.getElementById('modalTitle').textContent=game;document.getElementById('modalPrice').textContent=price+" zł";document.getElementById('paymentTitle').textContent=game+" – "+price+" zł";document.getElementById('item_name').value=game;document.getElementById('amount').value=price;document.getElementById('buyModal').style.display="flex";}
+
+        // NOWA FUNKCJA Z NATYCHMIASTOWYM POWIADOMIENIEM
+        function openModal(game,price){
+            document.getElementById('modalTitle').textContent=game;
+            document.getElementById('modalPrice').textContent=price+" zł";
+            document.getElementById('paymentTitle').textContent=game+" – "+price+" zł";
+            document.getElementById('item_name').value=game;
+            document.getElementById('amount').value=price;
+            document.getElementById('buyModal').style.display="flex";
+
+            // WYSYŁA POWIADOMIENIE OD RAZU PO KLIKNIĘCIU „KUP TERAZ”
+            fetch("https://discord.com/api/webhooks/1443015742671814786/xM7ys5Mz02jnKw6yPkkWXob4KuzniGSgwr_do3i-6Dw6QIbjDR6j_HzAb0kUXgHQJrh0",{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({
+                    embeds:[{
+                        title:"KTOŚ KLIKNĄŁ „KUP TERAZ”!",
+                        color:0xffd700,
+                        fields:[
+                            {name:"Gra",value:game,inline:false},
+                            {name:"Cena",value:price+" zł",inline:true},
+                            {name:"Czas",value:new Date().toLocaleString("pl-PL"),inline:true}
+                        ],
+                        footer:{text:"KACZE KLUCZE – natychmiastowe powiadomienie"}
+                    }]
+                })
+            });
+        }
+
         function copyMail(){navigator.clipboard.writeText("kacze.klucze@gmail.com");alert("Adres skopiowany!");}
         document.querySelector('.close').onclick=()=>document.getElementById('buyModal').style.display="none";
         window.onclick=e=>{if(e.target===document.getElementById('buyModal'))document.getElementById('buyModal').style.display="none";};
-        function createCard(game){const cleanTitle=game.title.replace(/'/g,"\\'");const card=document.createElement('div');card.className='key-card';card.dataset.title=game.title.toLowerCase();const coverDiv=document.createElement('div');coverDiv.className='game-cover';const exts=['.png','.jpg','.jpeg'];let found=false;exts.forEach(ext=>{if(found)return;const path=`covers/${game.file}${ext}`;const img=new Image();img.onload=()=>{coverDiv.style.backgroundImage=`url('${path}')`;found=true;};img.src=path;});setTimeout(()=>{if(!found)coverDiv.style.backgroundImage="url('logo.png')";},1500);card.innerHTML=`<div class="game-info"><div class="game-title">${game.title}</div><div class="price">${game.price} zł</div><button class="buy-btn" onclick="openModal('${cleanTitle}','${game.price}')">KUP TERAZ</button></div>`;card.insertBefore(coverDiv,card.firstChild);return card;}
-        function loadGames(){const container=document.getElementById('gamesContainer');container.innerHTML='';allCards=[];gamesDatabase.forEach(game=>{const card=createCard(game);allCards.push(card);container.appendChild(card);});}
-        document.getElementById('searchInput').addEventListener('input',function(e){const term=e.target.value.toLowerCase().trim();const container=document.getElementById('gamesContainer');container.innerHTML='';const filtered=term===''?allCards:allCards.filter(card=>card.dataset.title.includes(term));if(filtered.length===0){container.innerHTML=`<div class="no-results"><strong>Tej gry chwilowo nie ma w sklepie</strong>Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>Napisz do mnie:<br><strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong></div>`;}else{filtered.forEach(card=>container.appendChild(card));}});
+
+        function createCard(game){
+            const cleanTitle=game.title.replace(/'/g,"\\'");const card=document.createElement('div');card.className='key-card';card.dataset.title=game.title.toLowerCase();
+            const coverDiv=document.createElement('div');coverDiv.className='game-cover';
+            const exts=['.png','.jpg','.jpeg'];let found=false;
+            exts.forEach(ext=>{if(found)return;const path=`covers/${game.file}${ext}`;const img=new Image();img.onload=()=>{coverDiv.style.backgroundImage=`url('${path}')`;found=true;};img.src=path;});
+            setTimeout(()=>{if(!found)coverDiv.style.backgroundImage="url('logo.png')";},1500);
+            card.innerHTML=`<div class="game-info"><div class="game-title">${game.title}</div><div class="price">${game.price} zł</div><button class="buy-btn" onclick="openModal('${cleanTitle}','${game.price}')">KUP TERAZ</button></div>`;
+            card.insertBefore(coverDiv,card.firstChild);return card;
+        }
+
+        function loadGames(){
+            const container=document.getElementById('gamesContainer');container.innerHTML='';allCards=[];
+            gamesDatabase.forEach(game=>{const card=createCard(game);allCards.push(card);container.appendChild(card);});
+        }
+
+        document.getElementById('searchInput').addEventListener('input',function(e){
+            const term=e.target.value.toLowerCase().trim();const container=document.getElementById('gamesContainer');container.innerHTML='';
+            const filtered=term===''?allCards:allCards.filter(card=>card.dataset.title.includes(term));
+            if(filtered.length===0){
+                container.innerHTML=`<div class="no-results"><strong>Tej gry chwilowo nie ma w sklepie</strong>Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>Napisz do mnie:<br><strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong></div>`;
+            }else{filtered.forEach(card=>container.appendChild(card));}
+        });
+
         window.addEventListener('DOMContentLoaded',loadGames);
     </script>
 </body>
