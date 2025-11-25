@@ -26,7 +26,7 @@
         .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700;}
         .feature p{font-size:20px;color:#ddd;line-height:1.7;}
         .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px;}
-        @media (max-width: 700px) {.keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px;}}
+        @media (max-width:700px){.keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px;}}
         .key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s ease;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6);}
         .game-cover{width:100%;height:280px;background-size:cover;background-position:center top;background-repeat:no-repeat;background-color:#000;transition:transform .6s ease;flex-shrink:0;}
         .key-card:hover{border-color:#ffc439 !important;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3);}
@@ -53,7 +53,7 @@
         .modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;}
         .modal-content{background:#111;padding:50px 40px;width:90%;max-width:520px;border:3px solid #333;text-align:center;position:relative;}
         .close{position:absolute;top:15px;right:20px;font-size:40px;cursor:pointer;color:#fff;}
-        .paypal-btn{display:block;margin:30px auto;padding:20px;background:#ffc439;color:#000;font-weight:bold;font-size:26px;border:none;border-radius:8px;cursor:pointer;width:90%;text-decoration:none;}
+        .paypal-btn{display:block;margin:30px auto;padding:20px;background:#ffc439;color:#000;font-weight:bold;font-size:26px;border:none;border-radius:8px;cursor:pointer;width:90%;}
         .paypal-btn:hover{background:#ffb800;}
         .copy-btn{background:#333;color:#fff;padding:12px 30px;border:none;margin-top:15px;cursor:pointer;border-radius:6px;}
         .info{margin-top:30px;color:#aaa;font-size:18px;line-height:1.7;}
@@ -120,23 +120,17 @@
             <div class="info">
                 W tytule przelewu wpisz dokładnie:<br>
                 <strong id="paymentTitle" style="color:#ffc439;"></strong><br><br>
-                <span style="color:#0f0;">Po opłaceniu – klucz dostaniesz w 1–60 min!</span>
+                <span style="color:#0f0;">Po opłaceniu – klucz w 1–60 min!</span>
             </div>
         </div>
     </div>
 
-    <!-- EMAILJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init({
-                publicKey: "user_xFvdoKloqnbCemxLr"  // ← Twój Public Key (jeśli za krótki, sprawdź w Dashboard!)
-            });
-            console.log("EmailJS zainicjalizowany – sprawdź Public Key w konsoli!");
-        })();
-    </script>
-
+    <!-- EMAILJS + ZAPASOWY FORMSUBMIT -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
+        // Inicjalizacja EmailJS – Twój aktualny klucz!
+        emailjs.init("user_KREaLdQXFvmWJmVna1GHC");
+
         const gamesDatabase = [
             { file: "Mafia_II_Definitive_Edition", title: "Mafia II: Definitive Edition", price: 35 },
             { file: "Batman_Arkham_Asylum_GOTY", title: "Batman: Arkham Asylum (GOTY)", price: 25 },
@@ -162,35 +156,42 @@
 
         let allCards = [];
 
-        function copyMail() { navigator.clipboard.writeText("kacze.klucze@gmail.com"); alert("Adres skopiowany!"); }
+        function copyMail() {
+            navigator.clipboard.writeText("kacze.klucze@gmail.com");
+            alert("Adres skopiowany!");
+        }
+
         document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
-        window.onclick = e => { if(e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
+        window.onclick = e => { if (e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
 
         function openModal(game, price) {
             document.getElementById('modalTitle').textContent = game;
             document.getElementById('modalPrice').textContent = price + " zł";
             document.getElementById('paymentTitle').textContent = game + " – " + price + " zł";
 
-            // WYSYŁKA MAIL DO CIEBIE Z BŁĘDAMI W KONSOLI
-            const templateParams = {
+            // 1. EmailJS (główny sposób)
+            emailjs.send("service_x6135w6", "template_qsi9ub9", {
                 game: game,
                 price: price + " zł",
                 date: new Date().toLocaleString('pl-PL')
-            };
-
-            emailjs.send("service_x6135w6", "template_qsi9ub9", templateParams)
-                .then((response) => {
-                    console.log("Mail wysłany! ID odpowiedzi:", response.status, response.text);
-                    alert("Powiadomienie wysłane do kaczora! 🦆");  // Testowy alert – możesz usunąć później
-                }, (err) => {
-                    console.error("BŁĄD EmailJS:", err);
-                    alert("Błąd wysyłki maila – sprawdź konsolę (F12)! Szczegóły: " + err.text);  // Pokazuje błąd
+            }).catch(err => {
+                console.log("EmailJS nie zadziałał, używam backupu...", err);
+                // 2. Zapasowy – formsubmit (działa zawsze!)
+                fetch("https://formsubmit.co/ajax/kacze.klucze@gmail.com", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                    body: JSON.stringify({
+                        Gra: game,
+                        Cena: price + " zł",
+                        Data: new Date().toLocaleString('pl-PL'),
+                        _subject: "NOWE ZAMÓWIENIE! " + game + " – " + price + " zł"
+                    })
                 });
+            });
 
-            // PayPal
-            document.getElementById('payButton').onclick = function() {
-                const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kacze.klucze@gmail.com&item_name=${encodeURIComponent(game)}&amount=${price}&currency_code=PLN&return=https://kaczeklucze-bot.github.io/kaczeklucze/&cancel_return=https://kaczeklucze-bot.github.io/kaczeklucze/`;
-                window.open(paypalUrl, '_blank');
+            document.getElementById('payButton').onclick = () => {
+                const url = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kacze.klucze@gmail.com&item_name=${encodeURIComponent(game)}&amount=${price}&currency_code=PLN&return=https://kaczeklucze-bot.github.io/kaczeklucze/&cancel_return=https://kaczeklucze-bot.github.io/kaczeklucze/`;
+                window.open(url, '_blank');
             };
 
             document.getElementById('buyModal').style.display = "flex";
@@ -200,6 +201,7 @@
             const card = document.createElement('div');
             card.className = 'key-card';
             card.dataset.title = game.title.toLowerCase();
+
             const coverDiv = document.createElement('div');
             coverDiv.className = 'game-cover';
             const exts = ['.png', '.jpg', '.jpeg'];
@@ -217,7 +219,7 @@
                 <div class="game-info">
                     <div class="game-title">${game.title}</div>
                     <div class="price">${game.price} zł</div>
-                    <button class="buy-btn" onclick="openModal('${game.title.replace(/'/g, "\\'")}',${game.price})">KUP TERAZ</button>
+                    <button class="buy-btn" onclick="openModal('${game.title.replace(/'/g, "\\'")}', ${game.price})">KUP TERAZ</button>
                 </div>
             `;
             card.insertBefore(coverDiv, card.firstChild);
@@ -241,7 +243,14 @@
             container.innerHTML = '';
             const filtered = term === '' ? allCards : allCards.filter(card => card.dataset.title.includes(term));
             if (filtered.length === 0) {
-                container.innerHTML = `<div class="no-results"><strong>Tej gry chwilowo nie ma w sklepie</strong>Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>Napisz do mnie:<br><strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong></div>`;
+                container.innerHTML = `
+                    <div class="no-results">
+                        <strong>Tej gry chwilowo nie ma w sklepie</strong>
+                        Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>
+                        Napisz do mnie:<br>
+                        <strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>
+                        lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong>
+                    </div>`;
             } else {
                 filtered.forEach(card => container.appendChild(card));
             }
