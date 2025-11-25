@@ -32,9 +32,9 @@
         .key-card:hover{border-color:#ffc439 !important;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3);}
         .key-card:hover .game-cover{transform:scale(1.08);}
         .game-info{padding:20px 16px;text-align:center;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;}
-        .game-title{font-family:'Creepster',cursive;font-size:26px;margin-bottom:8px;min-height:66px;display:flex;align-items:center;justify-content:center;}
+ .game-title{font-family:'Creepster',cursive;font-size:26px;margin-bottom:8px;min-height:66px;display:flex;align-items:center;justify-content:center;}
         .price{font-size:46px;font-weight:bold;color:#fff;margin:10px 0;}
-        .buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all .3s;border-radius:8px;}
+        .buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all .3s;border-radius:8px;width:calc(100% - 40px);}
         .buy-btn:hover{background:#ccc;}
         .search-container{max-width:1400px;margin:0 auto 40px;padding:0 20px;text-align:center;}
         #searchInput{width:100%;max-width:600px;padding:18px 24px;font-size:20px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:all .3s;}
@@ -68,6 +68,7 @@
         <h1>KACZE KLUCZE</h1>
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
+
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
@@ -77,17 +78,21 @@
             <div class="feature"><div class="feature-icon">Wsparcie</div><h3>JESTEM ZAWSZE</h3><p>Pisz na maila albo Discord – odpisuję w kilka minut. Żadnych botów, tylko żywy kaczor.</p></div>
         </div>
     </section>
+
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, mortal)" autocomplete="off">
     </div>
+
     <div class="keys-grid" id="gamesContainer">
         <div style="grid-column:1/-1;text-align:center;padding:100px;font-size:28px;color:#777;">Ładowanie gier... kwak kwak!</div>
     </div>
+
     <div class="custom-order">
         <strong>Nie ma gry, której szukasz?</strong><br><br>
         Chętnie przygotuję dowolny produkt na zamówienie.<br>
         Pisz śmiało: <strong>kacze.klucze@gmail.com</strong> | Discord: <strong>mc.duck_8237</strong>
     </div>
+
     <section class="reviews">
         <h2>Ostatnie opinie</h2>
         <div class="review-list">
@@ -96,44 +101,40 @@
             <div class="review">„Szybko, tanio, bez problemów. 10/10” – Patryk</div>
         </div>
     </section>
+
     <footer>
         <img src="logo.png" alt="KACZE KLUCZE">
         <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
-    <!-- MODAL Z DZIAŁAJĄCYM DISCORDEM -->
+    <!-- MODAL -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
-            <span class="close">x</span>
+            <span class="close">×</span>
             <h2 id="modalTitle" style="font-size:32px;margin-bottom:15px;"></h2>
             <div style="font-size:50px;font-weight:bold;color:#ffc439;margin:20px 0;" id="modalPrice"></div>
-
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                <input type="hidden" name="cmd" value="_xclick">
-                <input type="hidden" name="business" value="kacze.klucze@gmail.com">
-                <input type="hidden" name="item_name" id="item_name">
-                <input type="hidden" name="amount" id="amount">
-                <input type="hidden" name="currency_code" value="PLN">
-                <input type="hidden" name="notify_url" value="https://kaczor.duckdns.org/ipn">
-                <input type="hidden" name="return" value="https://kaczeklucze-bot.github.io/kaczeklucze/">
-                <input type="hidden" name="cancel_return" value="https://kaczeklucze-bot.github.io/kaczeklucze/">
-
-                <button type="submit" class="paypal-btn">ZAPŁAĆ PRZEZ PAYPAL</button>
-            </form>
-
-            <div style="margin:25px 0;font-size:22px;">lub przelej ręcznie na:</div>
+            <div style="margin:25px 0;font-size:22px;">Zapłać przez PayPal lub przelew:</div>
             <div class="paypal-mail">kacze.klucze@gmail.com</div>
-            <button class="copy-btn" onclick="copyMail()">SKOPIUJ ADRES</button>
+            <button type="button" class="paypal-btn" id="payButton">ZAPŁAĆ PRZEZ PAYPAL</button>
+            <button type="button" class="copy-btn" onclick="copyMail()">SKOPIUJ ADRES E-MAIL</button>
             <div class="info">
                 W tytule przelewu wpisz dokładnie:<br>
                 <strong id="paymentTitle" style="color:#ffc439;"></strong><br><br>
-                Klucz wyślę w 1–60 minut • Jestem online 24/7
+                <span style="color:#0f0;">Po opłaceniu – klucz dostaniesz w 1–60 min!</span>
             </div>
         </div>
     </div>
 
+    <!-- EMAILJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("user_xFvdoKloqnbCemxLr");   // TWÓJ PUBLIC KEY JUŻ WPISANY!
+        })();
+    </script>
+
     <script>
-        const gamesDatabase = [
+        const gamesDatabase = [ /* twoja cała baza – bez zmian */ 
             { file: "Mafia_II_Definitive_Edition", title: "Mafia II: Definitive Edition", price: 35 },
             { file: "Batman_Arkham_Asylum_GOTY", title: "Batman: Arkham Asylum (GOTY)", price: 25 },
             { file: "Batman_Arkham_City_GOTY", title: "Batman: Arkham City (GOTY)", price: 30 },
@@ -144,7 +145,7 @@
             { file: "Sid_Meiers_Civilization_VI", title: "Sid Meier's Civilization VI", price: 30 },
             { file: "Batman_Arkham_Origins", title: "Batman: Arkham Origins", price: 30 },
             { file: "Fallout_76", title: "Fallout 76", price: 50 },
-            { file: "Ghost_of_Tsushima_Directors_Cut", title: "Ghost of Tsushima | Director’s Cut", price: 124 },
+            { file: "Ghost_of_Tsushima_Directors_Cut", title: "Ghost of Tsushima | Director's Cut", price: 124 },
             { file: "Ready_or_Not", title: "Ready or Not", price: 105 },
             { file: "Hogwarts_Legacy_Deluxe_Edition", title: "Hogwarts Legacy | Deluxe Edition", price: 47 },
             { file: "Mortal_Kombat_XL", title: "Mortal Kombat XL", price: 14 },
@@ -155,27 +156,34 @@
             { file: "Subnautica", title: "Subnautica", price: 70 },
             { file: "Mortal_Kombat_1", title: "Mortal Kombat 1", price: 78 }
         ];
+
         let allCards = [];
+
+        function copyMail() { navigator.clipboard.writeText("kacze.klucze@gmail.com"); alert("Adres skopiowany!"); }
+        document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
+        window.onclick = e => { if(e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
 
         function openModal(game, price) {
             document.getElementById('modalTitle').textContent = game;
             document.getElementById('modalPrice').textContent = price + " zł";
             document.getElementById('paymentTitle').textContent = game + " – " + price + " zł";
-            document.getElementById('item_name').value = game;
-            document.getElementById('amount').value = price;
+
+            // WYSYŁKA MAIL DO CIEBIE
+            emailjs.send("service_x6135w6", "template_qsi9ub9", {
+                game: game,
+                price: price + " zł",
+                date: new Date().toLocaleString('pl-PL')
+            });
+
+            document.getElementById('payButton').onclick = function() {
+                const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kacze.klucze@gmail.com&item_name=${encodeURIComponent(game)}&amount=${price}&currency_code=PLN&return=https://kaczeklucze-bot.github.io/kaczeklucze/&cancel_return=https://kaczeklucze-bot.github.io/kaczeklucze/`;
+                window.open(paypalUrl, '_blank');
+            };
+
             document.getElementById('buyModal').style.display = "flex";
         }
 
-        function copyMail() {
-            navigator.clipboard.writeText("kacze.klucze@gmail.com");
-            alert("Adres skopiowany!");
-        }
-
-        document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
-        window.onclick = e => { if (e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
-
         function createCard(game) {
-            const cleanTitle = game.title.replace(/'/g, "\\'");
             const card = document.createElement('div');
             card.className = 'key-card';
             card.dataset.title = game.title.toLowerCase();
@@ -190,12 +198,13 @@
                 img.onload = () => { coverDiv.style.backgroundImage = `url('${path}')`; found = true; };
                 img.src = path;
             });
-            setTimeout(() => { if (!found) coverDiv.style.backgroundImage = "url('logo.png')"; }, 1500);
+            setTimeout(() => { if (!found) coverDiv.style.backgroundImage = "url('logo.png')"; }, 2000);
+
             card.innerHTML = `
                 <div class="game-info">
                     <div class="game-title">${game.title}</div>
                     <div class="price">${game.price} zł</div>
-                    <button class="buy-btn" onclick="openModal('${game.title}',${game.price})">KUP TERAZ</button>
+                    <button class="buy-btn" onclick="openModal('${game.title.replace(/'/g, "\\'")}',${game.price})">KUP TERAZ</button>
                 </div>
             `;
             card.insertBefore(coverDiv, card.firstChild);
@@ -219,15 +228,7 @@
             container.innerHTML = '';
             const filtered = term === '' ? allCards : allCards.filter(card => card.dataset.title.includes(term));
             if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="no-results">
-                        <strong>Tej gry chwilowo nie ma w sklepie</strong>
-                        Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>
-                        Napisz do mnie:<br>
-                        <strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>
-                        lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong>
-                    </div>
-                `;
+                container.innerHTML = `<div class="no-results"><strong>Tej gry chwilowo nie ma w sklepie</strong>Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>Napisz do mnie:<br><strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong></div>`;
             } else {
                 filtered.forEach(card => container.appendChild(card));
             }
