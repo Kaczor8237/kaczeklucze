@@ -25,15 +25,8 @@
         .feature-icon{font-size:64px;margin-bottom:25px;}
         .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700;}
         .feature p{font-size:20px;color:#ddd;line-height:1.7;}
-      
         .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px;}
-        @media (max-width: 700px) {
-            .keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px;}
-            .game-cover{height:340px;}
-            .game-title{font-size:28px;}
-            .price{font-size:54px;}
-            .buy-btn{font-size:22px;padding:18px;}
-        }
+        @media (max-width: 700px) {.keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px;}}
         .key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s ease;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6);}
         .game-cover{width:100%;height:280px;background-size:cover;background-position:center top;background-repeat:no-repeat;background-color:#000;transition:transform .6s ease;flex-shrink:0;}
         .key-card:hover{border-color:#ffc439 !important;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3);}
@@ -108,7 +101,7 @@
         <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
-    <!-- MODAL Z PŁATNOŚCIĄ -->
+    <!-- MODAL PŁATNOŚCI – JUŻ Z POPRAWNYM ADRESEM WORKERA -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
             <span class="close">x</span>
@@ -120,11 +113,8 @@
                 <input type="hidden" name="item_name" id="item_name">
                 <input type="hidden" name="amount" id="amount">
                 <input type="hidden" name="currency_code" value="PLN">
-                
-                <!-- <<< TU JEST NOWY ADRES WORKERA <<< -->
+                <!-- POPRAWIONY I DZIAŁAJĄCY ADRES WORKERA -->
                 <input type="hidden" name="notify_url" value="https://kaczyasystent8237.kacze-klucze.workers.dev/ipn">
-                <!-- <<< KONIEC NOWEGO ADRESU <<< -->
-
                 <input type="hidden" name="return" value="https://kaczeklucze-bot.github.io/kaczeklucze/">
                 <input type="hidden" name="cancel_return" value="https://kaczeklucze-bot.github.io/kaczeklucze/">
                 <div style="margin:25px 0;font-size:22px;">lub przelej ręcznie na:</div>
@@ -141,7 +131,7 @@
     </div>
 
     <script>
-        const gamesDatabase = [{file:"Mafia_II_Definitive_Edition",title:"Mafia II: Definitive Edition",price:35},{file:"Batman_Arkham_Asylum_GOTY",title:"Batman: Arkham Asylum (GOTY)",price:25},{file:"Batman_Arkham_City_GOTY",title:"Batman: Arkham City (GOTY)",price:30},{file:"Batman_Arkham_Collection",title:"Batman: Arkham Collection",price:40},{file:"Batman_Arkham_Knight_Premium",title:"Batman: Arkham Knight (Premium)",price:30},{file:"Mafia_III_Definitive_Edition",title:"Mafia III: Definitive Edition",price:35},{file:"Mafia_Trilogy",title:"Mafia: Trilogy",price:60},{file:"Sid_Meiers_Civilization_VI",title:"Sid Meier's Civilization VI",price:30},{file:"Batman_Arkham_Origins",title:"Batman: Arkham Origins",price:30},{file:"Fallout_76",title:"Fallout 76",price:50},{file:"Ghost_of_Tsushima_Directors_Cut",title:"Ghost of Tsushima | Director's Cut",price:124},{file:"Ready_or_Not",title:"Ready or Not",price:105},{file:"Hogwarts_Legacy_Deluxe_Edition",title:"Hogwarts Legacy | Deluxe Edition",price:47},{file:"Mortal_Kombat_XL",title:"Mortal Kombat XL",price:14},{file:"Hello_Neighbor",title:"Hello Neighbor",price:41},{file:"Dying_Light_Essentials_Edition",title:"Dying Light | Essentials Edition",price:20},{file:"Marvels_Spider_Man_Remastered",title:"Marvel's Spider-Man Remastered",price:103},{file:"Hello_Neighbor_2",title:"Hello Neighbor 2",price:20},{file:"Subnautica",title:"Subnautica",price:70},{file:"Mortal_Kombat_1",title:"Mortal Kombat 1",price:78}];
+        const gamesDatabase=[{file:"Mafia_II_Definitive_Edition",title:"Mafia II: Definitive Edition",price:35},{file:"Batman_Arkham_Asylum_GOTY",title:"Batman: Arkham Asylum (GOTY)",price:25},{file:"Batman_Arkham_City_GOTY",title:"Batman: Arkham City (GOTY)",price:30},{file:"Batman_Arkham_Collection",title:"Batman: Arkham Collection",price:40},{file:"Batman_Arkham_Knight_Premium",title:"Batman: Arkham Knight (Premium)",price:30},{file:"Mafia_III_Definitive_Edition",title:"Mafia III: Definitive Edition",price:35},{file:"Mafia_Trilogy",title:"Mafia: Trilogy",price:60},{file:"Sid_Meiers_Civilization_VI",title:"Sid Meier's Civilization VI",price:30},{file:"Batman_Arkham_Origins",title:"Batman: Arkham Origins",price:30},{file:"Fallout_76",title:"Fallout 76",price:50},{file:"Ghost_of_Tsushima_Directors_Cut",title:"Ghost of Tsushima | Director's Cut",price:124},{file:"Ready_or_Not",title:"Ready or Not",price:105},{file:"Hogwarts_Legacy_Deluxe_Edition",title:"Hogwarts Legacy | Deluxe Edition",price:47},{file:"Mortal_Kombat_XL",title:"Mortal Kombat XL",price:14},{file:"Hello_Neighbor",title:"Hello Neighbor",price:41},{file:"Dying_Light_Essentials_Edition",title:"Dying Light | Essentials Edition",price:20},{file:"Marvels_Spider_Man_Remastered",title:"Marvel's Spider-Man Remastered",price:103},{file:"Hello_Neighbor_2",title:"Hello Neighbor 2",price:20},{file:"Subnautica",title:"Subnautica",price:70},{file:"Mortal_Kombat_1",title:"Mortal Kombat 1",price:78}];
         let allCards=[];
         function openModal(game,price){document.getElementById('modalTitle').textContent=game;document.getElementById('modalPrice').textContent=price+" zł";document.getElementById('paymentTitle').textContent=game+" – "+price+" zł";document.getElementById('item_name').value=game;document.getElementById('amount').value=price;document.getElementById('buyModal').style.display="flex";}
         function copyMail(){navigator.clipboard.writeText("kacze.klucze@gmail.com");alert("Adres skopiowany!");}
@@ -154,4 +144,3 @@
     </script>
 </body>
 </html>
-
