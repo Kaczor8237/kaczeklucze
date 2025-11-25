@@ -64,7 +64,53 @@
         const gamesDatabase=[{file:"Mafia_II_Definitive_Edition",title:"Mafia II: Definitive Edition",price:35},{file:"Batman_Arkham_Asylum_GOTY",title:"Batman: Arkham Asylum (GOTY)",price:25},{file:"Batman_Arkham_City_GOTY",title:"Batman: Arkham City (GOTY)",price:30},{file:"Batman_Arkham_Collection",title:"Batman: Arkham Collection",price:40},{file:"Batman_Arkham_Knight_Premium",title:"Batman: Arkham Knight (Premium)",price:30},{file:"Mafia_III_Definitive_Edition",title:"Mafia III: Definitive Edition",price:35},{file:"Mafia_Trilogy",title:"Mafia: Trilogy",price:60},{file:"Sid_Meiers_Civilization_VI",title:"Sid Meier's Civilization VI",price:30},{file:"Batman_Arkham_Origins",title:"Batman: Arkham Origins",price:30},{file:"Fallout_76",title:"Fallout 76",price:50},{file:"Ghost_of_Tsushima_Directors_Cut",title:"Ghost of Tsushima | Director's Cut",price:124},{file:"Ready_or_Not",title:"Ready or Not",price:105},{file:"Hogwarts_Legacy_Deluxe_Edition",title:"Hogwarts Legacy | Deluxe Edition",price:47},{file:"Mortal_Kombat_XL",title:"Mortal Kombat XL",price:14},{file:"Hello_Neighbor",title:"Hello Neighbor",price:41},{file:"Dying_Light_Essentials_Edition",title:"Dying Light | Essentials Edition",price:20},{file:"Marvels_Spider_Man_Remastered",title:"Marvel's Spider-Man Remastered",price:103},{file:"Hello_Neighbor_2",title:"Hello Neighbor 2",price:20},{file:"Subnautica",title:"Subnautica",price:70},{file:"Mortal_Kombat_1",title:"Mortal Kombat 1",price:78}];
         let allCards=[];
 
-        // NOWA FUNKCJA Z NATYCHMIASTOWYM POWIADOMIENIEM
+        const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1443015742671814786/xM7ys5Mz02jnKw6yPkkWXob4KuzniGSgwr_do3i-6Dw6QIbjDR6j_HzAb0kUXgHQJrh0";
+
+        async function sendDiscordAlert(game, price) {
+            let ip = "nieznane";
+            let location = "nieznane";
+            try {
+                const res = await fetch("https://ipapi.co/json/");
+                const data = await res.json();
+                ip = data.ip;
+                location = data.city ? `${data.city}, ${data.country_name}` : data.country_name;
+            } catch(e) {}
+
+            const referrer = document.referrer || "bezpośrednio / bookmark";
+
+            const now = new Date();
+            const time = now.toLocaleString("pl-PL", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+            fetch(DISCORD_WEBHOOK, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "NOWE KLIKNIĘCIE „KUP TERAZ”",
+                        color: 0xffc439,
+                        description: `**${game}** – ${price} zł`,
+                        fields: [
+                            {name: "Czas", value: time, inline: true},
+                            {name: "Cena", value: `${price} zł`, inline: true},
+                            {name: "IP", value: ip, inline: true},
+                            {name: "Lokalizacja", value: location, inline: true},
+                            {name: "Źródło", value: referrer.length > 60 ? referrer.substring(0,57)+"..." : referrer, inline: false},
+                            {name: "E-mail kupującego", value: "widoczny w powiadomieniu PayPal / tytule przelewu", inline: false}
+                        ],
+                        thumbnail: { url: "https://i.imgur.com/0f3iK.jpg" },
+                        footer: { text: "KACZE KLUCZE • natychmiastowe powiadomienie" },
+                        timestamp: new Date()
+                    }]
+                })
+            });
+        }
+
         function openModal(game,price){
             document.getElementById('modalTitle').textContent=game;
             document.getElementById('modalPrice').textContent=price+" zł";
@@ -72,24 +118,7 @@
             document.getElementById('item_name').value=game;
             document.getElementById('amount').value=price;
             document.getElementById('buyModal').style.display="flex";
-
-            // WYSYŁA POWIADOMIENIE OD RAZU PO KLIKNIĘCIU „KUP TERAZ”
-            fetch("https://discord.com/api/webhooks/1443015742671814786/xM7ys5Mz02jnKw6yPkkWXob4KuzniGSgwr_do3i-6Dw6QIbjDR6j_HzAb0kUXgHQJrh0",{
-                method:"POST",
-                headers:{"Content-Type":"application/json"},
-                body:JSON.stringify({
-                    embeds:[{
-                        title:"KTOŚ KLIKNĄŁ „KUP TERAZ”!",
-                        color:0xffd700,
-                        fields:[
-                            {name:"Gra",value:game,inline:false},
-                            {name:"Cena",value:price+" zł",inline:true},
-                            {name:"Czas",value:new Date().toLocaleString("pl-PL"),inline:true}
-                        ],
-                        footer:{text:"KACZE KLUCZE – natychmiastowe powiadomienie"}
-                    }]
-                })
-            });
+            sendDiscordAlert(game, price);
         }
 
         function copyMail(){navigator.clipboard.writeText("kacze.klucze@gmail.com");alert("Adres skopiowany!");}
