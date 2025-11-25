@@ -1,23 +1,22 @@
-// notify.js – automatyczne powiadomienie na Discorda + backup mailto
-// Wrzuć ten plik w ten sam folder co index.html
-
+// notify.js – z logami i fixami
 (function () {
-    // Twój webhook – już wklejony!
+    console.log("notify.js załadowany – gotowy do akcji!");
+
     const DISCORD_WEBHOOK = "https://discordapp.com/api/webhooks/1442620699846906110/EvWSgx3luRc8dhj7QxNNtZBR8BahcTjbi33KQs7BaWl6lL207hH_YEgE9TsNPWJTp822";
 
     function sendToDiscord(game, price) {
+        console.log("Wysyłam ping na Discorda dla:", game, price);
         const data = {
             embeds: [{
-                title: "NOWE ZAMÓWIENIE!",
-                description: "Ktoś właśnie chce kupić grę!",
-                color: 16763955, // żółty kaczy
+                title: "🦆 NOWE ZAMÓWIENIE!",
+                description: "Ktoś chce kupić grę – sprawdź skrzynkę!",
+                color: 16763955,
                 fields: [
                     { name: "Gra", value: game, inline: false },
                     { name: "Cena", value: price + " zł", inline: true },
                     { name: "Godzina", value: new Date().toLocaleString('pl-PL'), inline: true }
                 ],
-                footer: { text: "KACZE KLUCZE • KWAK KWAK MOTHERFUCKER" },
-                thumbnail: { url: "https://kaczeklucze-bot.github.io/kaczeklucze/logo.png" }
+                footer: { text: "KACZE KLUCZE • KWAK KWAK MOTHERFUCKER" }
             }]
         };
 
@@ -25,22 +24,25 @@
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
+        }).then(response => {
+            console.log("Discord: OK", response.status);
+        }).catch(err => {
+            console.error("Discord błąd:", err);
+            // Fallback: mailto bez otwierania okna – tylko kopiuje do schowka
+            const subject = "ZAMÓWIENIE: " + game + " – " + price + " zł";
+            const body = "Ktoś kliknął KUP TERAZ!\n\nGra: " + game + "\nCena: " + price + " zł\nGodzina: " + new Date().toLocaleString('pl-PL') + "\n\nCzekam na wpłatę!";
+            navigator.clipboard.writeText(`To: kacze.klucze@gmail.com\nSubject: ${subject}\n\n${body}`);
+            alert("Ping na Discordzie nie poleciał (błąd sieci) – dane do maila skopiowane do schowka! Wklej do Gmaila.");
         });
     }
 
-    // Nadpisujemy Twoją funkcję openModal
+    // Nadpisujemy openModal
     const originalOpenModal = window.openModal || function() {};
     window.openModal = function(game, price) {
-        // Twoje normalne rzeczy (modal + PayPal)
+        console.log("openModal wywołany:", game, price);
         originalOpenModal(game, price);
-
-        // NATYCHMIASTOWE POWIADOMIENIE NA DISCORDA
         sendToDiscord(game, price);
-
-        // Backup: otwiera mailto (na wszelki wypadek)
-        const mailto = `mailto:kacze.klucze@gmail.com?subject=ZAMÓWIENIE: ${encodeURIComponent(game)} – ${price} zł&body=${encodeURIComponent(
-            "Ktoś właśnie kliknął KUP TERAZ!\n\nGra: " + game + "\nCena: " + price + " zł\nGodzina: " + new Date().toLocaleString('pl-PL') + "\n\nCzekam na wpłatę!"
-        )}`;
-        window.open(mailto, '_blank');
     };
+
+    console.log("notify.js skonfigurowany – czekam na kliknięcia!");
 })();
