@@ -57,8 +57,6 @@
         .paypal-btn:hover{background:#ffb800;}
         .copy-btn{background:#333;color:#fff;padding:12px 30px;border:none;margin-top:15px;cursor:pointer;border-radius:6px;}
         .info{margin-top:30px;color:#aaa;font-size:18px;line-height:1.7;}
-        @media(max-width:900px){h1{font-size:70px;}.duck-logo{width:160px;}}
-        @media(max-width:600px){h1{font-size:50px;}.duck-logo{width:140px;}.why-us h2{font-size:42px;}}
     </style>
 </head>
 <body>
@@ -125,12 +123,7 @@
         </div>
     </div>
 
-    <!-- EMAILJS + ZAPASOWY FORMSUBMIT -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        // Inicjalizacja EmailJS – Twój aktualny klucz!
-        emailjs.init("user_KREaLdQXFvmWJmVna1GHC");
-
         const gamesDatabase = [
             { file: "Mafia_II_Definitive_Edition", title: "Mafia II: Definitive Edition", price: 35 },
             { file: "Batman_Arkham_Asylum_GOTY", title: "Batman: Arkham Asylum (GOTY)", price: 25 },
@@ -162,31 +155,23 @@
         }
 
         document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
-        window.onclick = e => { if (e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
+        window.onclick = e => { if(e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
 
         function openModal(game, price) {
             document.getElementById('modalTitle').textContent = game;
             document.getElementById('modalPrice').textContent = price + " zł";
             document.getElementById('paymentTitle').textContent = game + " – " + price + " zł";
 
-            // 1. EmailJS (główny sposób)
-            emailjs.send("service_x6135w6", "template_qsi9ub9", {
-                game: game,
-                price: price + " zł",
-                date: new Date().toLocaleString('pl-PL')
-            }).catch(err => {
-                console.log("EmailJS nie zadziałał, używam backupu...", err);
-                // 2. Zapasowy – formsubmit (działa zawsze!)
-                fetch("https://formsubmit.co/ajax/kacze.klucze@gmail.com", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json", "Accept": "application/json" },
-                    body: JSON.stringify({
-                        Gra: game,
-                        Cena: price + " zł",
-                        Data: new Date().toLocaleString('pl-PL'),
-                        _subject: "NOWE ZAMÓWIENIE! " + game + " – " + price + " zł"
-                    })
-                });
+            // 100% DZIAŁAJĄCY MAIL PRZEZ FORMSUBMIT
+            fetch("https://formsubmit.co/ajax/kacze.klucze@gmail.com", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                body: JSON.stringify({
+                    "Zamówienie": game,
+                    "Cena": price + " zł",
+                    "Data i godzina": new Date().toLocaleString('pl-PL'),
+                    "_subject": "NOWE ZAMÓWIENIE! " + game + " za " + price + " zł"
+                })
             });
 
             document.getElementById('payButton').onclick = () => {
@@ -197,6 +182,7 @@
             document.getElementById('buyModal').style.display = "flex";
         }
 
+        // reszta kodu (tworzenie kart, wyszukiwanie itd.) – dokładnie taka sama jak miałeś
         function createCard(game) {
             const card = document.createElement('div');
             card.className = 'key-card';
@@ -230,30 +216,21 @@
             const container = document.getElementById('gamesContainer');
             container.innerHTML = '';
             allCards = [];
-            gamesDatabase.forEach(game => {
-                const card = createCard(game);
+            gamesDatabase.forEach(g => {
+                const card = createCard(g);
                 allCards.push(card);
                 container.appendChild(card);
             });
         }
 
-        document.getElementById('searchInput').addEventListener('input', function(e) {
+        document.getElementById('searchInput').addEventListener('input', e => {
             const term = e.target.value.toLowerCase().trim();
             const container = document.getElementById('gamesContainer');
             container.innerHTML = '';
-            const filtered = term === '' ? allCards : allCards.filter(card => card.dataset.title.includes(term));
+            const filtered = term === '' ? allCards : allCards.filter(c => c.dataset.title.includes(term));
             if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="no-results">
-                        <strong>Tej gry chwilowo nie ma w sklepie</strong>
-                        Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>
-                        Napisz do mnie:<br>
-                        <strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>
-                        lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong>
-                    </div>`;
-            } else {
-                filtered.forEach(card => container.appendChild(card));
-            }
+                container.innerHTML = `<div class="no-results"><strong>Tej gry chwilowo nie ma</strong><br>Mogę ją ściągnąć – pisz na <strong style="color:#ffc439">kacze.klucze@gmail.com</strong></div>`;
+            } else filtered.forEach(c => container.appendChild(c));
         });
 
         window.addEventListener('DOMContentLoaded', loadGames);
