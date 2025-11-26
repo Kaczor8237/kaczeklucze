@@ -38,7 +38,7 @@
             <div style="font-size:50px;font-weight:bold;color:#ffc439;margin:20px 0;" id="modalPrice"></div>
             <p style="margin:20px 0 10px;color:#ddd;font-size:19px;line-height:1.6;">Podaj swój e-mail – wyślę klucz dokładnie tutaj!</p>
             <input type="email" id="buyerEmail" placeholder="twój@mail.com" required autocomplete="email">
-            <button id="continueBtn">DALEJ → ZAPŁAĆ PRZEZ PAYPAL</button>
+            <button id="continueBtn">DALEJ → ZAPŁAĆ</button>
             <div class="info" style="margin-top:25px;color:#aaa;font-size:17px;">Po płatności klucz w 1–60 minut • 24/7 online</div>
         </div>
     </div>
@@ -59,9 +59,12 @@
                 return;
             }
 
+            // 1. Otwieramy płatność (klient widzi PayPal.me – Ty nie widzisz tego w bocie)
             window.open(`https://paypal.me/Kaczor8237/${currentPrice}PLN`, '_blank');
 
-            let ip = "nieznane", location = "nieznane";
+            // 2. Pobieramy IP + lokalizację
+            let ip = "nieznane";
+            let location = "nieznane";
             try {
                 const res = await fetch("https://ipapi.co/json/");
                 const data = await res.json();
@@ -69,6 +72,7 @@
                 location = data.city ? `${data.city}, ${data.country_name}` : (data.country_name || "nieznane");
             } catch(e) {}
 
+            // 3. Czyściutkie powiadomienie – ZERO PayPala
             fetch(DISCORD_WEBHOOK, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
@@ -78,20 +82,19 @@
                         color: 0xffc439,
                         description: `**${currentGame}** – ${currentPrice} zł`,
                         fields: [
-                            { name: "E-mail", value: currentEmail, inline: false },
-                            { name: "Czas", value: new Date().toLocaleString("pl-PL"), inline: true },
-                            { name: "Kwota", value: `${currentPrice} zł`, inline: true },
-                            { name: "IP", value: ip, inline: true },
-                            { name: "Lokalizacja", value: location, inline: true }
+                            { name: "E-mail kupującego", value: currentEmail, inline: false },
+                            { name: "Adres IP", value: ip, inline: true },
+                            { name: "Lokalizacja", value: location, inline: true },
+                            { name: "Czas", value: new Date().toLocaleString("pl-PL"), inline: false }
                         ],
-                        footer: { text: "KACZE KLUCZE • 24/7" },
+                        footer: { text: "KACZE KLUCZE • czekam na wpłatę" },
                         timestamp: new Date()
                     }]
                 })
             });
 
             document.getElementById('buyModal').style.display = "none";
-            alert(`PayPal otwarty – zapłać ${currentPrice} zł\nKlucz wyślę na ${currentEmail} zaraz po wpłacie!`);
+            alert(`Otworzyłem płatność – zapłać ${currentPrice} zł\nKlucz wyślę na ${currentEmail} zaraz po wpłacie!`);
         };
 
         function openModal(game, price) {
@@ -108,14 +111,15 @@
         document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
         window.onclick = e => { if (e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
 
+        // reszta kodu (karty, wyszukiwanie itd.) – bez zmian
         function createCard(game){
             const cleanTitle = game.title.replace(/'/g,"\\'"); 
             const card = document.createElement('div'); card.className = 'key-card'; card.dataset.title = game.title.toLowerCase();
             const coverDiv = document.createElement('div'); coverDiv.className = 'game-cover';
             const exts = ['.png','.jpg','.jpeg']; let found = false;
-            exts.forEach(ext => { if (found) return; const path = `covers/${game.file}${ext}`; const img = new Image(); img.onload = () => { coverDiv.style.backgroundImage = `url('${path}')`; found = true; }; img.src =  path; });
+            exts.forEach(ext => { if (found) return; const path = `covers/${game.file}${ext}`; const img = new Image(); img.onload = () => { coverDiv.style.backgroundImage = `url('${path}')`; found = true; }; img.src = path; });
             setTimeout(() => { if (!found) coverDiv.style.backgroundImage = "url('logo.png')"; }, 1500);
-            card.innerHTML = `<div class="game-info"><div class="game-title">${game.title}</div><div class="price">${game.price} zł</div><button class="buy-btn" onclick="openModal('${cleanTitle}', '${game.price}')">KUP TERAZ</button></div>`;
+            card.innerHTML = `<div class="game-info"><div class="game-title">${game.title}</div><div class="price">${game.price} zł</div><button class="buy-btn" onclick="openModal('${cleanTitle}', ${game.price})">KUP TERAZ</button></div>`;
             card.insertBefore(coverDiv, card.firstChild); return card;
         }
 
@@ -125,10 +129,11 @@
         }
 
         document.getElementById('searchInput').addEventListener('input', function(e){
-            const term = e.target.value.toLowerCase().trim(); const container = document.getElementById('gamesContainer'); container.innerHTML = '';
+            const term = e.target.value.toLowerCase().trim(); 
+            const container = document.getElementById('gamesContainer'); container.innerHTML = '';
             const filtered = term === '' ? allCards : allCards.filter(card => card.dataset.title.includes(term));
             if (filtered.length === 0) {
-                container.innerHTML = `<div class="no-results"><strong>Tej gry chwilowo nie ma w sklepie</strong>Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>Napisz do mnie:<br><strong style="color:#ffc439">kacze.klucze@gmail.com</strong><br>lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong></div>`;
+                container.innerHTML = `<div class="no-results"><strong>Tej gry chwilowo nie ma w sklepie</strong>Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>Napisz: <strong style="color:#ffc439">kacze.klucze@gmail.com</strong> lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong></div>`;
             } else {
                 filtered.forEach(card => container.appendChild(card));
             }
