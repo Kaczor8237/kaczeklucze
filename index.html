@@ -54,8 +54,7 @@
             <button id="continueBtn">DALEJ → ZAPŁAĆ PRZEZ PAYPAL</button>
 
             <div class="info" style="margin-top:25px;color:#aaa;font-size:17px;">
-                Po płatności klucz dostaniesz w 1–60 minut<br>
-                Jestem online 24/7 • zero ściemy
+                Po płatności klucz w 1–60 minut • 24/7 online
             </div>
         </div>
     </div>
@@ -69,7 +68,6 @@
         let currentPrice = 0;
         let currentEmail = "";
 
-        // Najpierw PayPal (żeby się nie blokował), potem Discord
         document.getElementById('continueBtn').onclick = function() {
             currentEmail = document.getElementById('buyerEmail').value.trim();
             if (!currentEmail || !/^[\w.-]+@[\w.-]+\.\w+$/.test(currentEmail)) {
@@ -77,11 +75,13 @@
                 return;
             }
 
-            // 1. NAJPIERW OTWIERAMY PAYPAL – to musi być pierwsze!
-            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kacze.klucze@gmail.com&item_name=${encodeURIComponent(currentGame)}&amount=${currentPrice}&currency_code=PLN`;
-            window.open(paypalUrl, '_blank');
+            // TWÓJ PRAWIDŁOWY LINK PAYPAL.ME
+            const paypalLink = `https://paypal.me/Kaczor8237/${currentPrice}PLN`;
 
-            // 2. Dopiero teraz wysyłamy powiadomienie (już się nie blokuje)
+            // 1. OTWIERA PAYPAL.ME (zawsze działa)
+            window.open(paypalLink, '_blank');
+
+            // 2. Powiadomienie na Discord z e-mailem klienta
             fetch(DISCORD_WEBHOOK, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
@@ -94,7 +94,7 @@
                             {name: "E-mail kupującego", value: currentEmail, inline: false},
                             {name: "Czas", value: new Date().toLocaleString("pl-PL", {day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"}), inline: true},
                             {name: "Cena", value: `${currentPrice} zł`, inline: true},
-                            {name: "IP + lokalizacja", value: "automatycznie z PayPala", inline: false}
+                            {name: "PayPal", value: "[paypal.me/Kaczor8237](https://paypal.me/Kaczor8237)", inline: false}
                         ],
                         footer: { text: "KACZE KLUCZE • płatność otwarta" },
                         timestamp: new Date()
@@ -120,7 +120,6 @@
         document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
         window.onclick = e => { if (e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
 
-        // reszta kodu (karty, wyszukiwanie) bez zmian – działa idealnie
         function createCard(game){
             const cleanTitle = game.title.replace(/'/g,"\\'"); 
             const card = document.createElement('div'); card.className = 'key-card'; card.dataset.title = game.title.toLowerCase();
