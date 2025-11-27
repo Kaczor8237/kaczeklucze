@@ -7,7 +7,7 @@
     <link rel="icon" href="logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&family=Creepster&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6}.top-bar{background:#111;padding:10px;text-align:center;font-size:14px;border-bottom:1px solid #333;color:#aaa}header{text-align:center;padding:90px 20px 70px;background:#000}.duck-logo{width:180px;margin:0 auto 35px;display:block}.duck-logo img{width:100%;height:auto}h1{font-family:'Orbitron',sans-serif;font-size:100px;letter-spacing:8px;color:#fff;text-transform:uppercase;margin:20px 0}.subtitle{font-size:28px;color:#aaa;letter-spacing:5px;text-transform:uppercase}.why-us{padding:120px 20px;text-align:center;background:linear-gradient(180deg,#0f0f0f 0%,#000 100%)}.why-us h2{font-family:'Orbitron',sans-serif;font-size:56px;margin-bottom:80px;color:#fff;letter-spacing:4px}.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;max-width:1400px;margin:0 auto}.feature{position:relative;padding:50px 30px;background:#111;border:2px solid #333;border-radius:12px;transition:all .4s;overflow:hidden}.feature:hover{border-color:#ffc439;transform:translateY(-15px);box-shadow:0 20px 40px rgba(255,196,57,0.15)}.feature::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:#ffc439;transform:scaleX(0);transition:.4s}.feature:hover::before{transform:scaleX(1)}.feature-icon{font-size:64px;margin-bottom:25px}.feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700}.feature p{font-size:20px;color:#ddd;line-height:1.7}.keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px}@media (max-width:700px){.keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px}}.key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6)}.game-cover{width:100%;height:280px;background-size:cover;background-position:center top;background-repeat:no-repeat;background-color:#000;transition:transform .6s ease;flex-shrink:0}.key-card:hover{border-color:#ffc439!important;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3)}.key-card:hover .game-cover{transform:scale(1.08)}.game-info{padding:20px 16px;text-align:center;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between}.game-title{font-family:'Creepster',cursive;font-size:26px;margin-bottom:8px;min-height:66px;display:flex;align-items:center;justify-content:center}.price{font-size:46px;font-weight:bold;color:#fff;margin:10px 0}.buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all .3s;border-radius:8px}.buy-btn:hover{background:#ccc}.search-container{max-width:1400px;margin:0 auto 40px;padding:0 20px;text-align:center}#searchInput{width:100%;max-width:600px;padding:18px 24px;font-size:20px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:all .3s}#searchInput:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.3)}.modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.95);justify-content:center;align-items:center}.modal-content{background:#111;padding:50px 40px;width:90%;max-width:520px;border:3px solid #333;text-align:center;position:relative;border-radius:16px}.close{position:absolute;top:15px;right:20px;font-size:40px;cursor:pointer;color:#fff;z-index:10}#buyerEmail{width:100%;padding:18px;margin:25px 0 15px;border-radius:12px;border:3px solid #333;background:#000;color:#fff;font-size:19px;outline:none;transition:.3s}#buyerEmail:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.4)}#continueBtn,#closeThanksBtn{padding:18px;background:#ffc439;color:#000;font-weight:bold;font-size:22px;border:none;border-radius:12px;cursor:pointer;width:90%;margin:15px auto;transition:.3s}#continueBtn:hover,#closeThanksBtn:hover{background:#ffb800}
+        *{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6}.top-bar{background:#111;padding:10px;text-align:center;font-size:14px;border-bottom:1px solid #333;color:#aaa}header{text-align:center;padding:90px 20px 70px;background:#000}.duck-logo{width:180px;margin:0 auto 35px;display:block}.duck-logo img{width:100%;height:auto}h1{font-family:'Orbitron',sans-serif;font-size:100px;letter-spacing:8px;color:#fff;text-transform:uppercase;margin:20px 0}.subtitle{font-size:28px;color:#aaa;letter-spacing:5px;text-transform:uppercase}.why-us{padding:120px 20px;text-align:center;background:linear-gradient(180deg,#0f0f0f 0%,#000 100%)}.why-us h2{font-family:'Orbitron',sans-serif;font-size:56px;margin-bottom:80px;color:#fff;letter-spacing:4px}.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;max-width:1400px;margin:0 auto}.feature{position:relative;padding:50px 30px;background:#111;border:2px solid #333;border-radius:12px;transition:all .4s;overflow:hidden}.feature:hover{border-color:#ffc439;transform:translateY(-15px);box-shadow:0 20px 40px rgba(255,196,57,0.15)}.feature::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:#ffc439;transform:scaleX(0);transition:.4s}.feature:hover::before{transform:scaleX(1)}.feature-icon{font-size:64px;margin-bottom:25px}.feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700}.feature p{font-size:20px;color:#ddd;line-height:1.7}.keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px}@media (max-width:700px){.keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px}}.key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6)}.game-cover{width:100%;height:280px;background-size:cover;background-position:center top;background-repeat:no-repeat;background-color:#000;transition:transform .6s ease;flex-shrink:0}.key-card:hover{border-color:#ffc439!important;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3)}.key-card:hover .game-cover{transform:scale(1.08)}.game-info{padding:20px 16px;text-align:center;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between}.game-title{font-family:'Creepster',cursive;font-size:26px;margin-bottom:8px;min-height:66px;display:flex;align-items:center;justify-content:center}.price{font-size:46px;font-weight:bold;color:#fff;margin:10px 0}.buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:all .3s;border-radius:8px}.buy-btn:hover{background:#ccc}.search-container{max-width:1400px;margin:0 auto 40px;padding:0 20px;text-align:center}#searchInput{width:100%;max-width:600px;padding:18px 24px;font-size:20px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:all .3s}#searchInput:focus{ border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.3)}.modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.95);justify-content:center;align-items:center}.modal-content{background:#111;padding:50px 40px;width:90%;max-width:520px;border:3px solid #333;text-align:center;position:relative;border-radius:16px}.close{position:absolute;top:15px;right:20px;font-size:40px;cursor:pointer;color:#fff;z-index:10}#buyerEmail{width:100%;padding:18px;margin:25px 0 15px;border-radius:12px;border:3px solid #333;background:#000;color:#fff;font-size:19px;outline:none;transition:.3s}#buyerEmail:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.4)}#continueBtn{padding:18px;background:#ffc439;color:#000;font-weight:bold;font-size:22px;border:none;border-radius:12px;cursor:pointer;width:90%;margin:15px auto;transition:.3s}#continueBtn:hover{background:#ffb800}
     </style>
 </head>
 <body>
@@ -17,7 +17,6 @@
         <h1>KACZE KLUCZE</h1>
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
-
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
@@ -27,18 +26,14 @@
             <div class="feature"><div class="feature-icon">Wsparcie</div><h3>JESTEM ZAWSZE</h3><p>Pisz na maila albo Discord – odpisuję w kilka minut. Żadnych botów, tylko żywy kaczor.</p></div>
         </div>
     </section>
-
     <div class="search-container"><input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, mortal)" autocomplete="off"></div>
     <div class="keys-grid" id="gamesContainer"><div style="grid-column:1/-1;text-align:center;padding:100px;font-size:28px;color:#777">Ładowanie gier... kwak kwak!</div></div>
-
     <div class="custom-order"><strong>Nie ma gry, której szukasz?</strong><br><br>Chętnie przygotuję dowolny produkt na zamówienie.<br>Pisz śmiało: <strong>kacze.klucze@gmail.com</strong> | Discord: <strong>mc.duck_8237</strong></div>
-
     <footer><img src="logo.png" alt="KACZE KLUCZE"><p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p></footer>
 
-    <!-- Modal płatności -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
-            <span class="close">×</span>
+            <span class="close">x</span>
             <h2 id="modalTitle" style="font-size:32px;margin-bottom:15px;color:#ffc439;"></h2>
             <div style="font-size:50px;font-weight:bold;color:#ffc439;margin:20px 0;" id="modalPrice"></div>
             <p style="margin:20px 0 10px;color:#ddd;font-size:19px;line-height:1.6;">Podaj swój e-mail – wyślę klucz dokładnie tutaj!</p>
@@ -48,30 +43,9 @@
         </div>
     </div>
 
-    <!-- Modal podziękowania – taki sam styl -->
-    <div id="thanksModal" class="modal">
-        <div class="modal-content">
-            <span class="close">×</span>
-            <h2 style="font-size:38px;margin-bottom:20px;color:#ffc439;">KWAK! DZIĘKUJEMY!</h2>
-            <div style="font-size:60px;margin:30px 0;">Duck</div>
-            <p style="font-size:22px;color:#fff;line-height:1.7;margin:20px 0;">
-                Zamówienie przyjęte!<br>
-                Klucz do <strong id="thanksGame"></strong> już leci na<br>
-                <strong id="thanksEmail"></strong>
-            </p>
-            <p style="color:#aaa;font-size:18px;margin:25px 0;">
-                Maksymalnie 60 minut – zazwyczaj szybciej<br>
-                Jak coś nie dojdzie – pisz śmiało!
-            </p>
-            <button id="closeThanksBtn">SUPER, CZEKAM NA KLUCZ!</button>
-        </div>
-    </div>
-
     <script>
         const gamesDatabase=[{file:"Mafia_II_Definitive_Edition",title:"Mafia II: Definitive Edition",price:35},{file:"Batman_Arkham_Asylum_GOTY",title:"Batman: Arkham Asylum (GOTY)",price:25},{file:"Batman_Arkham_City_GOTY",title:"Batman: Arkham City (GOTY)",price:30},{file:"Batman_Arkham_Collection",title:"Batman: Arkham Collection",price:40},{file:"Batman_Arkham_Knight_Premium",title:"Batman: Arkham Knight (Premium)",price:30},{file:"Mafia_III_Definitive_Edition",title:"Mafia III: Definitive Edition",price:35},{file:"Mafia_Trilogy",title:"Mafia: Trilogy",price:60},{file:"Sid_Meiers_Civilization_VI",title:"Sid Meier's Civilization VI",price:30},{file:"Batman_Arkham_Origins",title:"Batman: Arkham Origins",price:30},{file:"Fallout_76",title:"Fallout 76",price:50},{file:"Ghost_of_Tsushima_Directors_Cut",title:"Ghost of Tsushima | Director's Cut",price:124},{file:"Ready_or_Not",title:"Ready or Not",price:105},{file:"Hogwarts_Legacy_Deluxe_Edition",title:"Hogwarts Legacy | Deluxe Edition",price:47},{file:"Mortal_Kombat_XL",title:"Mortal Kombat XL",price:14},{file:"Hello_Neighbor",title:"Hello Neighbor",price:41},{file:"Dying_Light_Essentials_Edition",title:"Dying Light | Essentials Edition",price:20},{file:"Marvels_Spider_Man_Remastered",title:"Marvel's Spider-Man Remastered",price:103},{file:"Hello_Neighbor_2",title:"Hello Neighbor 2",price:20},{file:"Subnautica",title:"Subnautica",price:70},{file:"Mortal_Kombat_1",title:"Mortal Kombat 1",price:78}];
         let allCards = [];
-        
-        // TWÓJ AKTUALNY WEBHOOK
         const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1443015742671814786/xM7ys5Mz02jnKw6yPkkWXob4KuzniGSgwr_do3i-6Dw6QIbjDR6j_HzAb0kUXgHQJrh0";
 
         let currentGame = "";
@@ -85,10 +59,10 @@
                 return;
             }
 
-            // Otwieramy prawdziwy PayPal
+            // otwieramy płatność (klient płaci normalnie)
             window.open(`https://paypal.me/Kaczor8237/${currentPrice}PLN`, '_blank');
 
-            // Powiadomienie na Twój Discord (z IP i lokalizacją)
+            // pobieramy IP + lokalizację
             let ip = "nieznane", location = "nieznane";
             try {
                 const res = await fetch("https://ipapi.co/json/");
@@ -97,6 +71,7 @@
                 location = data.city ? `${data.city}, ${data.country_name}` : (data.country_name || "nieznane");
             } catch(e) {}
 
+            // CZYSTE POWIADOMIENIE – ŻADNEGO PAYPALA ANI LINKU
             fetch(DISCORD_WEBHOOK, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
@@ -106,24 +81,19 @@
                         color: 0xffc439,
                         description: `**${currentGame}** – ${currentPrice} zł`,
                         fields: [
-                            {name: "E-mail", value: currentEmail, inline: false},
-                            {name: "IP", value: ip, inline: true},
-                            {name: "Lokalizacja", value: location, inline: true},
-                            {name: "Czas", value: new Date().toLocaleString("pl-PL"), inline: false}
+                            { name: "E-mail", value: currentEmail, inline: false },
+                            { name: "IP", value: ip, inline: true },
+                            { name: "Lokalizacja", value: location, inline: true },
+                            { name: "Czas", value: new Date().toLocaleString("pl-PL"), inline: false }
                         ],
-                        footer: {text: "KACZE KLUCZE • czekam na wpłatę"},
+                        footer: { text: "KACZE KLUCZE • czekam na wpłatę" },
                         timestamp: new Date()
                     }]
                 })
             });
 
-            // Zamykamy modal płatności i pokazujemy podziękowanie
             document.getElementById('buyModal').style.display = "none";
-            document.getElementById('thanksGame').textContent = currentGame;
-            document.getElementById('thanksEmail').textContent = currentEmail;
-            document.getElementById('thanksModal').style.display = "flex";
-        };
-
+            alert(`Płatność otwarta – zapłać ${currentPrice} zł\nKlucz wyślę na ${currentEmail} zaraz po wpłacie!`);
         };
 
         function openModal(game, price) {
@@ -136,36 +106,33 @@
             setTimeout(() => document.getElementById('buyerEmail').focus(), 100);
         }
 
-        // reszta (zamykanie modalu, karty gier, wyszukiwanie) – bez zmian
-        document.querySelectorAll('.close').forEach(el => el.onclick = () => {
-            document.getElementById('buyModal').style.display = "none";
-            document.getElementById('thanksModal').style.display = "none";
-        });
-        window.onclick = e => {if(e.target.classList.contains('modal')) e.target.style.display = "none";};
+        document.getElementById('buyerEmail').addEventListener('keypress', e => { if (e.key === 'Enter') document.getElementById('continueBtn').click(); });
+        document.querySelector('.close').onclick = () => document.getElementById('buyModal').style.display = "none";
+        window.onclick = e => { if (e.target === document.getElementById('buyModal')) document.getElementById('buyModal').style.display = "none"; };
 
         function createCard(game){
-            const cleanTitle = game.title.replace(/'/g,"\\'");
+            const cleanTitle = game.title.replace(/'/g,"\\'"); 
             const card = document.createElement('div'); card.className = 'key-card'; card.dataset.title = game.title.toLowerCase();
             const coverDiv = document.createElement('div'); coverDiv.className = 'game-cover';
             const exts = ['.png','.jpg','.jpeg']; let found = false;
-            exts.forEach(ext => {if(found) return; const path = `covers/${game.file}${ext}`; const img = new Image(); img.onload = () => {coverDiv.style.backgroundImage = `url('${path}')`; found = true;}; img.src = path;});
-            setTimeout(() => {if(!found) coverDiv.style.backgroundImage = "url('logo.png')";}, 1500);
+            exts.forEach(ext => { if (found) return; const path = `covers/${game.file}${ext}`; const img = new Image(); img.onload = () => { coverDiv.style.backgroundImage = `url('${path}')`; found = true; }; img.src = path; });
+            setTimeout(() => { if (!found) coverDiv.style.backgroundImage = "url('logo.png')"; }, 1500);
             card.innerHTML = `<div class="game-info"><div class="game-title">${game.title}</div><div class="price">${game.price} zł</div><button class="buy-btn" onclick="openModal('${cleanTitle}', ${game.price})">KUP TERAZ</button></div>`;
             card.insertBefore(coverDiv, card.firstChild); return card;
         }
 
         function loadGames(){
             const container = document.getElementById('gamesContainer'); container.innerHTML = ''; allCards = [];
-            gamesDatabase.forEach(game => {const card = createCard(game); allCards.push(card); container.appendChild(card);});
+            gamesDatabase.forEach(game => { const card = createCard(game); allCards.push(card); container.appendChild(card); });
         }
 
         document.getElementById('searchInput').addEventListener('input', function(e){
-            const term = e.target.value.toLowerCase().trim();
+            const term = e.target.value.toLowerCase().trim(); 
             const container = document.getElementById('gamesContainer'); container.innerHTML = '';
             const filtered = term === '' ? allCards : allCards.filter(card => card.dataset.title.includes(term));
-            if(filtered.length===0){
-                container.innerHTML = `<div class="no-results"><strong>Tej gry chwilowo nie ma w sklepie</strong><br>Ale spokojnie! Mogę ją dla Ciebie ściągnąć w super cenie<br><br>Napisz: <strong style="color:#ffc439">kacze.klucze@gmail.com</strong> lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong></div>`;
-            }else{
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="no-results"><strong>Tej gry chwilowo nie ma w sklepie</strong>Ale spokojnie! Mogę ją dla Ciebie                                           ściągnąć w super cenie<br><br>Napisz: <strong style="color:#ffc439">kacze.klucze@gmail.com</strong> lub Discord: <strong style="color:#ffc439">mc.duck_8237</strong></div>`;
+            } else {
                 filtered.forEach(card => container.appendChild(card));
             }
         });
