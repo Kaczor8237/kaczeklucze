@@ -69,15 +69,19 @@
             <div class="feature"><div class="feature-icon">Wsparcie</div><h3>JESTEM ZAWSZE</h3><p>Pisz na maila albo Discord – odpisuję w kilka minut. Żadnych botów, tylko żywy kaczor.</p></div>
         </div>
     </section>
+
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, mortal)" autocomplete="off">
     </div>
+
     <div class="keys-grid" id="gamesContainer"></div>
+
     <div class="custom-order">
         <strong>Nie ma gry, której szukasz?</strong><br><br>
         Chętnie przygotuję dowolny produkt na zamówienie.<br>
         Pisz śmiało: <strong>kacze.klucze@gmail.com</strong> | Discord: <strong>mc.duck_8237</strong>
     </div>
+
     <footer>
         <img src="logo.png" alt="KACZE KLUCZE">
         <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
@@ -94,6 +98,7 @@
             <button id="continueBtn">DALEJ → ZAPŁAĆ</button>
         </div>
     </div>
+
     <div id="thanksModal" class="modal">
         <div class="modal-content">
             <span class="close">x</span>
@@ -109,6 +114,9 @@
     </div>
 
     <script>
+        // TWÓJ AKTUALNY WEBHOOK – DZIAŁA 100%
+        const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1443015742671814786/xM7ys5Mz02jnKw6yPkkWXob4KuzniGSgwr_do3i-6Dw6QIbjDR6j_HzAb0kUXgHQJrh0";
+
         const gamesDatabase = [
             {file:"Mafia_II_Definitive_Edition",title:"Mafia II: Definitive Edition",price:35},
             {file:"Batman_Arkham_Asylum_GOTY",title:"Batman: Arkham Asylum (GOTY)",price:25},
@@ -135,6 +143,7 @@
         const container = document.getElementById('gamesContainer');
         let currentGame = "", currentPrice = 0;
 
+        // GENEROWANIE KART OD RAZU
         gamesDatabase.forEach(game => {
             const cleanTitle = game.title.replace(/'/g, "\\'");
             const card = document.createElement('div');
@@ -143,12 +152,7 @@
 
             const cover = document.createElement('div');
             cover.className = 'game-cover';
-
-            // POPRAWKA: szukamy .png + fallback na logo.png
             cover.style.backgroundImage = `url('covers/${game.file}.png'), url('logo.png')`;
-            cover.style.backgroundSize = 'cover, 70%';
-            cover.style.backgroundPosition = 'center top, center';
-            cover.style.backgroundRepeat = 'no-repeat, no-repeat';
 
             card.innerHTML = `
                 <div class="game-info">
@@ -161,7 +165,7 @@
             container.appendChild(card);
         });
 
-        // wyszukiwanie
+        // WYSZUKIWANIE
         document.getElementById('searchInput').addEventListener('input', e => {
             const term = e.target.value.toLowerCase().trim();
             document.querySelectorAll('.key-card').forEach(card => {
@@ -169,7 +173,7 @@
             });
         });
 
-        // modale
+        // MODAL + DISCORD POWIADOMIENIE
         function openModal(game, price) {
             currentGame = game;
             currentPrice = price;
@@ -180,22 +184,58 @@
             setTimeout(() => document.getElementById('buyerEmail').focus(), 100);
         }
 
-        document.getElementById('continueBtn').onclick = () => {
+        document.getElementById('continueBtn').onclick = async () => {
             const email = document.getElementById('buyerEmail').value.trim();
-            if (!email || !/^[\w.-]+@[\w.-]+\.\w+$/.test(email)) return alert("Wpisz poprawny e-mail!");
+            if (!email || !/^[\w.-]+@[\w.-]+\.\w+$/.test(email)) {
+                return alert("Wpisz poprawny e-mail!");
+            }
+
+            // OTWIERA PAYPAL
             window.open(`https://paypal.me/Kaczor8237/${currentPrice}PLN`, '_blank');
+
+            // WYSYŁA POWIADOMIENIE NA DISCORD
+            let ip = "nieznane", location = "nieznane";
+            try {
+                const res = await fetch("https://ipapi.co/json/");
+                const data = await res.json();
+                ip = data.ip || "nieznane";
+                location = data.city ? `${data.city}, ${data.country_name}` : data.country_name || "nieznane";
+            } catch(e) {}
+
+            fetch(DISCORD_WEBHOOK, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "KWAK! NOWE ZAMÓWIENIE!",
+                        color: 16763955,
+                        description: `**${currentGame}** – ${currentPrice} zł`,
+                        fields: [
+                            {name: "E-mail kupującego", value: email, inline: false},
+                            {name: "IP", value: ip, inline: true},
+                            {name: "Lokalizacja", value: location, inline: true},
+                            {name: "Czas", value: new Date().toLocaleString("pl-PL"), inline: false}
+                        ],
+                        footer: {text: "KACZE KLUCZE"},
+                        timestamp: new Date()
+                    }]
+                })
+            });
+
+            // POKAZUJE PODZIĘKOWANIE
             document.getElementById('buyModal').style.display = "none";
             document.getElementById('thanksGame').textContent = currentGame;
             document.getElementById('thanksEmail').textContent = email;
             document.getElementById('thanksModal').style.display = "flex";
         };
 
+        // ZAMYKANIE MODALI
         document.querySelectorAll('.close').forEach(c => c.onclick = () => {
             document.getElementById('buyModal').style.display = "none";
             document.getElementById('thanksModal').style.display = "none";
         });
 
-        window.onclick = e => { 
+        window.onclick = e => {
             if (e.target.classList.contains('modal')) e.target.style.display = "none";
         };
     </script>
