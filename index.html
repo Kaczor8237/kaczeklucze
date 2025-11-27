@@ -60,7 +60,6 @@
         <h1>KACZE KLUCZE</h1>
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
-
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
@@ -70,25 +69,21 @@
             <div class="feature"><div class="feature-icon">Wsparcie</div><h3>JESTEM ZAWSZE</h3><p>Pisz na maila albo Discord – odpisuję w kilka minut. Żadnych botów, tylko żywy kaczor.</p></div>
         </div>
     </section>
-
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, mortal)" autocomplete="off">
     </div>
-
     <div class="keys-grid" id="gamesContainer"></div>
-
     <div class="custom-order">
         <strong>Nie ma gry, której szukasz?</strong><br><br>
         Chętnie przygotuję dowolny produkt na zamówienie.<br>
         Pisz śmiało: <strong>kacze.klucze@gmail.com</strong> | Discord: <strong>mc.duck_8237</strong>
     </div>
-
     <footer>
         <img src="logo.png" alt="KACZE KLUCZE">
         <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
-    <!-- MODAL ZAMÓWIENIA -->
+    <!-- MODALE -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
             <span class="close">×</span>
@@ -97,11 +92,8 @@
             <p style="margin:20px 0 10px;color:#ddd;font-size:19px">Podaj swój e-mail – wyślę klucz dokładnie tutaj!</p>
             <input type="email" id="buyerEmail" placeholder="twój@mail.com" required>
             <button id="continueBtn">DALEJ → ZAPŁAĆ</button>
-            <!-- USUNIĘTY SZARY TEKST NA DOLE -->
         </div>
     </div>
-
-    <!-- MODAL PODZIĘKOWANIA -->
     <div id="thanksModal" class="modal">
         <div class="modal-content">
             <span class="close">×</span>
@@ -112,7 +104,6 @@
                 Klucz do <strong id="thanksGame"></strong> leci na<br>
                 <strong id="thanksEmail"></strong>
             </p>
-            <!-- USUNIĘTE SZARE LINIE Z INFORMACJAMI -->
             <button id="closeThanksBtn">SUPER, CZEKAM NA KLUCZ!</button>
         </div>
     </div>
@@ -152,10 +143,12 @@
 
             const cover = document.createElement('div');
             cover.className = 'game-cover';
-            const img = new Image();
-            img.onload = () => cover.style.backgroundImage = `url('covers/${game.file}.jpg')`;
-            img.onerror = () => cover.style.backgroundImage = `url('logo.png')`;
-            img.src = `covers/${game.file}.jpg`;
+
+            // NAPRAWIONE – działa zawsze!
+            cover.style.backgroundImage = `url('covers/${game.file}.jpg'), url('logo.png')`;
+            cover.style.backgroundSize = 'cover, 70%';
+            cover.style.backgroundPosition = 'center top, center';
+            cover.style.backgroundRepeat = 'no-repeat, no-repeat';
 
             card.innerHTML = `
                 <div class="game-info">
@@ -168,6 +161,7 @@
             container.appendChild(card);
         });
 
+        // Wyszukiwanie
         document.getElementById('searchInput').addEventListener('input', e => {
             const term = e.target.value.toLowerCase().trim();
             document.querySelectorAll('.key-card').forEach(card => {
@@ -175,6 +169,7 @@
             });
         });
 
+        // Modale
         function openModal(game, price) {
             currentGame = game;
             currentPrice = price;
@@ -196,11 +191,15 @@
         };
 
         document.querySelectorAll('.close').forEach(c => c.onclick = () => {
-            document.getElementById('buyModal').style.display =
+            document.getElementById('buyModal').style.display = "none";
             document.getElementById('thanksModal').style.display = "none";
         });
 
-        window.onclick = e => { if (e.target.classList.contains('modal')) e.target.style.display = "none"; };
+        window.onclick = e => { 
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = "none";
+            }
+        };
     </script>
 </body>
 </html>
