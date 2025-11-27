@@ -69,9 +69,12 @@
             <div class="feature"><div class="feature-icon">Wsparcie</div><h3>JESTEM ZAWSZE</h3><p>Pisz na maila albo Discord – odpisuję w kilka minut. Żadnych botów, tylko żywy kaczor.</p></div>
         </div>
     </section>
+
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, mortal)" autocomplete="off">
     </div>
+
+    <!-- KONTENER NA GRY – OD RAZU WYPEŁNIONY -->
     <div class="keys-grid" id="gamesContainer"></div>
 
     <div class="custom-order">
@@ -85,7 +88,7 @@
         <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
-    <!-- Modale -->
+    <!-- MODALE -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
             <span class="close">×</span>
@@ -94,7 +97,7 @@
             <p style="margin:20px 0 10px;color:#ddd;font-size:19px">Podaj swój e-mail – wyślę klucz dokładnie tutaj!</p>
             <input type="email" id="buyerEmail" placeholder="twój@mail.com" required>
             <button id="continueBtn">DALEJ → ZAPŁAĆ</button>
-            <div style="margin-top:25px;color:#aaa;font-size:17px">Po płatności klucz w 1–60 minut • 24/7 online</div>
+            <div style="margin-top:25px;color:#aaa;font-size:17px">Key w 1–60 minut • 24/7 online</div>
         </div>
     </div>
 
@@ -105,12 +108,12 @@
             <div style="font-size:60px;margin:30px 0">Kaczka</div>
             <p style="font-size:22px;color:#fff;line-height:1.7">
                 Zamówienie przyjęte!<br>
-                Klucz do <strong id="thanksGame"></strong> już leci na<br>
+                Klucz do <strong id="thanksGame"></strong> leci na<br>
                 <strong id="thanksEmail"></strong>
             </p>
             <p style="color:#aaa;font-size:18px;margin:25px 0">
                 Maksymalnie 60 minut – zazwyczaj szybciej<br>
-                Jak coś nie dojdzie – pisz śmiało!
+                Coś nie tak? – pisz śmiało!
             </p>
             <button id="closeThanksBtn">SUPER, CZEKAM NA KLUCZ!</button>
         </div>
@@ -143,7 +146,7 @@
         const container = document.getElementById('gamesContainer');
         let currentGame = "", currentPrice = 0;
 
-        // Generowanie kart od razu przy załadowaniu
+        // WSZYSTKIE GRY OD RAZU – ŻADNEGO ŁADOWANIA
         gamesDatabase.forEach(game => {
             const cleanTitle = game.title.replace(/'/g, "\\'");
             const card = document.createElement('div');
@@ -154,7 +157,7 @@
             cover.className = 'game-cover';
             const img = new Image();
             img.onload = () => cover.style.backgroundImage = `url('covers/${game.file}.jpg')`;
-            img.onerror = () => cover.style.backgroundImage = `url('covers/${game.file}.png')`;
+            img.onerror = () => cover.style.backgroundImage = `url('logo.png')`;
             img.src = `covers/${game.file}.jpg`;
 
             card.innerHTML = `
@@ -168,16 +171,15 @@
             container.appendChild(card);
         });
 
-        // Wyszukiwanie
+        // WYSZUKIWANIE
         document.getElementById('searchInput').addEventListener('input', e => {
             const term = e.target.value.toLowerCase().trim();
             document.querySelectorAll('.key-card').forEach(card => {
-                const visible = term === '' || card.dataset.title.includes(term);
-                card.style.display = visible ? 'flex' : 'none';
+                card.style.display = (term === '' || card.dataset.title.includes(term)) ? 'flex' : 'none';
             });
         });
 
-        // Modal płatności
+        // MODAL
         function openModal(game, price) {
             currentGame = game;
             currentPrice = price;
@@ -198,7 +200,7 @@
             document.getElementById('thanksModal').style.display = "flex";
         };
 
-        document.querySelectorAll('.close').forEach(el => el.onclick = () => {
+        document.querySelectorAll('.close').forEach(c => c.onclick = () => {
             document.getElementById('buyModal').style.display = 
             document.getElementById('thanksModal').style.display = "none";
         });
