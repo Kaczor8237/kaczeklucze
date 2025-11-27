@@ -30,22 +30,6 @@
         #searchInput:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.3)}
         .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px}
         @media (max-width:700px){.keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px}}
-
-        /* NOWY KOMUNIKAT GDY NIC NIE ZNALEZIONO */
-        .no-results{
-            grid-column: 1 / -1;
-            text-align:center;
-            padding:80px 20px;
-            font-size:26px;
-            color:#ffc439;
-            background:#111;
-            border:2px dashed #ffc439;
-            border-radius:16px;
-            margin:40px 20px;
-        }
-        .no-results strong{color:#fff;font-size:32px;display:block;margin:20px 0}
-        .no-results a{color:#ffc439;text-decoration:underline}
-
         .key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6)}
         .game-cover{width:100%;height:280px;background-size:cover;background-position:center top;background-repeat:no-repeat;transition:transform .6s ease;flex-shrink:0}
         .key-card:hover{border-color:#ffc439!important;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3)}
@@ -88,16 +72,12 @@
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, mortal)" autocomplete="off">
     </div>
-
-    <!-- KONTENER NA GRY + KOMUNIKAT -->
     <div class="keys-grid" id="gamesContainer"></div>
-
     <div class="custom-order">
         <strong>Nie ma gry, której szukasz?</strong><br><br>
         Chętnie przygotuję dowolny produkt na zamówienie.<br>
         Pisz śmiało: <strong>kacze.klucze@gmail.com</strong> | Discord: <strong>mc.duck_8237</strong>
     </div>
-
     <footer>
         <img src="logo.png" alt="KACZE KLUCZE">
         <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
@@ -106,7 +86,7 @@
     <!-- MODALE -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
-            <span class="close">×</span>
+            <span class="close">x</span>
             <h2 id="modalTitle" style="font-size:32px;margin-bottom:15px;color:#ffc439"></h2>
             <div id="modalPrice" style="font-size:50px;font-weight:bold;color:#ffc439;margin:20px 0"></div>
             <p style="margin:20px 0 10px;color:#ddd;font-size:19px">Podaj swój e-mail – wyślę klucz dokładnie tutaj!</p>
@@ -116,7 +96,7 @@
     </div>
     <div id="thanksModal" class="modal">
         <div class="modal-content">
-            <span class="close">×</span>
+            <span class="close">x</span>
             <h2 style="font-size:38px;color:#ffc439">KWAK! DZIĘKUJEMY!</h2>
             <div style="font-size:60px;margin:30px 0">Kaczka</div>
             <p style="font-size:22px;color:#fff;line-height:1.7">
@@ -155,7 +135,6 @@
         const container = document.getElementById('gamesContainer');
         let currentGame = "", currentPrice = 0;
 
-        // Generowanie kart
         gamesDatabase.forEach(game => {
             const cleanTitle = game.title.replace(/'/g, "\\'");
             const card = document.createElement('div');
@@ -164,6 +143,8 @@
 
             const cover = document.createElement('div');
             cover.className = 'game-cover';
+
+            // POPRAWKA: szukamy .png + fallback na logo.png
             cover.style.backgroundImage = `url('covers/${game.file}.png'), url('logo.png')`;
             cover.style.backgroundSize = 'cover, 70%';
             cover.style.backgroundPosition = 'center top, center';
@@ -180,39 +161,15 @@
             container.appendChild(card);
         });
 
-        // NOWA FUNKCJA WYSZUKIWANIA Z KOMUNIKATEM
+        // wyszukiwanie
         document.getElementById('searchInput').addEventListener('input', e => {
             const term = e.target.value.toLowerCase().trim();
-            let found = 0;
-
             document.querySelectorAll('.key-card').forEach(card => {
-                if (term === '' || card.dataset.title.includes(term)) {
-                    card.style.display = 'flex';
-                    found++;
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = (term === '' || card.dataset.title.includes(term)) ? 'flex' : 'none';
             });
-
-            // Usuwamy poprzedni komunikat (jeśli był)
-            const existing = document.querySelector('.no-results');
-            if (existing) existing.remove();
-
-            // Jeśli nic nie znaleziono i coś wpisano → dodajemy komunikat
-            if (found === 0 && term !== '') {
-                const message = document.createElement('div');
-                message.className = 'no-results';
-                message.innerHTML = `
-                    Nie znalazłem tej gry w sklepie…<br><br>
-                    <strong>Ale spokojnie – przygotuję ją specjalnie dla Ciebie na zamówienie!</strong><br><br>
-                    Pisz śmiało:<br>
-                    <a href="mailto:kacze.klucze@gmail.com">kacze.klucze@gmail.com</a> | Discord: <strong>mc.duck_8237</strong>
-                `;
-                container.appendChild(message);
-            }
         });
 
-        // Reszta skryptu bez zmian
+        // modale
         function openModal(game, price) {
             currentGame = game;
             currentPrice = price;
