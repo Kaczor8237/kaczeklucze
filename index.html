@@ -60,6 +60,7 @@
         <h1>KACZE KLUCZE</h1>
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
+
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
@@ -74,7 +75,6 @@
         <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, mortal)" autocomplete="off">
     </div>
 
-    <!-- KONTENER NA GRY – OD RAZU WYPEŁNIONY -->
     <div class="keys-grid" id="gamesContainer"></div>
 
     <div class="custom-order">
@@ -88,7 +88,7 @@
         <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
-    <!-- MODALE -->
+    <!-- MODAL ZAMÓWIENIA -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
             <span class="close">×</span>
@@ -97,10 +97,11 @@
             <p style="margin:20px 0 10px;color:#ddd;font-size:19px">Podaj swój e-mail – wyślę klucz dokładnie tutaj!</p>
             <input type="email" id="buyerEmail" placeholder="twój@mail.com" required>
             <button id="continueBtn">DALEJ → ZAPŁAĆ</button>
-            <div style="margin-top:25px;color:#aaa;font-size:17px">Key w 1–60 minut • 24/7 online</div>
+            <!-- USUNIĘTY SZARY TEKST NA DOLE -->
         </div>
     </div>
 
+    <!-- MODAL PODZIĘKOWANIA -->
     <div id="thanksModal" class="modal">
         <div class="modal-content">
             <span class="close">×</span>
@@ -111,10 +112,7 @@
                 Klucz do <strong id="thanksGame"></strong> leci na<br>
                 <strong id="thanksEmail"></strong>
             </p>
-            <p style="color:#aaa;font-size:18px;margin:25px 0">
-                Maksymalnie 60 minut – zazwyczaj szybciej<br>
-                Coś nie tak? – pisz śmiało!
-            </p>
+            <!-- USUNIĘTE SZARE LINIE Z INFORMACJAMI -->
             <button id="closeThanksBtn">SUPER, CZEKAM NA KLUCZ!</button>
         </div>
     </div>
@@ -146,7 +144,6 @@
         const container = document.getElementById('gamesContainer');
         let currentGame = "", currentPrice = 0;
 
-        // WSZYSTKIE GRY OD RAZU – ŻADNEGO ŁADOWANIA
         gamesDatabase.forEach(game => {
             const cleanTitle = game.title.replace(/'/g, "\\'");
             const card = document.createElement('div');
@@ -171,7 +168,6 @@
             container.appendChild(card);
         });
 
-        // WYSZUKIWANIE
         document.getElementById('searchInput').addEventListener('input', e => {
             const term = e.target.value.toLowerCase().trim();
             document.querySelectorAll('.key-card').forEach(card => {
@@ -179,7 +175,6 @@
             });
         });
 
-        // MODAL
         function openModal(game, price) {
             currentGame = game;
             currentPrice = price;
@@ -201,7 +196,7 @@
         };
 
         document.querySelectorAll('.close').forEach(c => c.onclick = () => {
-            document.getElementById('buyModal').style.display = 
+            document.getElementById('buyModal').style.display =
             document.getElementById('thanksModal').style.display = "none";
         });
 
