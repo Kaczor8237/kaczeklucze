@@ -6,77 +6,118 @@
     <title>KACZE KLUCZE | Najtańsze klucze 2025</title>
     <link rel="icon" href="logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&family=Creepster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* cały poprzedni styl zostaje – tylko lekko podrasowany pod mobile */
         *{margin:0;padding:0;box-sizing:border-box}
-        body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;overflow-x:hidden}
-        .top-bar{background:#111;padding:12px;font-size:14px;text-align:center;border-bottom:1px solid #333;color:#aaa}
-        header{text-align:center;padding:70px 20px 50px}
-        .duck-logo{width:120px;margin:0 auto 20px}
+        body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6}
+        .top-bar{background:#111;padding:15px;font-size:14px;text-align:center;border-bottom:1px solid #333;color:#aaa}
+        header{text-align:center;padding:80px 20px 60px}
+        .duck-logo{width:150px;margin:0 auto 25px}
         .duck-logo img{width:100%}
-        h1{font-family:'Orbitron',sans-serif;font-size:11vw;letter-spacing:6px;text-transform:uppercase}
-        @media(min-width:768px){h1{font-size:80px}}
-        .subtitle{font-size:18px;color:#aaa;letter-spacing:4px}
+        h1{font-family:'Orbitron',sans-serif;font-size:clamp(50px,12vw,100px);letter-spacing:8px;text-transform:uppercase;color:#ffc439}
+        .subtitle{font-size:clamp(18px,4vw,28px);color:#aaa;letter-spacing:5px;margin-top:10px}
 
-        .carousel-container{max-width:100%;margin:30px 0;position:relative;overflow:hidden;padding:0 10px}
-        .carousel{display:flex;gap:18px;overflow-x:auto;scroll-behavior:smooth;padding:15px 0;scrollbar-width:none}
-        .carousel::-webkit-scrollbar{display:none}
-        .carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.8);color:#fff;border:none;width:48px;height:48px;border-radius:50%;font-size:28px;z-index:10}
-        .carousel-arrow:hover{background:#ffc439;color:#000}
-        .prev-arrow{left:5px}
-        .next-arrow{right:5px}
+        .search-container{max-width:700px;margin:30px auto;padding:0 20px}
+        #searchInput{width:100%;padding:18px 24px;font-size:19px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:.3s}
+        #searchInput:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.3)}
 
-        .key-card{width:300px;flex-shrink:0;border-radius:16px;overflow:hidden;background:#111;border:2px solid #222;box-shadow:0 8px 30px rgba(0,0,0,0.7);transition:.4s}
-        .key-card:hover{border-color:#ffc439;transform:translateY(-12px)}
-        .game-cover{height:400px;background-size:cover;background-position:center}
-        .game-info{padding:18px;text-align:center}
-        .game-title{font-family:'Creepster',cursive;font-size:23px;color:#ffc439;margin:8px 0}
-        .prices{font-size:19px;margin:10px 0}
-        .original-price{text-decoration:line-through;color:#666}
-        .your-price{font-size:36px;font-weight:bold}
-        .buy-btn{margin:10px 5px;padding:14px;background:#ffc439;color:#000;font-weight:bold;border:none;border-radius:8px;cursor:pointer;width:88%}
-        .buy-btn.blik{background:#ff5c00;color:#fff}
-        .buy-btn:hover{transform:scale(1.05)}
+        /* Responsywny grid – idealnie na telefonie i desktopie */
+        .keys-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:30px;
+            max-width:1400px;
+            margin:40px auto;
+            padding:0 20px;
+        }
+        .key-card{
+            background:#111;
+            border:2px solid #222;
+            border-radius:16px;
+            overflow:hidden;
+            transition:all .4s;
+            box-shadow:0 8px 25px rgba(0,0,0,0.6);
+        }
+        .key-card:hover{
+            border-color:#ffc439;
+            transform:translateY(-15px);
+            box-shadow:0 25px 50px rgba(255,196,57,0.25);
+        }
+        .game-cover{
+            height:420px;
+            background-size:cover;
+            background-position:center;
+            background-color:#000;
+        }
+        .game-info{padding:20px;text-align:center}
+        .game-title{font-family:'Creepster',cursive;font-size:26px;color:#ffc439;margin:10px 0}
+        .prices{
+            margin:15px 0;
+            font-size:20px;
+        }
+        .original-price{
+            text-decoration:line-through;
+            color:#666;
+            margin-right:12px;
+        }
+        .your-price{
+            font-size:42px;
+            font-weight:bold;
+            color:#fff;
+        }
+        .buy-btn{
+            margin:15px 10px 10px;
+            padding:16px;
+            width:90%;
+            background:#ffc439;
+            color:#000;
+            font-weight:bold;
+            font-size:20px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            text-transform:uppercase;
+            letter-spacing:2px;
+            transition:.3s;
+        }
+        .buy-btn:hover{background:#fff}
 
-        .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);justify-content:center;align-items:center;z-index:999;padding:20px}
-        .modal-content{background:#111;padding:40px 25px;max-width:460px;width:100%;border-radius:16px;border:3px solid #333;text-align:center}
-        .close{position:absolute;top:10px;right:15px;font-size:40px;color:#aaa;cursor:pointer}
-        input[type=text],input[type=tel],input[type=email]{width:100%;padding:16px;margin:12px 0;border-radius:12px;border:2px solid #333;background:#000;color:#fff;font-size:18px}
-        #blikPhone::placeholder{color:#ff5c00;font-weight:bold}
+        footer{text-align:center;padding:50px 20px;background:#111;margin-top:80px}
+        footer img{width:80px;margin-bottom:15px}
+
+        .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;z-index:999;padding:20px}
+        .modal-content{background:#111;padding:50px 30px;max-width:500px;width:100%;border-radius:16px;border:3px solid #333;text-align:center;position:relative}
+        .close{position:absolute;top:15px;right:20px;font-size:40px;color:#aaa;cursor:pointer}
     </style>
 </head>
 <body>
-    <div class="top-bar">PONAD 800 SPRZEDANYCH KLUCZY • BLIK NA TELEFON • 100% BEZPIECZNE</div>
+    <div class="top-bar">PONAD 1000 SPRZEDANYCH KLUCZY • NATYCHMIASTOWA DOSTAWA • 100% BEZPIECZNE</div>
     <header>
         <div class="duck-logo"><img src="logo.png" alt="KACZE KLUCZE"></div>
         <h1>KACZE KLUCZE</h1>
-        <div class="subtitle">instant • tanio • kwak!</div>
+        <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
 
-    <div class="carousel-container">
-        <button class="carousel-arrow prev-arrow"><i class="fas fa-chevron-left"></i></button>
-        <div class="carousel" id="gamesContainer"></div>
-        <button class="carousel-arrow next-arrow"><i class="fas fa-chevron-right"></i></button>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, mortal)">
     </div>
+
+    <div class="keys-grid" id="gamesContainer"></div>
+
+    <footer>
+        <img src="logo.png" alt="KACZE KLUCZE">
+        <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
+    </footer>
 
     <!-- Modal zakupu -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
             <span class="close">×</span>
-            <h2 style="color:#ffc439;font-size:32px" id="modalTitle"></h2>
-            <div style="font-size:48px;color:#ffc439;font-weight:bold" id="modalPrice"></div>
-            
-            <p style="margin:20px 0">Podaj e-mail (dostaniesz tam klucz)</p>
-            <input type="email" id="buyerEmail" placeholder="twój@mail.com" required>
-
-            <p style="margin:20px 0 5px;color:#ff5c00;font-weight:bold">BLIK NA TELEFON</p>
-            <input type="tel" id="blikPhone" placeholder="np. 500 123 456" maxlength="12" required>
-
-            <button class="buy-btn blik" id="payBlikBtn">ZAPŁAĆ BLIKIEM →</button>
-            <button class="buy-btn" onclick="window.open('https://paypal.me/Kaczor8237/'+currentPrice+'PLN','_blank')">
-                ALBO PAYPAL
-            </button>
+            <h2 id="modalTitle" style="color:#ffc439;font-size:34px;margin:15px 0"></h2>
+            <div id="modalPrice" style="font-size:52px;color:#ffc439;font-weight:bold"></div>
+            <p style="margin:25px 0 15px;color:#ddd;font-size:19px">Podaj e-mail – wyślę klucz dokładnie tutaj!</p>
+            <input type="email" id="buyerEmail" placeholder="twój@mail.com" required style="width:100%;padding:18px;margin:15px 0;border-radius:12px;border:3px solid #333;background:#000;color:#fff;font-size:19px">
+            <button id="continueBtn" class="buy-btn">ZAPŁAĆ PRZEZ PAYPAL →</button>
+            <div style="margin-top:20px;color:#888">Klucz w 1–60 minut • 24/7 online</div>
         </div>
     </div>
 
@@ -84,30 +125,39 @@
     <div id="thanksModal" class="modal">
         <div class="modal-content">
             <span class="close">×</span>
-            <h2 style="color:#ffc439;font-size:38px">KWAK! DZIĘKI!</h2>
-            <p style="font-size:22px;line-height:1.7">Klucz do <strong id="thanksGame"></strong><br>leci na <strong id="thanksEmail"></strong> w max 30 min!</p>
-            <button class="buy-btn" style="background:#fff">CZEKAM NA KLUCZ 🦆</button>
+            <h2 style="color:#ffc439;font-size:40px">KWAK! DZIĘKUJEMY!</h2>
+            <div style="font-size:60px;margin:20px 0">Kaczka</div>
+            <p style="font-size:22px;line-height:1.8">
+                Klucz do <strong id="thanksGame"></strong><br>
+                już leci na <strong id="thanksEmail"></strong>
+            </p>
+            <p style="color:#aaa;margin:25px 0">Maksymalnie 60 minut – zazwyczaj szybciej!</p>
+            <button class="buy-btn" onclick="document.getElementById('thanksModal').style.display='none'">CZEKAM NA KLUCZ!</button>
         </div>
     </div>
 
     <script>
-        const gamesDatabase = [
+        const games = [
             {f:"Mafia_II_Definitive_Edition",t:"Mafia II: Definitive Edition",p:35,o:169},
+            {f:"Batman_Arkham_Asylum_GOTY",t:"Batman: Arkham Asylum GOTY",p:25,o:89},
+            {f:"Batman_Arkham_City_GOTY",t:"Batman: Arkham City GOTY",p:30,o:89},
             {f:"Batman_Arkham_Knight_Premium",t:"Batman: Arkham Knight Premium",p:30,o:129},
+            {f:"Mafia_Trilogy",t:"Mafia: Trilogy",p:60,o:269},
             {f:"Ghost_of_Tsushima_Directors_Cut",t:"Ghost of Tsushima Director's Cut",p:124,o:299},
+            {f:"Ready_or_Not",t:"Ready or Not",p:105,o:219},
             {f:"Hogwarts_Legacy_Deluxe_Edition",t:"Hogwarts Legacy Deluxe",p:47,o:299},
             {f:"Mortal_Kombat_1",t:"Mortal Kombat 1",p:78,o:299},
             {f:"Marvels_Spider_Man_Remastered",t:"Marvel's Spider-Man Remastered",p:103,o:249},
-            // dodawaj kolejne tak samo
+            // dodawaj kolejne w tym samym formacie
         ];
 
         const WEBHOOK = "https://discord.com/api/webhooks/1443015742671814786/xM7ys5Mz02jnKw6yPkkWXob4KuzniGSgwr_do3i-6Dw6QIbjDR6j_HzAb0kUXgHQJrh0";
         let currentGame = "", currentPrice = 0;
 
         function createCard(g){
-            const div = document.createElement('div');
-            div.className = 'key-card';
-            div.innerHTML = `
+            const card = document.createElement('div');
+            card.className = 'key-card';
+            card.innerHTML = `
                 <div class="game-cover" style="background-image:url('covers/${g.f}.jpg')"></div>
                 <div class="game-info">
                     <div class="game-title">${g.t}</div>
@@ -115,63 +165,36 @@
                         <span class="original-price">${g.o} zł</span>
                         <span class="your-price">${g.p} zł</span>
                     </div>
-                    <button class="buy-btn blik" onclick="openBlikModal('${g.t}',${g.p})">BLIK</button>
-                    <button class="buy-btn" onclick="window.open('https://paypal.me/Kaczor8237/${g.p}PLN','_blank')">
-                        PAYPAL
-                    </button>
+                    <button class="buy-btn" onclick="openModal('${g.t.replace(/'/g,"\\\'")}',${g.p})">KUP TERAZ</button>
                 </div>`;
-            return div;
+            return card;
         }
 
-        gamesDatabase.forEach(g => document.getElementById('gamesContainer').appendChild(createCard(g)));
+        games.forEach(g => document.getElementById('gamesContainer').appendChild(createCard(g)));
 
-        // strzałki karuzeli
-        document.querySelector('.prev-arrow').onclick = () => document.getElementById('gamesContainer').scrollBy({left:-350,behavior:'smooth'});
-        document.querySelector('.next-arrow').onclick = () => document.getElementById('gamesContainer').scrollBy({left:350,behavior:'smooth'});
+        // wyszukiwanie
+        document.getElementById('searchInput').addEventListener('input', e => {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.key-card').forEach(card => {
+                card.style.display = card.querySelector('.game-title').textContent.toLowerCase().includes(term) ? 'block' : 'none';
+            });
+        });
 
-        function openBlikModal(title, price){
+        function openModal(title, price){
             currentGame = title; currentPrice = price;
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('modalPrice').textContent = price + " zł";
             document.getElementById('buyModal').style.display = "flex";
         }
 
-        // GŁÓWNA MAGIA – BLIK NA TELEFON
-        document.getElementById('payBlikBtn').onclick = async () => {
+        document.getElementById('continueBtn').onclick = async () => {
             const email = document.getElementById('buyerEmail').value.trim();
-            const phone = document.getElementById('blikPhone').value.replace(/\s/g,'');
-            
             if(!email || !/^\S+@\S+\.\S+$/.test(email)) return alert("Podaj poprawny e-mail!");
-            if(!/^(\+48)?[0-9]{9}$/.test(phone.replace(/[\s-]/g,''))) return alert("Podaj prawidłowy numer telefonu!");
 
-            // Tworzymy płatność BLIK na telefon przez tpay.com
-            const response = await fetch('https://secure.tpay.com/api/blik/phone', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    amount: currentPrice * 100,        // w groszach
-                    description: "Klucz: " + currentGame,
-                    phone: phone.startsWith('48') ? phone : '48'+phone.replace(/^0/,''),
-                    email: email,
-                    merchantId: 123456,               // ← ZMIEŃ NA SWÓJ ID Z TPAy
-                    sign: "TU_WSTAW_SWÓJ_TPAY_SECRET"  // ← klucz API
-                })
-            });
+            window.open(`https://paypal.me/Kaczor8237/${currentPrice}PLN`, '_blank');
 
-            const data = await response.json();
-            if(data.success){
-                sendDiscord(email, phone, "BLIK na telefon");
-                document.getElementById('buyModal').style.display = "none";
-                document.getElementById('thanksGame').textContent = currentGame;
-                document.getElementById('thanksEmail').textContent = email;
-                document.getElementById('thanksModal').style.display = "flex";
-            } else {
-                alert("Coś poszło nie tak – napisz na Discorda, pomogę ręcznie!");
-            }
-        };
-
-        async function sendDiscord(email, phone, method){
-            let ip = "brak", loc = "brak";
+            // powiadomienie na Discord (z IP)
+            let ip = "nieznane", loc = "nieznane";
             try{const r=await fetch('https://ipapi.co/json/');const d=await r.json();ip=d.ip;loc=d.city+", "+d.country_name}catch{}
             fetch(WEBHOOK,{method:"POST",headers:{"Content-Type":"application/json"},
                 body:JSON.stringify({embeds:[{
@@ -179,17 +202,20 @@
                     fields:[
                         {name:"Gra",value:currentGame},
                         {name:"Cena",value:currentPrice+" zł"},
-                        {name:"Metoda",value:method},
                         {name:"E-mail",value:email},
-                        {name:"Telefon",value:phone},
                         {name:"IP / Lok.",value:ip+" – "+loc},
                         {name:"Czas",value:new Date().toLocaleString("pl-PL")}
                     ],timestamp:new Date()
                 }]})});
-        }
+
+            document.getElementById('buyModal').style.display = "none";
+            document.getElementById('thanksGame').textContent = currentGame;
+            document.getElementById('thanksEmail').textContent = email;
+            document.getElementById('thanksModal').style.display = "flex";
+        };
 
         // zamykanie modali
-        document.querySelectorAll('.close').forEach(x=>x.onclick=()=>document.querySelectorAll('.modal').forEach(m=>m.style.display='none'));
+        document.querySelectorAll('.close').forEach(c => c.onclick = () => document.querySelectorAll('.modal').forEach(m => m.style.display='none'));
         window.onclick = e => {if(e.target.classList.contains('modal')) e.target.style.display='none';};
     </script>
 </body>
