@@ -31,7 +31,7 @@
         .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px}
         @media (max-width:700px){.keys-grid{grid-template-columns:1fr;gap:40px;padding:0 15px}}
         .key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6)}
-        .game-cover{width:100%;height:280px;background-size:cover;background-position:center top;background-repeat:no-repeat;background-color:#000;transition:transform .6s ease;flex-shrink:0}
+        .game-cover{width:100%;height:280px;background-size:cover;background-position:center top;background-repeat:no-repeat;transition:transform .6s ease;flex-shrink:0}
         .key-card:hover{border-color:#ffc439!important;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3)}
         .key-card:hover .game-cover{transform:scale(1.08)}
         .game-info{padding:20px 16px;text-align:center;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between}
@@ -86,7 +86,7 @@
     <!-- MODALE -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
-            <span class="close">×</span>
+            <span class="close">x</span>
             <h2 id="modalTitle" style="font-size:32px;margin-bottom:15px;color:#ffc439"></h2>
             <div id="modalPrice" style="font-size:50px;font-weight:bold;color:#ffc439;margin:20px 0"></div>
             <p style="margin:20px 0 10px;color:#ddd;font-size:19px">Podaj swój e-mail – wyślę klucz dokładnie tutaj!</p>
@@ -96,7 +96,7 @@
     </div>
     <div id="thanksModal" class="modal">
         <div class="modal-content">
-            <span class="close">×</span>
+            <span class="close">x</span>
             <h2 style="font-size:38px;color:#ffc439">KWAK! DZIĘKUJEMY!</h2>
             <div style="font-size:60px;margin:30px 0">Kaczka</div>
             <p style="font-size:22px;color:#fff;line-height:1.7">
@@ -144,8 +144,8 @@
             const cover = document.createElement('div');
             cover.className = 'game-cover';
 
-            // NAPRAWIONE – działa zawsze!
-            cover.style.backgroundImage = `url('covers/${game.file}.jpg'), url('logo.png')`;
+            // POPRAWKA: szukamy .png + fallback na logo.png
+            cover.style.backgroundImage = `url('covers/${game.file}.png'), url('logo.png')`;
             cover.style.backgroundSize = 'cover, 70%';
             cover.style.backgroundPosition = 'center top, center';
             cover.style.backgroundRepeat = 'no-repeat, no-repeat';
@@ -161,7 +161,7 @@
             container.appendChild(card);
         });
 
-        // Wyszukiwanie
+        // wyszukiwanie
         document.getElementById('searchInput').addEventListener('input', e => {
             const term = e.target.value.toLowerCase().trim();
             document.querySelectorAll('.key-card').forEach(card => {
@@ -169,7 +169,7 @@
             });
         });
 
-        // Modale
+        // modale
         function openModal(game, price) {
             currentGame = game;
             currentPrice = price;
@@ -196,9 +196,7 @@
         });
 
         window.onclick = e => { 
-            if (e.target.classList.contains('modal')) {
-                e.target.style.display = "none";
-            }
+            if (e.target.classList.contains('modal')) e.target.style.display = "none";
         };
     </script>
 </body>
