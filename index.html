@@ -50,9 +50,7 @@
         <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, gta, rdr2, tekken)" autocomplete="off">
     </div>
 
-    <div class="keys-grid" id="gamesContainer">
-        <div style="grid-column:1/-1;text-align:center;padding:100px;font-size:28px;color:#777">Ładowanie gier... kwak kwak!</div>
-    </div>
+    <div class="keys-grid" id="gamesContainer"></div>
 
     <div class="custom-order">
         Nie ma gry, której szukasz?<br><br>
@@ -94,7 +92,7 @@
     </div>
 
     <script>
-      const gamesDatabase = [
+        const gamesDatabase = [
     {file:"Mafia_II_Definitive_Edition",title:"Mafia II: Definitive Edition",price:23},
     {file:"Batman_Arkham_Asylum_GOTY",title:"Batman: Arkham Asylum (GOTY)",price:10},
     {file:"Batman_Arkham_City_GOTY",title:"Batman: Arkham City (GOTY)",price:10},
@@ -201,8 +199,6 @@
             return card;
         }
 
-        // reszta skryptu dokładnie jak miałeś (loadGames, search itd.) – działa idealnie
-
         window.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('gamesContainer');
             container.innerHTML = '';
@@ -227,6 +223,3 @@
     </script>
 </body>
 </html>
-
-
-
