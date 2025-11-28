@@ -2,42 +2,40 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <!-- MOBILE = PEŁNY DESKTOP 1400px | DESKTOP = WYŚRODKOWANY -->
     <meta name="viewport" content="width=1400, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>KACZE KLUCZE | Klucze do gier</title>
     <link rel="icon" href="logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&family=Creepster&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{
+        *, *::before, *::after {margin:0;padding:0;box-sizing:border-box}
+        html, body {
             background:#000;
-            color:#fff;
             font-family:'Rajdhani',sans-serif;
+            color:#fff;
             line-height:1.6;
+            overflow-x:hidden;
             min-height:100vh;
-            -webkit-text-size-adjust:100%;
-            text-size-adjust:100%;
         }
 
-        /* GŁÓWNY WRAPPER – 1400px + wyśrodkowanie na dużych ekranach */
-        .wrapper{
+        /* Główny kontener – zawsze 1400px i wyśrodkowany na PC */
+        .page-container {
             width:1400px;
-            max-width:100%;
+            max-width:1400px;
             margin:0 auto;
-            overflow:hidden;
+            background:#000;
         }
 
-        /* NA TELEFONACH I MAŁYCH EKRANACH – SIŁOWO 1400px + przewijanie poziome */
+        /* Na telefonie/tablecie – wymuszamy pełną szerokość 1400px + przewijanie */
         @media screen and (max-width: 1440px) {
-            html,body{
+            html, body {
                 width:1400px;
                 overflow-x:auto;
                 overflow-y:auto;
                 -webkit-overflow-scrolling:touch;
             }
-            .wrapper{
-                width:1400px;
+            .page-container {
                 margin:0;
+                width:1400px;
             }
         }
 
@@ -78,36 +76,34 @@
         .modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.95);justify-content:center;align-items:center}
         .modal-content{background:#111;padding:50px 40px;width:90%;max-width:520px;border:3px solid #333;text-align:center;position:relative;border-radius:16px;animation:pop .4s}
         .close{position:absolute;top:15px;right:20px;font-size:40px;cursor:pointer;color:#fff;z-index:10}
-        #buyerEmail{width:100%;padding:18px;margin:25px 0 15px;border-radius:12px;border:3px solid #333;background:#000;color:#fff;font-size:19px;outline:none;transition:.3s}
+        #buyerEmail{width:100%;padding:18px;margin:25px 0 15px;border-radius:12px;border:3px solid #333;background:#000;color:#fff;font-size:19px;outline:none}
         #buyerEmail:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.4)}
-        #continueBtn{padding:18px;background:#ffc439;color:#000;font-weight:bold;font-size:22px;border:none;border-radius:12px;cursor:pointer;width:90%;margin:15px auto;transition:.3s}
+        #continueBtn{padding:18px;background:#ffc439;color:#000;font-weight:bold;font-size:22px;border:none;border-radius:12px;cursor:pointer;width:90%;margin:15px auto}
         #continueBtn:hover{background:#ffb800}
         .success-modal h2{font-family:'Orbitron',sans-serif;font-size:48px;color:#ffc439;margin:20px 0}
         .duck-big{font-size:120px;margin:20px 0;animation:float 3s ease-in-out infinite}
-
         @keyframes pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
         @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
 
         .custom-order{text-align:center;padding:110px 20px;font-size:28px;font-weight:800;line-height:2;max-width:1100px;margin:0 auto;color:#fff}
         .custom-order .highlight{color:#ffc439;font-weight:900}
 
-        footer{text-align:center;padding:60px 20px 40px;background:#000;}
-        footer img{width:60px;height:auto;opacity:0.7;margin-bottom:10px;}
-        footer p{font-size:13px;color:#555;}
+        footer{text-align:center;padding:60px 20px 40px;background:#000}
+        footer img{width:60px;height:auto;opacity:0.7;margin-bottom:10px}
+        footer p{font-size:13px;color:#555}
 
-        /* Hover na telefonie */
         @media (hover: none) and (pointer: coarse) {
             .feature:active, .key-card:active {
-                transform:translateY(-10px)!important;
+                transform:translateY(-12px)!important;
                 border-color:#ffc439!important;
-                box-shadow:0 20px 40px rgba(255,196,57,0.3)!important;
+                box-shadow:0 30px 60px rgba(255,196,57,0.3)!important;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
+<div class="page-container">
 
     <div class="top-bar">PONAD 180 SPRZEDANYCH KLUCZY • NATYCHMIASTOWA DOSTAWA • 100% BEZPIECZEŃSTWO</div>
     
@@ -151,7 +147,7 @@
     
     <div class="custom-order">
         Nie ma gry, której szukasz?<br><br>
-        <span style="color:#ffc439; font-size:36px; text-shadow: 0 0 20px #ffc439;">ROBIĘ WSZYSTKO NA ZAMÓWIENIE – TYLKO ROCKSTAR, STEAM!</span><br><br><br>
+        <span style="color:#ffc439; font-size:36px; text-shadow: 0 0 20px #ffc439;">ROBIERZĘ WSZYSTKO NA ZAMÓWIENIE – TYLKO ROCKSTAR, STEAM!</span><br><br><br>
         <strong>Dowolna gra • Dowolna edycja • Global / EU – zawsze działa</strong><br><br>
         <span style="font-size:32px; color:#ffc439;">Cenę dogadamy indywidualnie – zawsze najtaniej w Polsce</span><br><br><br>
         Pisz śmiało 24/7 – odpisuję w kilka minut:<br><br>
@@ -163,7 +159,7 @@
         <p>KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
-</div> <!-- koniec wrapper -->
+</div> <!-- koniec .page-container -->
 
 <!-- MODALE -->
 <div id="buyModal" class="modal">
