@@ -24,22 +24,22 @@
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
             <div class="feature">
-                <div class="feature-icon">⚡</div>
+                <div class="feature-icon">Szybka strzała</div>
                 <h3>KLUCZ W 10–60 MINUT</h3>
                 <p>Jak nie wyślę w godzinę – możesz mnie nazwać pingwinem i nakarmić śledziem. 24/7, nawet jak pijany śpię – budzę się i wysyłam.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">💸</div>
+                <div class="feature-icon">Pieniądze</div>
                 <h3>CENY Z KOSMOSU</h3>
                 <p>Ceny tak chore, że większe dziury ma tylko budżet państwa. Jak gdzieś widzisz taniej – pisz śmiało, rozwalę ich cenę i jeszcze ci kaczkę narysuję na paragonie.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">✅</div>
+                <div class="feature-icon">Sprawdzone</div>
                 <h3>100% DZIAŁAJĄCE KLUCZE</h3>
                 <p>Jak klucz nie działa – możesz mnie ogolić na łyso i wrzucić na TikToka. Nigdy się to nie zdarzyło i nie zdarzy. Ręczę dupą i piórami.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🤝</div>
+                <div class="feature-icon">Ręka</div>
                 <h3>JESTEM ZAWSZE</h3>
                 <p>Pisz o 3 w nocy czy w Wigilię – odpiszę szybciej niż twoja ex na „hej”. Żywy kaczor, nie bot. Zero ściemy, pełen szacun.</p>
             </div>
@@ -47,7 +47,7 @@
     </section>
 
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, mortal, hitman)" autocomplete="off">
+        <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, gta, rdr2, tekken)" autocomplete="off">
     </div>
 
     <div class="keys-grid" id="gamesContainer">
@@ -95,28 +95,34 @@
 
     <script>
         const gamesDatabase = [
-            {file:"Mafia_II_Definitive_Edition",title:"Mafia II: Definitive Edition",price:35},
             {file:"Batman_Arkham_Asylum_GOTY",title:"Batman: Arkham Asylum (GOTY)",price:25},
             {file:"Batman_Arkham_City_GOTY",title:"Batman: Arkham City (GOTY)",price:30},
             {file:"Batman_Arkham_Collection",title:"Batman: Arkham Collection",price:40},
             {file:"Batman_Arkham_Knight_Premium",title:"Batman: Arkham Knight (Premium)",price:30},
-            {file:"Mafia_III_Definitive_Edition",title:"Mafia III: Definitive Edition",price:35},
-            {file:"Mafia_Trilogy",title:"Mafia: Trilogy",price:60},
-            {file:"Sid_Meiers_Civilization_VI",title:"Sid Meier's Civilization VI",price:30},
             {file:"Batman_Arkham_Origins",title:"Batman: Arkham Origins",price:30},
+            {file:"Days_Gone",title:"Days Gone",price:69},
+            {file:"DOOM",title:"DOOM (2016)",price:20},
+            {file:"Dying_Light_Essentials_Edition",title:"Dying Light | Essentials Edition",price:20},
             {file:"Fallout_76",title:"Fallout 76",price:50},
             {file:"Ghost_of_Tsushima_Directors_Cut",title:"Ghost of Tsushima | Director's Cut",price:124},
-            {file:"Ready_or_Not",title:"Ready or Not",price:105},
-            {file:"Hogwarts_Legacy_Deluxe_Edition",title:"Hogwarts Legacy | Deluxe Edition",price:47},
-            {file:"Mortal_Kombat_XL",title:"Mortal Kombat XL",price:14},
+            {file:"GTA_V",title:"Grand Theft Auto V (GTA V)",price:48},
             {file:"Hello_Neighbor",title:"Hello Neighbor",price:41},
-            {file:"Dying_Light_Essentials_Edition",title:"Dying Light | Essentials Edition",price:20},
-            {file:"Marvels_Spider_Man_Remastered",title:"Marvel's Spider-Man Remastered",price:103},
             {file:"Hello_Neighbor_2",title:"Hello Neighbor 2",price:20},
-            {file:"Subnautica",title:"Subnautica",price:70},
-            {file:"Mortal_Kombat_1",title:"Mortal Kombat 1",price:78},
             {file:"Hitman_Absolution",title:"Hitman: Absolution",price:12},
-            {file:"Hitman_World_of_Assassination",title:"Hitman: World of Assassination",price:106}
+            {file:"Hitman_World_of_Assassination",title:"Hitman: World of Assassination",price:106},
+            {file:"Hogwarts_Legacy_Deluxe_Edition",title:"Hogwarts Legacy | Deluxe Edition",price:47},
+            {file:"Mafia_II_Definitive_Edition",title:"Mafia II: Definitive Edition",price:35},
+            {file:"Mafia_III_Definitive_Edition",title:"Mafia III: Definitive Edition",price:35},
+            {file:"Mafia_Trilogy",title:"Mafia: Trilogy",price:60},
+            {file:"Marvels_Spider_Man_Remastered",title:"Marvel's Spider-Man Remastered",price:103},
+            {file:"Mortal_Kombat_XL",title:"Mortal Kombat XL",price:14},
+            {file:"Mortal_Kombat_1",title:"Mortal Kombat 1",price:78},
+            {file:"Ready_or_Not",title:"Ready or Not",price:105},
+            {file:"Red_Dead_Redemption_2",title:"Red Dead Redemption 2",price:55},
+            {file:"Sid_Meiers_Civilization_VI",title:"Sid Meier's Civilization VI",price:30},
+            {file:"Subnautica",title:"Subnautica",price:70},
+            {file:"Tekken_7",title:"TEKKEN 7",price:30},
+            {file:"Tekken_8",title:"TEKKEN 8",price:92}
         ];
 
         let allCards = [];
@@ -201,7 +207,6 @@
                 };
                 img.src = path;
             });
-
             setTimeout(() => {
                 if (!found) coverDiv.style.backgroundImage = "url('logo.png')";
             }, 2000);
@@ -232,7 +237,6 @@
             const container = document.getElementById('gamesContainer');
             container.innerHTML = '';
             const filtered = term === '' ? allCards : allCards.filter(card => card.dataset.title.includes(term));
-
             if (filtered.length === 0) {
                 container.innerHTML = `<div style="text-align:center;padding:100px;font-size:28px;font-weight:800;color:#fff;line-height:1.9;">
                     Nie ma gry, której szukasz?<br><br>Chętnie przygotuję na zamówienie!<br>
