@@ -15,16 +15,16 @@
         .duck-logo img{width:100%;height:auto}
         h1{font-family:'Orbitron',sans-serif;font-size:100px;letter-spacing:8px;color:#fff;text-transform:uppercase;margin:20px 0}
         .subtitle{font-size:28px;color:#aaa;letter-spacing:5px;text-transform:uppercase}
-        .why-us{padding:140px 20px 100px;text-align:center;background:linear-gradient(180deg,#0f0f0f 0%,#000 100%)}
-        .why-us h2{font-family:'Orbitron',sans-serif;font-size:62px;margin-bottom:90px;color:#fff;letter-spacing:5px}
-        .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;max-width:1800px;margin:0 auto;padding:0 20px}
+        .why-us{padding:120px 20px;text-align:center;background:linear-gradient(180deg,#0f0f0f 0%,#000 100%)}
+        .why-us h2{font-family:'Orbitron',sans-serif;font-size:56px;margin-bottom:80px;color:#fff;letter-spacing:4px}
+        .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;max-width:1400px;margin:0 auto;padding:0 20px}
         .feature{position:relative;padding:50px 30px;background:#111;border:2px solid #333;border-radius:12px;transition:all .4s;overflow:hidden}
-        .feature:hover{border-color:#ffc439;transform:translateY(-15px);box-shadow:0 25px 50px rgba(255,196,57,0.2)}
-        .feature::before{content:"";position:absolute;top:0;left:0;width:100%;height:5px;background:#ffc439;transform:scaleX(0);transition:.4s}
+        .feature:hover{border-color:#ffc439;transform:translateY(-15px);box-shadow:0 20px 40px rgba(255,196,57,0.15)}
+        .feature::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:#ffc439;transform:scaleX(0);transition:.4s}
         .feature:hover::before{transform:scaleX(1)}
-        .feature-icon{font-size:68px;margin-bottom:25px}
-        .feature h3{font-size:28px;margin-bottom:18px;color:#ffc439;font-weight:700}
-        .feature p{font-size:19.5px;color:#ddd;line-height:1.7}
+        .feature-icon{font-size:64px;margin-bottom:25px}
+        .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700}
+        .feature p{font-size:20px;color:#ddd;line-height:1.7}
         .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px}
         @media (max-width:700px){.keys-grid{grid-template-columns:1fr}}
         .key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6)}
@@ -33,10 +33,10 @@
         .key-card:hover .game-cover{transform:scale(1.08)}
         .game-info{padding:20px 16px;text-align:center;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between}
         .game-title{font-family:'Creepster',cursive;font-size:26px;margin-bottom:8px;min-height:66px;display:flex;align-items:center;justify-content:center}
-        .platform-logo{display:block;margin:10px auto 6px;width:52px;height:auto}
+        .platform-logo{display:block;margin:10px auto 6px;width:50px;height:auto}
         .price{font-size:46px;font-weight:bold;color:#fff;margin:10px 0}
         .buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:.3s;border-radius:8px}
-        .buy-btn:hover{background:#ddd}
+        .buy-btn:hover{background:#ccc}
         .search-container{max-width:1400px;margin:0 auto 40px;padding:0 20px;text-align:center}
         #searchInput{width:100%;max-width:600px;padding:18px 24px;font-size:20px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:.3s}
         #searchInput:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.3)}
@@ -57,11 +57,10 @@
         @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,196,57,0.8)}70%{box-shadow:0 0 0 20px rgba(255,196,57,0)}100%{box-shadow:0 0 0 0 rgba(255,196,57,0)}}
         #desktopViewBtn svg{width:34px;height:34px;stroke:currentColor;stroke-width:3}
         @media(max-width:768px){#desktopViewBtn{right:15px;bottom:20px;width:58px;height:58px}}
-        body.desktop-mode *{max-width:none !important;padding-left:20px !important;padding-right:20px !important}
-        body.desktop-mode .features{grid-template-columns:repeat(6,1fr)!important;gap:40px!important}
-        @media (max-width:1600px){body.desktop-mode .features{grid-template-columns:repeat(4,1fr)!important}}
-        @media (max-width:1100px){body.desktop-mode .features{grid-template-columns:repeat(3,1fr)!important}}
-        @media (max-width:800px){body.desktop-mode .features{grid-template-columns:repeat(2,1fr)!important}}
+        body.desktop-mode .why-us,body.desktop-mode .features,body.desktop-mode .keys-grid,body.desktop-mode .search-container,body.desktop-mode header,body.desktop-mode .custom-order,body.desktop-mode footer{max-width:none !important;padding-left:20px !important;padding-right:20px !important;width:100% !important}
+        body.desktop-mode .features{grid-template-columns:1fr 1fr 1fr !important;gap:40px !important}
+        @media (max-width:1400px){body.desktop-mode .features{grid-template-columns:1fr 1fr !important}}
+        @media (max-width:900px){body.desktop-mode .features{grid-template-columns:1fr !important}}
     </style>
 </head>
 <body>
@@ -72,25 +71,32 @@
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
 
-    <!-- JEDYNA MOCNA SEKCJA – 6 PUNKTÓW -->
+    <!-- SEKCJA 1 – DLACZEGO KACZOR -->
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
             <div class="feature">
                 <div class="feature-icon">Lightning</div>
                 <h3>KLUCZ W 10–60 MINUT</h3>
-                <p>Jak nie wyślę w godzinę – możesz mnie nazwać pingwinem i nakarmić śledziem. 24/7 – budzę się i wysyłam.</p>
+                <p>Jak nie wyślę w godzinę – możesz mnie nazwać pingwinem i nakarmić śledziem. 24/7, nawet jak pijany śpię – budzę się i wysyłam.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">Check mark</div>
                 <h3>100% DZIAŁAJĄCE KLUCZE</h3>
-                <p>Jak klucz nie działa – możesz mnie ogolić na łyso i wrzucić na TikToka. Ręczę dupą i piórami.</p>
+                <p>Jak klucz nie działa – możesz mnie ogolić na łyso i wrzucić na TikToka. Nigdy się to nie zdarzyło i nie zdarzy. Ręczę dupą i piórami.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">Hand shake</div>
                 <h3>JESTEM ZAWSZE</h3>
-                <p>Pisz o 3 w nocy czy w Wigilię – odpisuję szybciej niż twoja ex na „hej”. Żywy kaczor, nie bot.</p>
+                <p>Pisz o 3 w nocy czy w Wigilię – odpiszę szybciej niż twoja ex na „hej”. Żywy kaczor, nie bot. Zero ściemy, pełen szacun.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- SEKCJA 2 – ZERO RYZYKA -->
+    <section class="why-us" style="background:linear-gradient(180deg,#000 0%,#0a0a0a 100%);padding:140px 20px;">
+        <h2 style="font-size:52px;">KACZOR = ZERO RYZYKA</h2>
+        <div class="features">
             <div class="feature">
                 <div class="feature-icon">Shield</div>
                 <h3>PEŁNY ZWROT JAK COŚ NIE GRA</h3>
@@ -99,12 +105,12 @@
             <div class="feature">
                 <div class="feature-icon">Lock</div>
                 <h3>BEZPIECZEŃSTWO NA 1000%</h3>
-                <p>Żadnych wirusów, scamów ani ściemy. Klucze ręcznie sprawdzane od dystrybutorów.</p>
+                <p>Żadnych wirusów, trojanów ani ściemy. Klucze ręcznie sprawdzane, prosto od dystrybutorów.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">Gift</div>
-                <h3>BONUSY I ZNIŻKI</h3>
-                <p>Więcej kupujesz = więcej zyskujesz. Gratisowe klucze, większe zniżki, stali klienci = rodzina.</p>
+                <h3>BONUSY OD KACZORA</h3>
+                <p>Więcej kupujesz = więcej dostajesz. Gratisowe klucze, większe zniżki, traktuję stałych jak rodzinę (lepiej).</p>
             </div>
         </div>
     </section>
@@ -129,6 +135,7 @@
         <p style="font-size:13px;color:#555;">KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
+    <!-- PRZYCISK PC -->
     <div id="desktopViewBtn" title="Kliknij → widok jak na PC">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
             <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
@@ -281,6 +288,7 @@ function createCard(game){
         img.onload = () => { coverDiv.style.backgroundImage = `url('${path}')`; found = true; };
         img.src = path;
     });
+    // jeśli nie ma okładki → twoja kaczka!
     setTimeout(() => { if (!found) coverDiv.style.backgroundImage = "url('logo.png')"; }, 2500);
 
     const logo = game.platform === "rockstar" ? "Rockstar_logo.png" : "Steam_logo.png";
@@ -288,7 +296,7 @@ function createCard(game){
     card.innerHTML = `
         <div class="game-info">
             <div class="game-title">${game.title}</div>
-            <img src="${logo}" class="platform-logo" alt="">
+            <img src="${logo}" class="platform-logo" alt="${game.platform === 'rockstar' ? 'Rockstar' : 'Steam'}">
             <div class="price">${game.price} zł</div>
             <button class="buy-btn" onclick="openModal('${cleanTitle}', ${game.price})">KUP TERAZ</button>
         </div>`;
@@ -315,7 +323,7 @@ const btn = document.getElementById('desktopViewBtn');
 let isDesktop = false;
 btn.addEventListener('click', function() {
     if (!isDesktop) {
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1600');
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1280');
         document.body.classList.add('desktop-mode');
         btn.classList.add('active');
         btn.innerHTML = 'PC';
