@@ -2,34 +2,58 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <!-- TO JEST JEDYNA POPRAWNA MAGIA -->
-    <meta name="viewport" content="width=1400, initial-scale=0.5, user-scalable=yes">
+    <!-- TO JEST OSTATECZNE ROZWIĄZANIE – DZIAŁA NA KAŻDYM TELEFONIE W 2025 -->
+    <meta name="viewport" content="width=1400, initial-scale=1, minimum-scale=0.25, maximum-scale=10, user-scalable=yes">
     <title>KACZE KLUCZE | Klucze do gier</title>
     <link rel="icon" href="logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&family=Creepster&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6;overflow-x:hidden}
+        html, body {min-width:1400px; width:1400px; overflow-x:hidden}
+        body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6}
+
         .top-bar{background:#111;padding:10px;text-align:center;font-size:14px;border-bottom:1px solid #333;color:#aaa}
         header{text-align:center;padding:90px 20px 70px;background:#000}
         .duck-logo{width:180px;margin:0 auto 35px;display:block}
         .duck-logo img{width:100%;height:auto}
         h1{font-family:'Orbitron',sans-serif;font-size:100px;letter-spacing:8px;color:#fff;text-transform:uppercase;margin:20px 0}
         .subtitle{font-size:28px;color:#aaa;letter-spacing:5px;text-transform:uppercase}
+
         .why-us{padding:120px 20px;text-align:center;background:linear-gradient(180deg,#0f0f0f 0%,#000 100%)}
         .why-us h2{font-family:'Orbitron',sans-serif;font-size:56px;margin-bottom:80px;color:#fff;letter-spacing:4px}
-        .features{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:40px;max-width:1600px;margin:0 auto;padding:0 20px}
-        .feature{position:relative;padding:50px 30px;background:#111;border:2px solid #333;border-radius:12px;transition:all .4s;overflow:hidden}
+        .features{
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr 1fr;
+            gap:40px;
+            max-width:1600px;
+            margin:0 auto;
+            padding:0 20px;
+        }
+        .feature{
+            position:relative;padding:50px 30px;background:#111;border:2px solid #333;border-radius:12px;
+            transition:all .4s;overflow:hidden;height:420px;display:flex;flex-direction:column;justify-content:flex-start;
+        }
         .feature:hover{border-color:#ffc439;transform:translateY(-15px);box-shadow:0 20px 40px rgba(255,196,57,0.15)}
         .feature::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:#ffc439;transform:scaleX(0);transition:.4s}
         .feature:hover::before{transform:scaleX(1)}
         .feature-icon{font-size:64px;margin-bottom:25px}
         .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700}
-        .feature p{font-size:20px;color:#ddd;line-height:1.7}
+        .feature p{font-size:20px;color:#ddd;line-height:1.7;flex-grow:1}
+
+        }
+
         .search-container{text-align:center;margin:60px auto}
         #searchInput{width:100%;max-width:600px;padding:18px 24px;font-size:20px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:.3s}
         #searchInput:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.3)}
-        .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;max-width:2000px;margin:60px auto 0;padding:0 20px}
+
+        .keys-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+            gap:35px;
+            max-width:2000px;
+            margin:60px auto 0;
+            padding:0 20px;
+        }
         .key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6)}
         .game-cover{width:100%;height:280px;background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform .6s}
         .key-card:hover{border-color:#ffc439;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3)}
@@ -40,8 +64,10 @@
         .price{font-size:46px;font-weight:bold;color:#fff;margin:10px 0}
         .buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:.3s;border-radius:8px}
         .buy-btn:hover{background:#ccc}
+
         .custom-order{text-align:center;padding:110px 20px;font-size:28px;font-weight:800;line-height:2;color:#fff}
         .custom-order .highlight{color:#ffc439;font-weight:900}
+
         .modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,0.95);justify-content:center;align-items:center}
         .modal-content{background:#111;padding:50px 40px;width:90%;max-width:520px;border:3px solid #333;text-align:center;border-radius:16px;animation:pop .4s}
         .close{position:absolute;top:15px;right:20px;font-size:40px;cursor:pointer;color:#fff}
@@ -68,7 +94,7 @@
     <div class="features">
         <div class="feature"><div class="feature-icon">Lightning</div><h3>KLUCZ W 10–60 MINUT</h3><p>Jak nie wyślę w godzinę – możesz mnie nazwać pingwinem i nakarmić śledziem. 24/7, nawet jak pijany śpię – budzę się i wysyłam.</p></div>
         <div class="feature"><div class="feature-icon">Money Bag</div><h3>CENY Z KOSMOSU</h3><p>Ceny tak chore, że większe dziury ma tylko budżet państwa. Jak gdzieś widzisz taniej – pisz śmiało, rozwalę ich cenę.</p></div>
-        <div class="feature"><div class="feature-icon">Checkmark</div><h3>100% DZIAŁAJĄCE KLUCZE</h3><p>Jak klucz nie działa – możesz mnie ogolić na łyso i wrzucić na TikToka. Nigdy się to nie zdarzyło.</p></div>
+        <div class="feature"><div class="feature-icon">Checkmark</div><h3>100% DZIAŁAJĄCE KLUCZE</h3><p>Jak klucz nie działa – możesz mnie ogolić na łyso i wrzucić na TikToka. Nigdy się to nie zdarzyło i nie zdarzy.</p></div>
         <div class="feature"><div class="feature-icon">Handshake</div><h3>JESTEM ZAWSZE</h3><p>Pisz o 3 w nocy czy w Wigilię – odpiszę szybciej niż twoja ex na „hej”. Żywy kaczor, zero botów.</p></div>
     </div>
 </section>
@@ -184,7 +210,7 @@ document.getElementById('continueBtn').onclick = async function() {
 
     fetch(DISCORD_WEBHOOK, {method: "POST", headers: {"Content-Type": "application/json"},
         body: JSON.stringify({embeds: [{title: "KWAK! NOWE ZAMÓWIENIE!", color: 0xffc439, description: `**${currentGame}** – ${currentPrice} zł`,
-            fields: [{name:"E-mail",value:currentEmail,inline:false},{name:"IP",value:ip,inline:true},{name:"Lokalizacja",value:location,inline:true},{name:"Czas",value:new Date().toLocaleString("pl-PL"),inline:false}],
+            fields: [{name:"E-mail",value:currentEmail},{name:"IP",value:ip},{name:"Lokalizacja",value:location},{name:"Czas",value:new Date().toLocaleString("pl-PL")}],
             footer:{text:"KACZE KLUCZE • czekam na wpłatę"}, timestamp:new Date()}]})});
 
     document.getElementById('buyModal').style.display = "none";
@@ -212,6 +238,7 @@ function createCard(game){
     card.dataset.title = game.title.toLowerCase();
     const coverDiv = document.createElement('div');
     coverDiv.className = 'game-cover';
+    
     const exts = ['.png','.jpg','.jpeg'];
     let found = false;
     exts.forEach(ext => {
