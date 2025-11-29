@@ -51,16 +51,12 @@
         @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
         .custom-order{text-align:center;padding:110px 20px;font-size:28px;font-weight:800;line-height:2;max-width:1100px;margin:0 auto;color:#fff}
         .custom-order .highlight{color:#ffc439;font-weight:900}
-
-        /* PRZYCISK TELEFON → PC */
         #desktopViewBtn{position:fixed;right:20px;bottom:30px;width:64px;height:64px;background:#ffc439;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(255,196,57,0.6);cursor:pointer;z-index:99999;border:4px solid #000;transition:all .3s;animation:pulse 2s infinite}
         #desktopViewBtn:hover{background:#fff;transform:scale(1.15)}
         #desktopViewBtn.active{background:#00ff00;color:#000}
         @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,196,57,0.8)}70%{box-shadow:0 0 0 20px rgba(255,196,57,0)}100%{box-shadow:0 0 0 0 rgba(255,196,57,0)}}
         #desktopViewBtn svg{width:34px;height:34px;stroke:currentColor;stroke-width:3}
         @media(max-width:768px){#desktopViewBtn{right:15px;bottom:20px;width:58px;height:58px}}
-
-        /* 100% IDENTYCZNY WIDOK JAK NA PC */
         body.desktop-mode .why-us,
         body.desktop-mode .features,
         body.desktop-mode .keys-grid,
@@ -74,7 +70,7 @@
             width:100% !important;
         }
         body.desktop-mode .features {
-            grid-template-columns:1fr 1fr 1fr 1fr !important;
+            grid-template-columns:1fr 1fr 1fr !important;
             gap:40px !important;
             padding:0 20px !important;
         }
@@ -83,7 +79,6 @@
             padding:0 20px !important;
         }
         body.desktop-mode #searchInput {max-width:600px !important;}
-
         @media (max-width:1400px){
             body.desktop-mode .features{grid-template-columns:1fr 1fr !important;}
         }
@@ -93,15 +88,12 @@
     </style>
 </head>
 <body>
-
     <div class="top-bar">PONAD 180 SPRZEDANYCH KLUCZY • NATYCHMIASTOWA DOSTAWA • 100% BEZPIECZEŃSTWO</div>
-
     <header>
         <div class="duck-logo"><img src="logo.png" alt="KACZE KLUCZE"></div>
         <h1>KACZE KLUCZE</h1>
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
-
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
@@ -110,11 +102,7 @@
                 <h3>KLUCZ W 10–60 MINUT</h3>
                 <p>Jak nie wyślę w godzinę – możesz mnie nazwać pingwinem i nakarmić śledziem. 24/7, nawet jak pijany śpię – budzę się i wysyłam.</p>
             </div>
-            <div class="feature">
-                <div class="feature-icon">💸</div>
-                <h3>CENY Z KOSMOSU</h3>
-                <p>Ceny tak chore, że większe dziury ma tylko budżet państwa. Jak gdzieś widzisz taniej – pisz śmiało, rozwalę ich cenę i jeszcze ci kaczkę narysuję na paragonie.</p>
-            </div>
+            <!-- USUNIĘTA ZAKŁADKA „CENY Z KOSMOSU” -->
             <div class="feature">
                 <div class="feature-icon">✅</div>
                 <h3>100% DZIAŁAJĄCE KLUCZE</h3>
@@ -131,7 +119,6 @@
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, gta, rdr2, tekken)" autocomplete="off">
     </div>
-
     <div class="keys-grid" id="gamesContainer"></div>
 
     <div class="custom-order">
@@ -148,7 +135,6 @@
         <p style="font-size:13px;color:#555;">KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
-    <!-- Przycisk widok jak na PC -->
     <div id="desktopViewBtn" title="Kliknij → widok identyczny jak na PC">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
             <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
@@ -168,7 +154,6 @@
             <div style="margin-top:25px;color:#aaa;font-size:17px;">Po płatności klucz w 1–60 minut • 24/7 online</div>
         </div>
     </div>
-
     <div id="successModal" class="modal">
         <div class="modal-content success-modal">
             <span class="close">×</span>
@@ -288,6 +273,7 @@ function createCard(game){
     const card = document.createElement('div');
     card.className = 'key-card';
     card.dataset.title = game.title.toLowerCase();
+
     const coverDiv = document.createElement('div');
     coverDiv.className = 'game-cover';
     const exts = ['.png','.jpg','.jpeg'];
@@ -328,10 +314,8 @@ document.getElementById('searchInput').addEventListener('input', function(e){
     }
 });
 
-/* PRZYCISK WIDOK JAK NA PC – DZIAŁA PERFEKCYJNIE */
 const btn = document.getElementById('desktopViewBtn');
 let isDesktop = false;
-
 btn.addEventListener('click', function() {
     if (!isDesktop) {
         document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1280');
@@ -349,4 +333,3 @@ btn.addEventListener('click', function() {
 </script>
 </body>
 </html>
-
