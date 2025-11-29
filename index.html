@@ -2,14 +2,14 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <!-- Teraz działa idealnie na każdym urządzeniu -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- TELEFON = KOMPUTER – 1:1, NA STAŁE -->
+    <meta name="viewport" content="width=1600, initial-scale=1">
     <title>KACZE KLUCZE | Klucze do gier</title>
     <link rel="icon" href="logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&family=Creepster&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6;overflow-x:hidden}
+        body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6;overflow-x:auto}
 
         .top-bar{background:#111;padding:10px;text-align:center;font-size:14px;border-bottom:1px solid #333;color:#aaa}
         header{text-align:center;padding:90px 20px 70px;background:#000}
@@ -18,7 +18,6 @@
         h1{font-family:'Orbitron',sans-serif;font-size:100px;letter-spacing:8px;color:#fff;text-transform:uppercase;margin:20px 0}
         .subtitle{font-size:28px;color:#aaa;letter-spacing:5px;text-transform:uppercase}
 
-        /* SEKACJA "DLACZEGO WARTO KUPIĆ U KACZORA?" */
         .why-us{padding:120px 20px;text-align:center;background:linear-gradient(180deg,#0f0f0f 0%,#000 100%)}
         .why-us h2{font-family:'Orbitron',sans-serif;font-size:56px;margin-bottom:80px;color:#fff;letter-spacing:4px}
         .features{
@@ -30,13 +29,7 @@
             padding:0 20px;
         }
         .feature{
-            position:relative;
-            padding:50px 30px;
-            background:#111;
-            border:2px solid #333;
-            border-radius:12px;
-            transition:all .4s;
-            overflow:hidden;
+            position:relative;padding:50px 30px;background:#111;border:2px solid #333;border-radius:12px;transition:all .4s;overflow:hidden
         }
         .feature:hover{border-color:#ffc439;transform:translateY(-15px);box-shadow:0 20px 40px rgba(255,196,57,0.15)}
         .feature::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:#ffc439;transform:scaleX(0);transition:.4s}
@@ -45,7 +38,10 @@
         .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700}
         .feature p{font-size:20px;color:#ddd;line-height:1.7}
 
-        /* GRY */
+        .search-container{text-align:center;margin:60px auto}
+        #searchInput{width:100%;max-width:600px;padding:18px 24px;font-size:20px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:.3s}
+        #searchInput:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.3)}
+
         .keys-grid{
             display:grid;
             grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
@@ -54,10 +50,6 @@
             margin:60px auto 0;
             padding:0 20px;
         }
-        .search-container{text-align:center;margin:60px auto}
-        #searchInput{width:100%;max-width:600px;padding:18px 24px;font-size:20px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:.3s}
-        #searchInput:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.3)}
-
         .key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6)}
         .game-cover{width:100%;height:280px;background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform .6s}
         .key-card:hover{border-color:#ffc439;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3)}
@@ -72,7 +64,6 @@
         .custom-order{text-align:center;padding:110px 20px;font-size:28px;font-weight:800;line-height:2;color:#fff}
         .custom-order .highlight{color:#ffc439;font-weight:900}
 
-        /* MODALE */
         .modal{display:none;position:fixed;z-index:9999;inset:0;background:rgba(0,0,0,0.95);justify-content:center;align-items:center}
         .modal-content{background:#111;padding:50px 40px;width:90%;max-width:520px;border:3px solid #333;text-align:center;border-radius:16px;animation:pop .4s}
         .close{position:absolute;top:15px;right:20px;font-size:40px;cursor:pointer;color:#fff}
@@ -82,33 +73,6 @@
         .duck-big{font-size:120px;animation:float 3s ease-in-out infinite}
         @keyframes pop{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
         @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
-
-        /* RESPONSIVE – KLUCZOWA POPRAWKA NA TELEFON */
-        @media (max-width: 1200px) {
-            .features {
-                grid-template-columns: 1fr !important;
-                gap: 35px;
-            }
-            .feature {
-                padding: 70px 40px !important;
-            }
-            .feature-icon {font-size: 90px !important;}
-            .feature h3 {font-size: 34px !important;}
-            .feature p {font-size: 22px !important;}
-            .why-us h2 {font-size: 44px !important;}
-        }
-
-        @media (max-width: 900px) {
-            h1 {font-size: 70px !important;}
-            .subtitle {font-size: 22px !important;}
-            .keys-grid {grid-template-columns: 1fr 1fr !important; gap: 25px;}
-        }
-
-        @media (max-width: 500px) {
-            h1 {font-size: 56px !important;}
-            .keys-grid {grid-template-columns: 1fr !important;}
-            .feature {padding: 60px 30px !important;}
-        }
     </style>
 </head>
 <body>
