@@ -2,13 +2,32 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- OD RAZU TRYB DESKTOP NA TELEFONIE -->
+    <meta name="viewport" content="width=1280">
     <title>KACZE KLUCZE | Klucze do gier</title>
     <link rel="icon" href="logo.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&family=Creepster&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{background:#000;color:#fff;font-family:'Rajdhani',sans-serif;line-height:1.6}
+
+        /* OD RAZU WYGLĄDA JAK NA PC */
+        .why-us,.features,.keys-grid,.search-container,header,.custom-order,footer{
+            max-width:none!important;padding-left:20px!important;padding-right:20px!important;width:100%!important;
+        }
+        .features{
+            display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:40px;padding:0 20px;
+        }
+        .keys-grid{
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;padding:0 20px;
+        }
+        #searchInput{max-width:600px!important;margin:0 auto 40px;display:block}
+
+        /* Lekkie dopasowanie na bardzo małe ekrany */
+        @media(max-width:1400px){.features{grid-template-columns:1fr 1fr}}
+        @media(max-width:900px){.features{grid-template-columns:1fr}}
+
+        /* Reszta stylów (nie ruszane) */
         .top-bar{background:#111;padding:10px;text-align:center;font-size:14px;border-bottom:1px solid #333;color:#aaa}
         header{text-align:center;padding:90px 20px 70px;background:#000}
         .duck-logo{width:180px;margin:0 auto 35px;display:block}
@@ -17,7 +36,6 @@
         .subtitle{font-size:28px;color:#aaa;letter-spacing:5px;text-transform:uppercase}
         .why-us{padding:120px 20px;text-align:center;background:linear-gradient(180deg,#0f0f0f 0%,#000 100%)}
         .why-us h2{font-family:'Orbitron',sans-serif;font-size:56px;margin-bottom:80px;color:#fff;letter-spacing:4px}
-        .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;max-width:1400px;margin:0 auto;padding:0 20px}
         .feature{position:relative;padding:50px 30px;background:#111;border:2px solid #333;border-radius:12px;transition:all .4s;overflow:hidden}
         .feature:hover{border-color:#ffc439;transform:translateY(-15px);box-shadow:0 20px 40px rgba(255,196,57,0.15)}
         .feature::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:#ffc439;transform:scaleX(0);transition:.4s}
@@ -25,8 +43,6 @@
         .feature-icon{font-size:64px;margin-bottom:25px}
         .feature h3{font-size:28px;margin-bottom:20px;color:#ffc439;font-weight:700}
         .feature p{font-size:20px;color:#ddd;line-height:1.7}
-        .keys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:35px;max-width:1400px;margin:60px auto;padding:0 20px}
-        @media (max-width:700px){.keys-grid{grid-template-columns:1fr}}
         .key-card{position:relative;overflow:hidden;border-radius:16px;background:#111;border:2px solid #222;transition:all .4s;display:flex;flex-direction:column;box-shadow:0 8px 25px rgba(0,0,0,0.6)}
         .game-cover{width:100%;height:280px;background-size:cover;background-position:center;background-repeat:no-repeat;transition:transform .6s}
         .key-card:hover{border-color:#ffc439;transform:translateY(-12px);box-shadow:0 30px 60px rgba(255,196,57,0.3)}
@@ -37,8 +53,8 @@
         .price{font-size:46px;font-weight:bold;color:#fff;margin:10px 0}
         .buy-btn{margin:16px 20px 20px;padding:16px;background:#fff;color:#000;font-weight:bold;font-size:20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:2px;transition:.3s;border-radius:8px}
         .buy-btn:hover{background:#ccc}
-        .search-container{max-width:1400px;margin:0 auto 40px;padding:0 20px;text-align:center}
-        #searchInput{width:100%;max-width:600px;padding:18px 24px;font-size:20px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:.3s}
+        .search-container{text-align:center;margin:60px auto 40px}
+        #searchInput{width:100%;padding:18px 24px;font-size:20px;border-radius:50px;border:3px solid #333;background:#111;color:#fff;outline:none;transition:.3s}
         #searchInput:focus{border-color:#ffc439;box-shadow:0 0 20px rgba(255,196,57,0.3)}
         .modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.95);justify-content:center;align-items:center}
         .modal-content{background:#111;padding:50px 40px;width:90%;max-width:520px;border:3px solid #333;text-align:center;border-radius:16px;animation:pop .4s}
@@ -47,45 +63,20 @@
         #continueBtn{padding:18px;background:#ffc439;color:#000;font-weight:bold;font-size:22px;border:none;border-radius:12px;cursor:pointer;width:90%;margin:15px auto}
         #continueBtn:hover{background:#ffb800}
         .duck-big{font-size:120px;animation:float 3s ease-in-out infinite}
-        @keyframes pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(ZW1)}100%{transform:scale(1);opacity:1}}
+        @keyframes pop{0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
         @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
-        .custom-order{text-align:center;padding:110px 20px;font-size:28px;font-weight:800;line-height:2;max-width:1100px;margin:0 auto;color:#fff}
+        .custom-order{text-align:center;padding:110px 20px;font-size:28px;font-weight:800;line-height:2;color:#fff}
         .custom-order .highlight{color:#ffc439;font-weight:900}
 
-        /* PRZYCISK TELEFON → PC */
-        #desktopViewBtn{
+        /* PRZYCISK MOBILE */
+        #mobileViewBtn{
             position:fixed;right:20px;bottom:30px;width:64px;height:64px;
-            background:#ffc439;color:#000;border-radius:50%;display:flex;
-            align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(255,196,57,0.6);
-            cursor:pointer;z-index:99999;border:4px solid #000;transition:all .3s;
-            animation:pulse 2s infinite;font-weight:bold;font-size:18px;
+            background:#00ff00;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;
+            box-shadow:0 8px 30px rgba(0,255,0,0.6);cursor:pointer;z-index:99999;border:4px solid #000;
+            font-weight:bold;font-size:16px;transition:all .3s;
         }
-        #desktopViewBtn:hover{background:#fff;transform:scale(1.15)}
-        #desktopViewBtn.active{background:#00ff00;color:#000}
-        #desktopViewBtn svg{width:34px;height:34px;stroke:currentColor;stroke-width:3}
-        @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,196,57,0.8)}70%{box-shadow:0 0 0 20px rgba(255,196,57,0)}100%{box-shadow:0 0 0 0 rgba(255,196,57,0)}}
-        @media(max-width:768px){#desktopViewBtn{right:15px;bottom:20px;width:58px;height:58px}}
-
-        /* 100% IDENTYCZNY WIDOK JAK NA KOMPUTERZE */
-        body.desktop-mode .why-us,
-        body.desktop-mode .features,
-        body.desktop-mode .keys-grid,
-        body.desktop-mode .search-container,
-        body.desktop-mode header,
-        body.desktop-mode .custom-order,
-        body.desktop-mode footer{
-            max-width:none!important;padding-left:20px!important;padding-right:20px!important;width:100%!important;
-        }
-        body.desktop-mode .features{
-            grid-template-columns:1fr 1fr 1fr 1fr!important;gap:40px!important;padding:0 20px!important;
-        }
-        body.desktop-mode .keys-grid{
-            grid-template-columns:repeat(auto-fit,minmax(340px,1fr))!important;padding:0 20px!important;
-        }
-        body.desktop-mode #searchInput{max-width:600px!important}
-
-        @media(max-width:1400px){body.desktop-mode .features{grid-template-columns:1fr 1fr!important}}
-        @media(max-width:900px){body.desktop-mode .features{grid-template-columns:1fr!important}}
+        #mobileViewBtn:hover{background:#fff;transform:scale(1.15)}
+        @media(max-width:768px){#mobileViewBtn{right:15px;bottom:20px;width:58px;height:58px}}
     </style>
 </head>
 <body>
@@ -101,26 +92,10 @@
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
-            <div class="feature">
-                <div class="feature-icon">Lightning</div>
-                <h3>KLUCZ W 10–60 MINUT</h3>
-                <p>Jak nie wyślę w godzinę – możesz mnie nazwać pingwinem i nakarmić śledziem. 24/7, nawet jak pijany śpię – budzę się i wysyłam.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">Money Bag</div>
-                <h3>CENY Z KOSMOSU</h3>
-                <p>Ceny tak chore, że większe dziury ma tylko budżet państwa. Jak gdzieś widzisz taniej – pisz śmiało, rozwalę ich cenę i jeszcze ci kaczkę narysuję na paragonie.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">Checkmark</div>
-                <h3>100% DZIAŁAJĄCE KLUCZE</h3>
-                <p>Jak klucz nie działa – możesz mnie ogolić na łyso i wrzucić na TikToka. Nigdy się to nie zdarzyło i nie zdarzy. Ręczę dupą i piórami.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">Handshake</div>
-                <h3>JESTEM ZAWSZE</h3>
-                <p>Pisz o 3 w nocy czy w Wigilię – odpiszę szybciej niż twoja ex na „hej”. Żywy kaczor, nie bot. Zero ściemy, pełen szacun.</p>
-            </div>
+            <div class="feature"><div class="feature-icon">Lightning</div><h3>KLUCZ W 10–60 MINUT</h3><p>Jak nie wyślę w godzinę – możesz mnie nazwać pingwinem i nakarmić śledziem. 24/7, nawet jak pijany śpię – budzę się i wysyłam.</p></div>
+            <div class="feature"><div class="feature-icon">Money Bag</div><h3>CENY Z KOSMOSU</h3><p>Ceny tak chore, że większe dziury ma tylko budżet państwa. Jak gdzieś widzisz taniej – pisz śmiało, rozwalę ich cenę i jeszcze ci kaczkę narysuję na paragonie.</p></div>
+            <div class="feature"><div class="feature-icon">Checkmark</div><h3>100% DZIAŁAJĄCE KLUCZE</h3><p>Jak klucz nie działa – możesz mnie ogolić na łyso i wrzuć na TikToka. Nigdy się to nie zdarzyło i nie zdarzy. Ręczę dupą i piórami.</p></div>
+            <div class="feature"><div class="feature-icon">Handshake</div><h3>JESTEM ZAWSZE</h3><p>Pisz o 3 w nocy czy w Wigilię – odpiszę szybciej niż twoja ex na „hej”. Żywy kaczor, nie bot. Zero ściemy, pełen szacun.</p></div>
         </div>
     </section>
 
@@ -132,24 +107,21 @@
 
     <div class="custom-order">
         Nie ma gry, której szukasz?<br><br>
-        <span style="color:#ffc439; font-size:36px; text-shadow: 0 0 20px #ffc439;">ROBIĘ WSZYSTKO NA ZAMÓWIENIE – TYLKO ROCKSTAR, STEAM!</span><br><br><br>
+        <span style="color:#ffc439;font-size:36px;text-shadow:0 0 20px #ffc439;">ROBIĘ WSZYSTKO NA ZAMÓWIENIE – TYLKO ROCKSTAR, STEAM!</span><br><br><br>
         <strong>Dowolna gra • Dowolna edycja • Global / EU – zawsze działa</strong><br><br>
-        <span style="font-size:32px; color:#ffc439;">Cenę dogadamy indywidualnie – zawsze najtaniej w Polsce</span><br><br><br>
+        <span style="font-size:32px;color:#ffc439;">Cenę dogadamy indywidualnie – zawsze najtaniej w Polsce</span><br><br><br>
         Pisz śmiało 24/7 – odpisuję w kilka minut:<br><br>
         <span class="highlight">kacze.klucze@gmail.com</span> | Discord: <span class="highlight">mc.duck_8237</span>
     </div>
 
     <footer style="text-align:center;padding:60px 20px 40px;background:#000;">
-        <img src="logo.png" alt="KACZE KLUCZE" style="width:60px;height:auto;opacity:0.7;margin-bottom:10px;">
+        <img src="logo.png" alt="KACZE KLUCZE" style="width:60px;opacity:0.7;margin-bottom:10px;">
         <p style="font-size:13px;color:#555;">KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
-    <!-- Przycisk "Widok jak na PC" -->
-    <div id="desktopViewBtn" title="Kliknij → widok identyczny jak na PC">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
-            <line x1="12" y1="18" x2="12.01" y2="18"/>
-        </svg>
+    <!-- Zielony przycisk MOBILE -->
+    <div id="mobileViewBtn" title="Kliknij → widok mobilny">
+        MOBILE
     </div>
 
     <!-- Modale -->
@@ -324,26 +296,10 @@ document.getElementById('searchInput').addEventListener('input', function(e){
     }
 });
 
-/* PRZYCISK WIDOK JAK NA PC – DZIAŁA 100% */
-const btn = document.getElementById('desktopViewBtn');
-let isDesktop = false;
-
-btn.addEventListener('click', function() {
-    if (!isDesktop) {
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1280');
-        document.body.classList.add('desktop-mode');
-        btn.classList.add('active');
-        btn.innerHTML = 'PC';
-    } else {
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1');
-        document.body.classList.remove('desktop-mode');
-        btn.classList.remove('active');
-        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
-            <line x1="12" y1="18" x2="12.01" y2="18"/>
-        </svg>`;
-    }
-    isDesktop = !isDesktop;
+/* PRZYCISK MOBILE – przełącza na normalny widok mobilny */
+document.getElementById('mobileViewBtn').addEventListener('click', () => {
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1');
+    location.reload();
 });
 </script>
 </body>
