@@ -57,7 +57,7 @@
         @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,196,57,0.8)}70%{box-shadow:0 0 0 20px rgba(255,196,57,0)}100%{box-shadow:0 0 0 0 rgba(255,196,57,0)}}
         #desktopViewBtn svg{width:34px;height:34px;stroke:currentColor;stroke-width:3}
         @media(max-width:768px){#desktopViewBtn{right:15px;bottom:20px;width:58px;height:58px}}
-        body.desktop-mode *{max-width:none !important;padding-left:20px !important;padding-right:20px !important;width:100% !important}
+        body.desktop-mode .why-us,body.desktop-mode .features,body.desktop-mode .keys-grid,body.desktop-mode .search-container,body.desktop-mode header,body.desktop-mode .custom-order,body.desktop-mode footer{max-width:none !important;padding-left:20px !important;padding-right:20px !important;width:100% !important}
         body.desktop-mode .features{grid-template-columns:1fr 1fr 1fr !important;gap:40px !important}
         @media (max-width:1400px){body.desktop-mode .features{grid-template-columns:1fr 1fr !important}}
         @media (max-width:900px){body.desktop-mode .features{grid-template-columns:1fr !important}}
@@ -71,46 +71,46 @@
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
 
-    <!-- SEKCJA 1 -->
+    <!-- SEKCJA 1 – DLACZEGO KACZOR -->
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
             <div class="feature">
                 <div class="feature-icon">Lightning</div>
                 <h3>KLUCZ W 10–60 MINUT</h3>
-                <p>Jak nie wyślę w godzinę – możesz mnie nazwać pingwinem i nakarmić śledziem. 24/7 – budzę się i wysy</p>
+                <p>Jak nie wyślę w godzinę – możesz mnie nazwać pingwinem i nakarmić śledziem. 24/7, nawet jak pijany śpię – budzę się i wysyłam.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">Check mark</div>
                 <h3>100% DZIAŁAJĄCE KLUCZE</h3>
-                <p>Jak klucz nie działa – możesz mnie ogolić na łyso i wrzucić na TikToka. Ręczę dupą i piórami.</p>
+                <p>Jak klucz nie działa – możesz mnie ogolić na łyso i wrzucić na TikToka. Nigdy się to nie zdarzyło i nie zdarzy. Ręczę dupą i piórami.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">Hand shake</div>
                 <h3>JESTEM ZAWSZE</h3>
-                <p>Pisz o 3 w nocy czy w Wigilię – odpisuję szybciej niż twoja ex na „hej”. Żywy kaczor, nie bot.</p>
+                <p>Pisz o 3 w nocy czy w Wigilię – odpiszę szybciej niż twoja ex na „hej”. Żywy kaczor, nie bot. Zero ściemy, pełen szacun.</p>
             </div>
         </div>
     </section>
 
-    <!-- SEKCJA 2 -->
+    <!-- SEKCJA 2 – ZERO RYZYKA -->
     <section class="why-us" style="background:linear-gradient(180deg,#000 0%,#0a0a0a 100%);padding:140px 20px;">
         <h2 style="font-size:52px;">KACZOR = ZERO RYZYKA</h2>
         <div class="features">
             <div class="feature">
                 <div class="feature-icon">Shield</div>
                 <h3>PEŁNY ZWROT JAK COŚ NIE GRA</h3>
-                <p>Coś nie bangla? Klucz nie działa? Region nie ten? Zwracam kasę w 5 minut – bez pytań.</p>
+                <p>Coś nie bangla? Klucz nie działa? Region nie ten? Zwracam kasę w 5 minut – bez pierdolenia.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">Lock</div>
                 <h3>BEZPIECZEŃSTWO NA 1000%</h3>
-                <p>Żadnych wirusów, trojanów ani scamów. Klucze ręcznie sprawdzane, prosto od źródła.</p>
+                <p>Żadnych wirusów, trojanów ani ściemy. Klucze ręcznie sprawdzane, prosto od dystrybutorów.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">Gift</div>
                 <h3>BONUSY OD KACZORA</h3>
-                <p>Większe zamówienie = większa zniżka albo gratis. Stały klient? Traktuję jak rodzinę (lepiej).</p>
+                <p>Więcej kupujesz = więcej dostajesz. Gratisowe klucze, większe zniżki, traktuję stałych jak rodzinę (lepiej).</p>
             </div>
         </div>
     </section>
@@ -135,6 +135,7 @@
         <p style="font-size:13px;color:#555;">KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
+    <!-- PRZYCISK PC -->
     <div id="desktopViewBtn" title="Kliknij → widok jak na PC">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
             <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
@@ -151,7 +152,7 @@
             <p style="margin:20px 0 10px;color:#ddd;font-size:19px;line-height:1.6;">Podaj swój e-mail – klucz wleci dokładnie tutaj!</p>
             <input type="email" id="buyerEmail" placeholder="twój@mail.com" required autocomplete="email">
             <button id="continueBtn">DALEJ → ZAPŁAĆ</button>
-            <div style="margin-top:25px;color:#aaa;font-size:17px;">Po płatności klucz w 1–60 minut • 24/7</div>
+            <div style="margin-top:25px;color:#aaa;font-size:17px;">Po płatności klucz w 1–60 minut • 24/7 online</div>
         </div>
     </div>
 
@@ -274,8 +275,10 @@ function createCard(game){
     const card = document.createElement('div');
     card.className = 'key-card';
     card.dataset.title = game.title.toLowerCase();
+    
     const coverDiv = document.createElement('div');
     coverDiv.className = 'game-cover';
+    
     const exts = ['.png','.jpg','.jpeg'];
     let found = false;
     exts.forEach(ext => {
@@ -285,13 +288,15 @@ function createCard(game){
         img.onload = () => { coverDiv.style.backgroundImage = `url('${path}')`; found = true; };
         img.src = path;
     });
+    // jeśli nie ma okładki → twoja kaczka!
     setTimeout(() => { if (!found) coverDiv.style.backgroundImage = "url('logo.png')"; }, 2500);
 
     const logo = game.platform === "rockstar" ? "Rockstar_logo.png" : "Steam_logo.png";
+    
     card.innerHTML = `
         <div class="game-info">
             <div class="game-title">${game.title}</div>
-            <img src="${logo}" class="platform-logo" alt="">
+            <img src="${logo}" class="platform-logo" alt="${game.platform === 'rockstar' ? 'Rockstar' : 'Steam'}">
             <div class="price">${game.price} zł</div>
             <button class="buy-btn" onclick="openModal('${cleanTitle}', ${game.price})">KUP TERAZ</button>
         </div>`;
