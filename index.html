@@ -57,47 +57,10 @@
         @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,196,57,0.8)}70%{box-shadow:0 0 0 20px rgba(255,196,57,0)}100%{box-shadow:0 0 0 0 rgba(255,196,57,0)}}
         #desktopViewBtn svg{width:34px;height:34px;stroke:currentColor;stroke-width:3}
         @media(max-width:768px){#desktopViewBtn{right:15px;bottom:20px;width:58px;height:58px}}
-
-        body.desktop-mode .why-us,
-        body.desktop-mode .features,
-        body.desktop-mode .keys-grid,
-        body.desktop-mode .search-container,
-        body.desktop-mode header,
-        body.desktop-mode .custom-order,
-        body.desktop-mode footer {
-            max-width:none !important;
-            padding-left:20px !important;
-            padding-right:20px !important;
-            width:100% !important;
-        }
-
-        body.desktop-mode .features {
-            grid-template-columns: 1fr 1fr 1fr !important;
-            gap: 40px !important;
-            padding: 0 20px !important;
-            max-width: 1400px !important;
-            margin: 0 auto !important;
-        }
-        @media (max-width: 1100px) {
-            body.desktop-mode .features { grid-template-columns: 1fr 1fr 1fr !important; gap: 30px !important; }
-        }
-        @media (max-width: 900px) {
-            body.desktop-mode .features { grid-template-columns: 1fr 1fr 1fr !important; gap: 25px !important; padding: 0 15px !important; }
-        }
-        @media (max-width: 700px) {
-            body.desktop-mode .features { 
-                grid-template-columns: 1fr 1fr 1fr !important; 
-                gap: 20px !important; 
-                padding: 0 10px !important; 
-            }
-            body.desktop-mode .feature { padding: 40px 20px !important; }
-        }
-
-        body.desktop-mode .keys-grid {
-            grid-template-columns: repeat(auto-fit,minmax(340px,1fr)) !important;
-            padding: 0 20px !important;
-        }
-        body.desktop-mode #searchInput {max-width:600px !important;}
+        body.desktop-mode *{max-width:none !important;padding-left:20px !important;padding-right:20px !important;width:100% !important}
+        body.desktop-mode .features{grid-template-columns:1fr 1fr 1fr !important;gap:40px !important}
+        @media (max-width:1400px){body.desktop-mode .features{grid-template-columns:1fr 1fr !important}}
+        @media (max-width:900px){body.desktop-mode .features{grid-template-columns:1fr !important}}
     </style>
 </head>
 <body>
@@ -108,23 +71,46 @@
         <div class="subtitle">instant • tanio • bez ściemy</div>
     </header>
 
+    <!-- SEKCJA 1 -->
     <section class="why-us">
         <h2>DLACZEGO WARTO KUPIĆ U KACZORA?</h2>
         <div class="features">
             <div class="feature">
                 <div class="feature-icon">Lightning</div>
                 <h3>KLUCZ W 10–60 MINUT</h3>
-                <p>Jak nie wyślę w godzinę – możesz mnie nazwać pingwinem i nakarmić śledziem. 24/7, nawet jak pijany śpię – budzę się i wysyłam.</p>
+                <p>Jak nie wyślę w godzinę – możesz mnie nazwać pingwinem i nakarmić śledziem. 24/7 – budzę się i wysy</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">Checkmark</div>
+                <div class="feature-icon">Check mark</div>
                 <h3>100% DZIAŁAJĄCE KLUCZE</h3>
-                <p>Jak klucz nie działa – możesz mnie ogolić na łyso i wrzucić na TikToka. Nigdy się to nie zdarzyło i nie zdarzy. Ręczę dupą i piórami.</p>
+                <p>Jak klucz nie działa – możesz mnie ogolić na łyso i wrzucić na TikToka. Ręczę dupą i piórami.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">Handshake</div>
+                <div class="feature-icon">Hand shake</div>
                 <h3>JESTEM ZAWSZE</h3>
-                <p>Pisz o 3 w nocy czy w Wigilię – odpiszę szybciej niż twoja ex na „hej”. Żywy kaczor, nie bot. Zero ściemy, pełen szacun.</p>
+                <p>Pisz o 3 w nocy czy w Wigilię – odpisuję szybciej niż twoja ex na „hej”. Żywy kaczor, nie bot.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKCJA 2 -->
+    <section class="why-us" style="background:linear-gradient(180deg,#000 0%,#0a0a0a 100%);padding:140px 20px;">
+        <h2 style="font-size:52px;">KACZOR = ZERO RYZYKA</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">Shield</div>
+                <h3>PEŁNY ZWROT JAK COŚ NIE GRA</h3>
+                <p>Coś nie bangla? Klucz nie działa? Region nie ten? Zwracam kasę w 5 minut – bez pytań.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">Lock</div>
+                <h3>BEZPIECZEŃSTWO NA 1000%</h3>
+                <p>Żadnych wirusów, trojanów ani scamów. Klucze ręcznie sprawdzane, prosto od źródła.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">Gift</div>
+                <h3>BONUSY OD KACZORA</h3>
+                <p>Większe zamówienie = większa zniżka albo gratis. Stały klient? Traktuję jak rodzinę (lepiej).</p>
             </div>
         </div>
     </section>
@@ -132,6 +118,7 @@
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Szukaj gry... (np. batman, mafia, gta, rdr2, tekken)" autocomplete="off">
     </div>
+
     <div class="keys-grid" id="gamesContainer"></div>
 
     <div class="custom-order">
@@ -148,26 +135,28 @@
         <p style="font-size:13px;color:#555;">KACZE KLUCZE © 2025 • KWAK KWAK MOTHERFUCKER</p>
     </footer>
 
-    <div id="desktopViewBtn" title="Kliknij → widok identyczny jak na PC">
+    <div id="desktopViewBtn" title="Kliknij → widok jak na PC">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
             <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
             <line x1="12" y1="18" x2="12.01" y2="18"/>
         </svg>
     </div>
 
+    <!-- MODALE -->
     <div id="buyModal" class="modal">
         <div class="modal-content">
             <span class="close">×</span>
             <h2 id="modalTitle" style="font-size:32px;margin-bottom:15px;color:#ffc439;"></h2>
             <div style="font-size:50px;font-weight:bold;color:#ffc439;margin:20px 0;" id="modalPrice"></div>
-            <p style="margin:20px 0 10px;color:#ddd;font-size:19px;line-height:1.6;">Podaj swój e-mail – wyślę klucz dokładnie tutaj!</p>
+            <p style="margin:20px 0 10px;color:#ddd;font-size:19px;line-height:1.6;">Podaj swój e-mail – klucz wleci dokładnie tutaj!</p>
             <input type="email" id="buyerEmail" placeholder="twój@mail.com" required autocomplete="email">
             <button id="continueBtn">DALEJ → ZAPŁAĆ</button>
-            <div style="margin-top:25px;color:#aaa;font-size:17px;">Po płatności klucz w 1–60 minut • 24/7 online</div>
+            <div style="margin-top:25px;color:#aaa;font-size:17px;">Po płatności klucz w 1–60 minut • 24/7</div>
         </div>
     </div>
+
     <div id="successModal" class="modal">
-        <div class="modal-content success-modal">
+        <div class="modal-content">
             <span class="close">×</span>
             <div class="duck-big">KWAK!</div>
             <h2>PŁATNOŚĆ OTWARTA!</h2>
@@ -191,7 +180,7 @@ const gamesDatabase = [
     {file:"Batman_Arkham_Origins",title:"Batman: Arkham Origins",price:15},
     {file:"Fallout_76",title:"Fallout 76",price:42},
     {file:"Ghost_of_Tsushima_Directors_Cut",title:"Ghost of Tsushima | Director's Cut",price:117},
-    {file:"Ready_or_Not",title:"Ready or Not",price:98},  // NAPRAWIONE
+    {file:"Ready_or_Not",title:"Ready or Not",price:98},
     {file:"Hogwarts_Legacy_Deluxe_Edition",title:"Hogwarts Legacy | Deluxe Edition",price:50},
     {file:"Mortal_Kombat_XL",title:"Mortal Kombat XL",price:15},
     {file:"Hello_Neighbor",title:"Hello Neighbor",price:20},
@@ -285,7 +274,6 @@ function createCard(game){
     const card = document.createElement('div');
     card.className = 'key-card';
     card.dataset.title = game.title.toLowerCase();
-
     const coverDiv = document.createElement('div');
     coverDiv.className = 'game-cover';
     const exts = ['.png','.jpg','.jpeg'];
