@@ -1,0 +1,23 @@
+name: Kaczor Price Updater
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: pip install requests
+      - run: python kaczor_price_updater.py
+      - run: |
+          git config user.name "Kaczor Bot"
+          git config user.email "kaczor@kwak.pl"
+          git add index.html price_log.txt || true
+          git diff --quiet && echo "Brak zmian" || git commit -m "KWAK! Ceny zaktualizowane $(date +'\%H:\%M')"
+          git push
